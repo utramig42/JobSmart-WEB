@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="text-center mt-1">Cadastro de Fornecedores</h1>
+      <form class="form-auto" action="class/Insert.php" method="POST" >
+        <div class="form-row">
+          <div class="form-group col-md-4">
+            <label for="inputAddress"> CNPJ </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              placeholder="77.890.096/0001-35"
+            />
+          </div>
+
+          <div class="form-group col-md-8">
+            <label for="inputAddress"> Razão Social</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              placeholder="Papapa TOP S&A"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputEstado">Nome Fantasia</label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress"
+              placeholder="Papapa TOP S&A"
+            />
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputEstado">Estado</label>
+            <select id="inputEstado" class="form-control">
+              <option selected>Escolher...</option>
+              <option>...</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+            <label for="inputEstado">Cidade</label>
+            <select id="inputEstado" class="form-control">
+              <option selected>Escolher...</option>
+              <option>...</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <label for="inputAddress2"> Endereço </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress2"
+              placeholder="Rua dos bobos"
+            />
+          </div>
+
+          <div class="form-group col-md-2">
+            <label for="inputAddress2"> Nº </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress2"
+              placeholder="93"
+            />
+          </div>
+
+          <div class="form-group col-md-4">
+            <label for="inputAddress2"> Complemento </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputAddress2"
+              placeholder="Apto. 230"
+            />
+          </div>
+        </div>
+
+        <div class="form-row">
+
+          <div class="form-group col-md-6">
+            <label for="inputAddress2"> Responsável  </label>
+            <input
+              type="text"
+              class="form-control"
+              id="inputCEP"
+              placeholder="Roberto"
+            />
+          </div>
+
+          <div class="form-group col-md-6">
+              <label for="inputCity">Telefone</label>
+              <input type="text" class="form-control" placeholder="(31) 3135-3256" id="inputCity" />
+            </div>
+  
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary w-100">Cadastrar</button>
+      </form>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
