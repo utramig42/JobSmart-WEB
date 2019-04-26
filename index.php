@@ -1,5 +1,10 @@
 <?php
 include_once('includes/headers/header-init.php');
+?>
+
+<title> Job'Smart - Administrativo </title>
+
+<?php
 include_once('includes/headers/header-styles.php');
 include_once('includes/navbar/navbar-main.php');
 ?>
