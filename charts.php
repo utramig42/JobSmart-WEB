@@ -1,5 +1,6 @@
 <?php
 include_once('includes/headers/header-init.php');
+
 ?>
 
 <title> Job'Smart - Administrativo </title>
@@ -12,7 +13,8 @@ include_once('includes/navbar/navbar-main.php');
 <div id="wrapper">
 
     <?php
-    include_once('includes/navbar/navbar-sidebar.php')
+    include_once('includes/navbar/navbar-sidebar.php');
+
     ?>
 
     <div id="content-wrapper">
@@ -22,7 +24,12 @@ include_once('includes/navbar/navbar-main.php');
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Charts</li>
+                <li class="breadcrumb-item active text-capitalize">
+                    <?php
+                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+                    echo $fileName;
+                    ?>
+                </li>
             </ol>
 
             <!-- Area Chart Example-->
@@ -81,5 +88,11 @@ include_once('includes/navbar/navbar-main.php');
         include('includes/footers/footer-init.php');
         include('includes/footers/footer-modal.php');
         include('includes/footers/footer-scripts.php');
+        ?>
+
+
+
+        <?php
+
         include('includes/footers/footer-final.php');
         ?>

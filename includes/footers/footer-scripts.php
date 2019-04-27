@@ -20,3 +20,8 @@
     <!-- Demo scripts for this page-->
     <script src="js/demo/datatables-demo.js"></script>
     <script src="js/demo/chart-area-demo.js"></script>
+
+    <script src="js/sidebar-active.js"></script>
+    <script>
+sideBarActive("<?php echo $fileName;  ?>")
+    </script>
