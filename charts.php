@@ -90,7 +90,11 @@ include_once('includes/navbar/navbar-main.php');
         include('includes/footers/footer-scripts.php');
         ?>
 
-
+        <!-- Demo scripts for this page-->
+        <script src="js/demo/datatables-demo.js"></script>
+        <script src="js/demo/chart-area-demo.js"></script>
+        <script src="js/demo/chart-bar-demo.js"></script>
+        <script src="js/demo/chart-pie-demo.js"></script>
 
         <?php
 

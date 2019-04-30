@@ -5,12 +5,16 @@ include_once('includes/headers/header-init.php');
 <title> Job'Smart - Administrativo </title>
 
 <?php
+// CSS
 include_once('includes/headers/header-styles.php');
+
+// Navbar padrão
 include_once('includes/navbar/navbar-main.php');
 ?>
 
 <div id="wrapper">
 
+    <!-- Sidebar -->
     <?php
     include_once('includes/navbar/navbar-sidebar.php')
     ?>
@@ -24,7 +28,13 @@ include_once('includes/navbar/navbar-main.php');
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Tables</li>
+                <li class="breadcrumb-item active text-capitalize">
+                    <?php
+                    // Colocando cabeçalho 
+                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+                    echo $fileName;
+                    ?>
+                </li>
             </ol>
 
             <!-- DataTables Example -->

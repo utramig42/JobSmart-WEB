@@ -24,7 +24,12 @@ include_once('includes/navbar/navbar-main.php');
                 <li class="breadcrumb-item">
                     <a href="index.php">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Blank Page</li>
+                <li class="breadcrumb-item active text-capitalize">
+                    <?php
+                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+                    echo $fileName;
+                    ?>
+                </li>
             </ol>
 
             <!-- Page Content -->
