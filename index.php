@@ -1,5 +1,10 @@
 <?php
 include_once('includes/headers/header-init.php');
+?>
+
+<title> Job'Smart - Administrativo </title>
+
+<?php
 include_once('includes/headers/header-styles.php');
 include_once('includes/navbar/navbar-main.php');
 ?>
@@ -17,7 +22,12 @@ include_once('includes/navbar/navbar-main.php');
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active">Overview</li>
+                <li class="breadcrumb-item active text-capitalize">
+                    <?php
+                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+                    echo $fileName;
+                    ?>
+                </li>
             </ol>
 
             <!-- Icon Cards-->
@@ -602,5 +612,9 @@ include_once('includes/navbar/navbar-main.php');
         include('includes/footers/footer-init.php');
         include('includes/footers/footer-modal.php');
         include('includes/footers/footer-scripts.php');
+        ?>
+
+        <script src="js/demo/chart-area-demo.js"></script>
+        <?php
         include('includes/footers/footer-final.php');
         ?>
