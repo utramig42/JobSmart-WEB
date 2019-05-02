@@ -33,4 +33,10 @@
             <i class="fas fa-fw fa-table"></i>
             <span>Tables</span></a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="usuarios.php">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Usuarios</span></a>
+    </li>
 </ul>

@@ -134,12 +134,12 @@ include_once('includes/navbar/navbar-main.php');
                                             </option>
 
                                         </select>
-                                        <label for="estado" class="d-none">Estado</label>
+                                        <label for="estado" class="">Estado</label>
                                     </div>
                                 </div>
 
 
-                                <div class="col-md-4">
+                                <div class=" col-md-4">
                                     <div class="form-label-group">
                                         <select id="estado" name="estado" class="form-control" required="required">
 
@@ -179,5 +179,13 @@ include_once('includes/navbar/navbar-main.php');
 include('includes/footers/footer-init.php');
 include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
+?>
+
+<script>
+const labels = document.querySelectorAll('select+label');
+console.log(labels);
+</script>
+
+<?php
 include('includes/footers/footer-final.php');
 ?>
