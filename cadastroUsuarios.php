@@ -186,10 +186,7 @@ include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
 ?>
 
-<script>
-const labels = document.querySelectorAll('select+label');
-console.log(labels);
-</script>
+<script src="./js/validantion"></script>
 
 <?php
 include('includes/footers/footer-final.php');

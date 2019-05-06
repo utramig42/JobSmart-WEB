@@ -5,18 +5,16 @@
  * @returns {string|boolean} informando se o valor passado corresponde a um CPF ou CNPJ
  */
 function verificaCpfCnpj(valor) {
+  valor = valor.toString();
+  valor = valor.replace(/[^0-9]/g, "");
 
-	valor = valor.toString();
-	valor = valor.replace(/[^0-9]/g, '');
-
-	if (valor.length === 11) {
-		return 'CPF';
-	} else if (valor.length === 14) {
-		return 'CNPJ';
-	} else {
-		return false;
-	}
-
+  if (valor.length === 11) {
+    return "CPF";
+  } else if (valor.length === 14) {
+    return "CNPJ";
+  } else {
+    return false;
+  }
 }
 
 /**
@@ -26,26 +24,20 @@ function verificaCpfCnpj(valor) {
  * @returns {string} do valor passado como parametro com a respectiva mascara
  */
 function formataCpfCnpj(valor) {
+  let formatado;
 
-	let formatado;
+  if (this.verificaCpfCnpj(valor) === "CPF") {
+    formatado = valor.substr(0, 3) + ".";
+    formatado += valor.substr(3, 3) + ".";
+    formatado += valor.substr(6, 3) + "-";
+    formatado += valor.substr(9, 2) + "";
+  } else if (this.verificaCpfCnpj(valor) === "CNPJ") {
+    formatado = valor.substr(0, 2) + ".";
+    formatado += valor.substr(2, 3) + ".";
+    formatado += valor.substr(5, 3) + "/";
+    formatado += valor.substr(8, 4) + "-";
+    formatado += valor.substr(12, 14) + "";
+  }
 
-	if (this.verificaCpfCnpj(valor) === 'CPF') {
-
-		formatado = valor.substr(0, 3) + '.';
-		formatado += valor.substr(3, 3) + '.';
-		formatado += valor.substr(6, 3) + '-';
-		formatado += valor.substr(9, 2) + '';
-
-	} else if (this.verificaCpfCnpj(valor) === 'CNPJ') {
-
-		formatado = valor.substr(0, 2) + '.';
-		formatado += valor.substr(2, 3) + '.';
-		formatado += valor.substr(5, 3) + '/';
-		formatado += valor.substr(8, 4) + '-';
-		formatado += valor.substr(12, 14) + '';
-
-	}
-
-	return formatado;
-
+  return formatado;
 }
