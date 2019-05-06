@@ -25,8 +25,13 @@ include_once('includes/navbar/navbar-main.php');
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
+                    <a href="index.php">Dashboard</a>
                 </li>
+
+                <li class="breadcrumb-item">
+                    <a href="usuarios.php"> Usuarios </a>
+                </li>
+
                 <li class="breadcrumb-item active text-capitalize">
                     Cadastro de usuarios
                     <?php $fileName = 'Usuarios'; ?>
@@ -126,15 +131,15 @@ include_once('includes/navbar/navbar-main.php');
 
                         <div class="form-group">
                             <div class="form-row">
+
                                 <div class="col-md-4">
                                     <div class="form-label-group">
                                         <select id="estado" name="estado" class="form-control">
                                             <option value="" selected>
                                                 Estado
                                             </option>
-
                                         </select>
-                                        <label for="estado" class="">Estado</label>
+                                        <label for="estado" class="d-none">Estado</label>
                                     </div>
                                 </div>
 

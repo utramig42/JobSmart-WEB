@@ -1,0 +1,48 @@
+th {
+	font-size: 0.8rem;
+}
+
+/* Barra de Rolagem do modal */
+.modal-open .modal {
+	overflow-x: hidden;
+	overflow-y: hidden;
+}
+.modal-dialog {
+	height: 90%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+}
+
+.modal-dialog::-webkit-scrollbar {
+	padding: 0;
+	width: 5px;
+}
+
+.modal-dialog::-webkit-scrollbar-thumb {
+	border-radius: 5px;
+	background: rgba(255, 255, 255, 0.349);
+}
+
+/* Fim da Barra de Rolagem do modal */
+
+/* linha linha de separação de itens dentro do modal */
+
+.modal .modal-item:first-child {
+	/* No primeiro item, não exibir a espaçameto. */
+	margin-top: 0;
+}
+
+.modal .modal-item {
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	border: 0;
+	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal .modal-item:last-child {
+	/* No último item, não exibir a linha de separação */
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+/* Fim linha de separação de itens dentro do do modal */

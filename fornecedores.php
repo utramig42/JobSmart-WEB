@@ -1,13 +1,13 @@
 <?php
     include_once('includes/headers/header-init.php');
+        // CSS
+        include_once('includes/headers/header-styles.php');
 ?>
 
-<title>Job'Smart - Administrativo</title>
+<title>Job'Smart - Fornecedres</title>
+<link rel="stylesheet" href="css/tables.css">
 
 <?php
-    // CSS
-    include_once('includes/headers/header-styles.php');
-
     // Navbar padrão
     include_once('includes/navbar/navbar-main.php');
 ?>
@@ -43,10 +43,16 @@
                     <i class="fas fa-table"></i>
                     <span>Lista de fornecedores</span>
 
+                    <!-- Botão de cadastrar -->
+                    <a class="btn btn-success" href="cadastrarFornecedores.php" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar
+                    </a>
+
                     <!-- Navbar Search -->
                     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search"
+                                aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search"></i>
@@ -54,7 +60,11 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
+
+
+
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -65,7 +75,7 @@
                                     <th>Nome do Contato</th>
                                     <th>Telefone</th>
                                     <th>E-mail</th>
-                                    <th>Ações</th>                                 
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -76,17 +86,21 @@
                                     <th class="text-muted">+55 31 91234-5678</th>
                                     <th class="text-muted">carlos_oliveira@jbcab.com.br</th>
                                     <th>
-                                        <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#informationModal">
+                                        <button class="btn btn-primary" type="button" data-toggle="modal"
+                                            data-target="#informationModal">
                                             <i class="fas fa-plus"></i>
                                         </button>
 
                                         <!-- Modal -->
-                                        <div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="informationModal" tabindex="-1" role="dialog"
+                                            aria-labelledby="informationModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
-                                                        <h4 class="modal-title" id="exampleModalLabel">Informações do fornecedor</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <h4 class="modal-title" id="exampleModalLabel">Informações do
+                                                            fornecedor</h4>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
@@ -95,37 +109,48 @@
                                                         <p class="text-muted">001</p> <!-- receberá valor do banco -->
                                                         <hr> <!--  modificar separador de conteúdo -->
                                                         <h5>Nome</h5>
-                                                        <p class="text-muted">JB - Alimentos e Bebidas</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">JB - Alimentos e Bebidas</p>
+                                                        <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>CNPJ</h5>
-                                                        <p class="text-muted">12.345.678/9101-11</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">12.345.678/9101-11</p>
+                                                        <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>Razão Social</h5>
-                                                        <p class="text-muted">JB - Comércio de Alimentos e Bebidas Ltda.</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">JB - Comércio de Alimentos e Bebidas Ltda.
+                                                        </p> <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>UF</h5>
                                                         <p class="text-muted">MG</p> <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>Cidade</h5>
-                                                        <p class="text-muted">Belo Horizonte</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">Belo Horizonte</p>
+                                                        <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>Endereço</h5>
-                                                        <p class="text-muted">Rua Gustavo Brandão, 329 - Horta, Belo Horizonte - MG, 12345-678, Brasil</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">Rua Gustavo Brandão, 329 - Horta, Belo
+                                                            Horizonte - MG, 12345-678, Brasil</p>
+                                                        <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>Nome do Contato</h5>
-                                                        <p class="text-muted">Carlos de Oliveira</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">Carlos de Oliveira</p>
+                                                        <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>Telefone</h5>
-                                                        <p class="text-muted">+55 31 91234-5678</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">+55 31 91234-5678</p>
+                                                        <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>E-mail</h5>
-                                                        <p class="text-muted">carlos_oliveira@jbcab.com.br</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">carlos_oliveira@jbcab.com.br</p>
+                                                        <!-- receberá valor do banco -->
                                                         <hr> <!-- modificar separador de conteúdo -->
                                                         <h5>Data do Cadastro</h5>
-                                                        <p class="text-muted">01/02/2003</p> <!-- receberá valor do banco -->
+                                                        <p class="text-muted">01/02/2003</p>
+                                                        <!-- receberá valor do banco -->
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -141,15 +166,33 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <nav aria-label="Tabelas apresentado usuarios">
+                            <ul class="pagination justify-content-center">
+                                <li class=" page-item disabled">
+                                    <span class="page-link">Anterior</span>
+
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">
+                                        1
+                                    </a>
+                                    <span class="sr-only">(atual)</span>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link">
+                                        2
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Próximo</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
-                <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                <div class="card-footer small text-muted">Última atualização - 04/05/2019</div>
             </div>
-
-            <p class="small text-center text-muted my-5">
-                <em>More table examples coming soon...</em>
-            </p>
-
         </div>
         <!-- /.container-fluid -->
 

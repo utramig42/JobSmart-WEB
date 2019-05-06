@@ -3,9 +3,10 @@ include_once('includes/headers/header-init.php');
 include_once('includes/headers/header-styles.php');
 ?>
 
-<title> Job'Smart - Usúarios </title>
-
+<title> Job'Smart - Administrativo </title>
+<link rel="stylesheet" href="css/tables.css">
 <?php
+
 include_once('includes/navbar/navbar-main.php');
 ?>
 
@@ -38,10 +39,6 @@ include_once('includes/navbar/navbar-main.php');
                     <i class="fas fa-table"></i>
                     <span>Lista de Funcionarios</span>
 
-                    <!-- Botão de cadastrar -->
-                    <a class="btn btn-success" href="cadastroUsuarios.php" role="button">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar
-                    </a>
 
                     <!-- Navbar Search -->
                     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -62,20 +59,21 @@ include_once('includes/navbar/navbar-main.php');
                             <thead>
                                 <tr>
                                     <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Telefone</th>
-                                    <th>Salário</th>
-                                    <th>Temporario</th>
+                                    <th>Quant. Mínima</th>
+                                    <th>Marca</th>
+                                    <th>Categoria</th>
+                                    <th>Observações </th>
                                     <th>Ações</th>
+
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th class="text-muted">José Ribamar </th>
-                                    <th class="text-muted">12.345.678-11</th>
-                                    <th class="text-muted">+55 31 91234-5678</th>
-                                    <th class="text-muted">R$ 2000.42</th>
-                                    <th class="text-muted">Sim</th>
+                                    <th class="text-muted">Pão de doce </th>
+                                    <th class="text-muted">2</th>
+                                    <th class="text-muted">Pãos Mágicos</th>
+                                    <th class="text-muted">Panificadores</th>
+                                    <th class="text-muted"> Feitos diriamente. </th>
                                     <th>
                                         <button class="btn btn-primary" type="button" data-toggle="modal"
                                             data-target="#informationModal">
@@ -89,51 +87,53 @@ include_once('includes/navbar/navbar-main.php');
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h4 class="modal-title" id="exampleModalLabel">Informações do
-                                                            Usuario</h4>
+                                                            Produto</h4>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <h5>Matricula</h5>
-                                                        <p class="text-muted">001</p> <!-- receberá valor do banco -->
-                                                        <hr> <!--  modificar separador de conteúdo -->
-                                                        <h5>Nome</h5>
-                                                        <p class="text-muted">José Ribamar</p>
-                                                        <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>CPF</h5>
-                                                        <p class="text-muted">12.345.678-11</p>
-                                                        <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>Data de nascimento</h5>
-                                                        <p class="text-muted">10/02/1999
-                                                        </p> <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>UF</h5>
-                                                        <p class="text-muted">MG</p> <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>Cidade</h5>
-                                                        <p class="text-muted">Belo Horizonte</p>
-                                                        <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>Endereço</h5>
-                                                        <p class="text-muted">Rua Gustavo Brandão, 329 - Horta, Belo
-                                                            Horizonte - MG, 12345-678, Brasil</p>
-                                                        <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>Telefone</h5>
-                                                        <p class="text-muted">+55 31 91234-5678</p>
-                                                        <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>Cargo</h5>
-                                                        <p class="text-muted">Vendedor</p>
-                                                        <!-- receberá valor do banco -->
-                                                        <hr> <!-- modificar separador de conteúdo -->
-                                                        <h5>Data do Cadastro</h5>
-                                                        <p class="text-muted">01/02/2013</p>
-                                                        <!-- receberá valor do banco -->
+
+                                                        <div class="modal-item">
+                                                            <h5>Id</h5>
+                                                            <p class="text-muted">001</p>
+                                                            <!-- receberá valor do banco -->
+                                                        </div>
+
+                                                        <div class="modal-item">
+                                                            <h5>Nome</h5>
+                                                            <p class="text-muted">Pão de doce</p>
+                                                            <!-- receberá valor do banco -->
+
+                                                        </div>
+                                                        <h5>Marca</h5>
+                                                        <div class="modal-item">
+                                                            <p class="text-muted">Pãos Mágicos</p>
+                                                            <!-- receberá valor do
+                                                                        banco -->
+
+                                                        </div>
+                                                        <div class="modal-item">
+                                                            <h5>Categoria</h5>
+                                                            <p class="text-muted">Panificadores</p>
+                                                            <!-- receberá valor do banco -->
+                                                        </div>
+                                                        <div class="modal-item">
+                                                            <h5>Quantidade minima</h5>
+                                                            <p class="text-muted"> 2 </p>
+                                                            <!-- receberá valor do banco -->
+                                                        </div>
+                                                        <div class="modal-item">
+                                                            <h5> Data de Cadastro </h5>
+                                                            <p class="text-muted"> 01/09/1999
+                                                            </p> <!-- receberá valor do banco -->
+                                                        </div>
+                                                        <div class="modal-item">
+                                                            <h5> Observações </h5>
+                                                            <p class="text-muted"> Feito diariamente.
+                                                            </p> <!-- receberá valor do banco -->
+                                                        </div>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary"
@@ -142,13 +142,6 @@ include_once('includes/navbar/navbar-main.php');
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <button class="btn btn-success" type="button">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <button class="btn btn-danger" type="button">
-                                            <i class="fas fa-trash"></i>
-                                        </button>
                                     </th>
                                 </tr>
                             </tfoot>
@@ -197,4 +190,4 @@ include('includes/footers/footer-init.php');
 include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
 include('includes/footers/footer-final.php');
-?>
+?>a
