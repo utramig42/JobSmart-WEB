@@ -18,7 +18,7 @@
 
 <!-- Arquivos criados para o projeto especificamente -->
 
-<script src="js/sidebar-active.js"></script>
+<script src="js/sidebarActive.js"></script>
 <script>
 sideBarActive("<?php echo $fileName;  ?>")
 </script>

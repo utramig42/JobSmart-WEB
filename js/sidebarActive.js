@@ -14,7 +14,6 @@ function sideBarActive(name) {
 
 function alterStates(elements, name) {
   // Função para alterações de estados.
-
   changeStatusOff(findDesactive(elements)); // Desativando o estado atual e selecionando o qual deve ser desativado.
   changeStatusOn(findActive(elements, name)); // Ativando o estados e  selecionando o qual deve ser ativado.
 }
