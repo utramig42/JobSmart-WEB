@@ -595,7 +595,7 @@ include_once('includes/navbar/navbar-main.php');
         include('includes/footers/footer-scripts.php');
         ?>
 
-        <script src="js/demo/chart-area-demo.js"></script>
+    <script src="vendor/template-scripts/demo/chart-area-demo.js"></script>
         <?php
         include('includes/footers/footer-final.php');
         ?>

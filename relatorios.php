@@ -91,10 +91,10 @@ include_once('includes/navbar/navbar-main.php');
         ?>
 
         <!-- Demo scripts for this page-->
-        <script src="js/demo/datatables-demo.js"></script>
-        <script src="js/demo/chart-area-demo.js"></script>
-        <script src="js/demo/chart-bar-demo.js"></script>
-        <script src="js/demo/chart-pie-demo.js"></script>
+    <script src="vendor/template-scripts/demo/datatables-demo.js"></script>
+    <script src="vendor/template-scripts/demo/chart-area-demo.js"></script>
+    <script src="vendor/template-scripts/demo/chart-bar-demo.js"></script>
+    <script src="vendor/template-scripts/demo/chart-pie-demo.js"></script>
 
         <?php
 
