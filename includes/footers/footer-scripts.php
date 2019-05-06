@@ -13,8 +13,7 @@
 <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
-
+<script src="vendor/template-scripts/sb-admin.min.js"></script>
 <!-- Fim  dos Arquivos imutaveis -->
 
 <!-- Arquivos criados para o projeto especificamente -->
