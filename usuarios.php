@@ -203,7 +203,10 @@ include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
 ?>
 
-<script src="js/tableSearch.js"> </script>
+<script src="js/controller/TableController.js"></script>
+<script>
+window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
+</script>
 
 <?php
 include('includes/footers/footer-final.php');
