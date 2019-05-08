@@ -44,12 +44,13 @@ include_once('includes/navbar/navbar-main.php');
                     </a>
 
                     <!-- Navbar Search -->
-                    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"
+                        id="search-table">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search"
                                 aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
+                                <button class="btn btn-primary" type="submit">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
@@ -81,6 +82,7 @@ include_once('includes/navbar/navbar-main.php');
                                             data-target="#informationModal">
                                             <i class="fas fa-plus"></i>
                                         </button>
+
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="informationModal" tabindex="-1" role="dialog"
@@ -151,6 +153,9 @@ include_once('includes/navbar/navbar-main.php');
                                         </button>
                                     </th>
                                 </tr>
+
+
+
                             </tfoot>
                         </table>
                         <nav aria-label="Tabelas apresentado usuarios">
@@ -196,5 +201,13 @@ include_once('includes/navbar/navbar-main.php');
 include('includes/footers/footer-init.php');
 include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
+?>
+
+<script src="js/controller/TableController.js"></script>
+<script>
+window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
+</script>
+
+<?php
 include('includes/footers/footer-final.php');
 ?>
