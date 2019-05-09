@@ -36,16 +36,12 @@ include_once('includes/navbar/navbar-main.php');
                     <div class="card text-white bg-primary o-hidden h-100">
                         <div class="card-body">
                             <div class="card-body-icon">
-                                <i class="fas fa-fw fa-comments"></i>
+
+                                <i class="fas fa-fw fa-money-bill"></i>
                             </div>
-                            <div class="mr-5">26 New Messages!</div>
+                            <div class=" mr-5">R$ 2000 Faturados até o momento</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
-                            <span class="float-left">View Details</span>
-                            <span class="float-right">
-                                <i class="fas fa-angle-right"></i>
-                            </span>
-                        </a>
+
                     </div>
                 </div>
                 <div class="col-xl-3 col-sm-6 mb-3">
@@ -56,12 +52,7 @@ include_once('includes/navbar/navbar-main.php');
                             </div>
                             <div class="mr-5">11 New Tasks!</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
-                            <span class="float-left">View Details</span>
-                            <span class="float-right">
-                                <i class="fas fa-angle-right"></i>
-                            </span>
-                        </a>
+
                     </div>
                 </div>
                 <div class="col-xl-3 col-sm-6 mb-3">
@@ -72,12 +63,7 @@ include_once('includes/navbar/navbar-main.php');
                             </div>
                             <div class="mr-5">123 New Orders!</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
-                            <span class="float-left">View Details</span>
-                            <span class="float-right">
-                                <i class="fas fa-angle-right"></i>
-                            </span>
-                        </a>
+
                     </div>
                 </div>
                 <div class="col-xl-3 col-sm-6 mb-3">
@@ -88,12 +74,7 @@ include_once('includes/navbar/navbar-main.php');
                             </div>
                             <div class="mr-5">13 New Tickets!</div>
                         </div>
-                        <a class="card-footer text-white clearfix small z-1" href="#">
-                            <span class="float-left">View Details</span>
-                            <span class="float-right">
-                                <i class="fas fa-angle-right"></i>
-                            </span>
-                        </a>
+
                     </div>
                 </div>
             </div>
@@ -614,7 +595,7 @@ include_once('includes/navbar/navbar-main.php');
         include('includes/footers/footer-scripts.php');
         ?>
 
-        <script src="js/demo/chart-area-demo.js"></script>
+    <script src="vendor/template-scripts/demo/chart-area-demo.js"></script>
         <?php
         include('includes/footers/footer-final.php');
         ?>

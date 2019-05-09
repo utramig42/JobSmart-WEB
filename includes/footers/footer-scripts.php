@@ -13,13 +13,12 @@
 <script src="vendor/datatables/dataTables.bootstrap4.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin.min.js"></script>
-
+<script src="vendor/template-scripts/sb-admin.min.js"></script>
 <!-- Fim  dos Arquivos imutaveis -->
 
 <!-- Arquivos criados para o projeto especificamente -->
-
-<script src="js/sidebar-active.js"></script>
+<script src="js/sidebarActive.js"></script>
 <script>
 sideBarActive("<?php echo $fileName;  ?>")
 </script>
+<script src="js/utils/index.js"></script>

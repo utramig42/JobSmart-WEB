@@ -3,9 +3,9 @@
 
     // CSS
     include_once('includes/headers/header-styles.php');
-?>
 
-<title>Job'Smart - Administrativo</title>
+<title>Job'Smart - Fornecedres</title>
+<link rel="stylesheet" href="css/tables.css">
 
 <!-- fornecedores style CSS -->
 <link rel="stylesheet" type="text/css" href="css/fornecedores.css">
@@ -54,7 +54,8 @@
                     <!-- Navbar Search -->
                     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search"
+                                aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search"></i>
@@ -62,7 +63,11 @@
                             </div>
                         </div>
                     </form>
+
                 </div>
+
+
+
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -73,7 +78,7 @@
                                     <th>Nome do Contato</th>
                                     <th>Telefone</th>
                                     <th>E-mail</th>
-                                    <th>Ações</th>                                 
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -93,6 +98,7 @@
                                         <!-- Button Edit Information -->
                                         <button type="button" class="btn btn-warning">
                                             <i class="fas fa-edit text-white icon"></i>
+
                                         </button>
 
                                         <!-- Button Remove Information -->
@@ -103,6 +109,29 @@
                                 </tr>
                             </tfoot>
                         </table>
+                        <nav aria-label="Tabelas apresentado usuarios">
+                            <ul class="pagination justify-content-center">
+                                <li class=" page-item disabled">
+                                    <span class="page-link">Anterior</span>
+
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">
+                                        1
+                                    </a>
+                                    <span class="sr-only">(atual)</span>
+                                </li>
+                                <li class="page-item">
+                                    <a href="#" class="page-link">
+                                        2
+                                    </a>
+                                </li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Próximo</a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                     <!-- Pagination Buttons -->
                     <nav aria-label="Paginação de tabelas dos fornecedores">
