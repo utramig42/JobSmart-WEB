@@ -47,4 +47,11 @@
             <span>Produtos</span>
         </a>
     </li>
+
+    <li class="nav-item">
+        <a class="nav-link" href="vendas.php">
+            <i class="fas fa-dollar-sign    "></i>
+            <span>Vendas</span>
+        </a>
+    </li>
 </ul>
