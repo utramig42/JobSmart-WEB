@@ -38,21 +38,21 @@ include_once('includes/navbar/navbar-main.php');
                     <i class="fas fa-table"></i>
                     <span>Lista de Vendas</span>
 
+
+                </div>
+                <div class="card-body">
                     <!-- Navbar Search -->
-                    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"
-                        id="search-table">
-                        <div class="input-group">
+                    <form class="form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0 mb-5" id="search-table">
+                        <div class="input-group mb-1 w-50">
                             <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search"
                                 aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
+                                <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>

@@ -41,11 +41,11 @@ include_once('includes/navbar/navbar-main.php');
             <div class="card mx-auto mt-5">
                 <div class="card-header">Registrar os usuarios</div>
                 <div class="card-body">
-                    <form>
+                    <form id="user">
                         <div class="form-group">
                             <div class="form-label-group">
                                 <input type="text" id="nome" name="nome" class="form-control"
-                                    placeholder="Nome completo" required="required" autofocus="autofocus">
+                                    placeholder="Nome completo" require autofocus="autofocus">
                                 <label for="nome">Nome Completo</label>
 
                             </div>
@@ -55,7 +55,7 @@ include_once('includes/navbar/navbar-main.php');
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <select id="cargo" name="cargo" class="form-control" required="required">
+                                        <select id="cargo" name="cargo" class="form-control" require>
                                             <option> Cargo </option>
                                         </select>
                                         <label for="cargo" class="d-none"> Cargo </label>
@@ -65,7 +65,7 @@ include_once('includes/navbar/navbar-main.php');
                                 <div class="col-md-6">
                                     <div class="form-label-group">
                                         <input type="number" id="numero" name="numero" class="form-control"
-                                            placeholder="Salario" required="required">
+                                            placeholder="Salario" require>
                                         <label for="numero">Salario</label>
                                     </div>
                                 </div>
@@ -78,14 +78,14 @@ include_once('includes/navbar/navbar-main.php');
                                 <div class="col-md-4">
                                     <div class="form-label-group">
                                         <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
-                                            required="required">
+                                            require>
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-label-group">
                                         <input type="text" id="tel" name="tel" class="form-control"
-                                            placeholder="Telefone" required="required">
+                                            placeholder="Telefone" require>
                                         <label for="tel">Telefone</label>
                                     </div>
                                 </div>
@@ -93,7 +93,7 @@ include_once('includes/navbar/navbar-main.php');
                                 <div class="col-md-4">
                                     <div class="form-label-group">
                                         <input type="date" id="data" name="data" class="form-control"
-                                            placeholder="Data de nascimento" required="required">
+                                            placeholder="Data de nascimento" require>
                                         <label for="data">Data de nascimento</label>
                                     </div>
                                 </div>
@@ -106,14 +106,14 @@ include_once('includes/navbar/navbar-main.php');
                                 <div class="col-md-6">
                                     <div class="form-label-group">
                                         <input type="text" id="logradouro" name="logradouro" class="form-control"
-                                            placeholder="Logradouro" required="required">
+                                            placeholder="Logradouro" require>
                                         <label for="logradouro">Logradouro </label>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="form-label-group">
                                         <input type="number" id="numero" name="numero" class="form-control"
-                                            placeholder="Número" required="required">
+                                            placeholder="Número" require>
                                         <label for="numero">Número</label>
                                     </div>
                                 </div>
@@ -121,7 +121,7 @@ include_once('includes/navbar/navbar-main.php');
                                 <div class="col-md-4">
                                     <div class="form-label-group">
                                         <input type="text" id="complemento" name="complemento" class="form-control"
-                                            placeholder="Complemento" required="required">
+                                            placeholder="Complemento" require>
                                         <label for="complemento">Complemento</label>
                                     </div>
                                 </div>
@@ -146,7 +146,7 @@ include_once('includes/navbar/navbar-main.php');
 
                                 <div class=" col-md-4">
                                     <div class="form-label-group">
-                                        <select id="estado" name="estado" class="form-control" required="required">
+                                        <select id="estado" name="estado" class="form-control" require>
 
                                             <option value="" selected>
                                                 Cidade
@@ -159,7 +159,7 @@ include_once('includes/navbar/navbar-main.php');
                                 <div class="col-md-4">
                                     <div class="form-label-group">
                                         <input type="text" id="bairro" name="bairro" class="form-control"
-                                            placeholder="Bairro" required="required">
+                                            placeholder="Bairro" require>
                                         <label for="bairro">Bairro</label>
                                     </div>
                                 </div>
@@ -186,7 +186,11 @@ include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
 ?>
 
-<script src="./js/validantion"></script>
+<script src="./js/controller/FormController.js"></script>
+<script>
+    const form = document.querySelector('#user');
+    window.form = new FormController(form);
+</script>
 
 <?php
 include('includes/footers/footer-final.php');

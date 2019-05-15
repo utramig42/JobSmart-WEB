@@ -18,7 +18,5 @@
 
 <!-- Arquivos criados para o projeto especificamente -->
 <script src="js/sidebarActive.js"></script>
-<script>
-sideBarActive("<?php echo $fileName;  ?>")
-</script>
+<script> sideBarActive("<?php echo $fileName;  ?>") </script>
 <script src="js/utils/index.js"></script>
