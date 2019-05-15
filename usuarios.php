@@ -38,26 +38,36 @@ include_once('includes/navbar/navbar-main.php');
                     <i class="fas fa-table"></i>
                     <span>Lista de Funcionarios</span>
 
-                    <!-- Botão de cadastrar -->
-                    <a class="btn btn-success" href="cadastroUsuarios.php" role="button">
-                        <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar
-                    </a>
 
-                    <!-- Navbar Search -->
-                    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0"
-                        id="search-table">
-                        <div class="input-group">
+
+                </div>
+                <div class="card-body">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                                            <!-- Navbar Search -->
+                    <form class="form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0 mb-5" id="search-table">
+                        <div class="input-group mb-1 w-100">
                             <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search"
                                 aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="submit">
+                                <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="card-body">
+
+                        </div>
+                        <div class="col-md-6 d-flex-left">
+                                            <!-- Botão de cadastrar -->
+                    <a class="btn btn-success mb-1" href="cadastroUsuarios.php" role="button">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Cadastrar
+                    </a>
+
+                        </div>
+                    </div>
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>

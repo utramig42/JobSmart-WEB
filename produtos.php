@@ -40,9 +40,12 @@ include_once('includes/navbar/navbar-main.php');
                     <span>Lista de Funcionarios</span>
 
 
+                </div>
+                <div class="card-body">
+                
                     <!-- Navbar Search -->
-                    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-                        <div class="input-group">
+                    <form class="form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0 mb-5" id="search-table">
+                        <div class="input-group mb-1 w-50">
                             <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search"
                                 aria-describedby="basic-addon2">
                             <div class="input-group-append">
@@ -52,8 +55,9 @@ include_once('includes/navbar/navbar-main.php');
                             </div>
                         </div>
                     </form>
-                </div>
-                <div class="card-body">
+
+                    
+
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -178,10 +182,8 @@ include_once('includes/navbar/navbar-main.php');
 
         </div>
         <!-- /.container-fluid -->
-
     </div>
     <!-- /.content-wrapper -->
-
 </div>
 <!-- /#wrapper -->
 
@@ -189,5 +191,11 @@ include_once('includes/navbar/navbar-main.php');
 include('includes/footers/footer-init.php');
 include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
+?>
+<script src="js/controller/TableController.js"></script>
+<script>
+window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'))
+</script>
+<?php
 include('includes/footers/footer-final.php');
 ?>a
