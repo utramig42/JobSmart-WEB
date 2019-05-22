@@ -3,12 +3,15 @@
 
     // CSS
     include_once('includes/headers/header-styles.php');
+?>
 
-<title>Job'Smart - Fornecedres</title>
-<link rel="stylesheet" href="css/tables.css">
+<title>Job'Smart - Fornecedores</title>
 
-<!-- fornecedores style CSS -->
+<!-- Fornecedores Style CSS -->
 <link rel="stylesheet" type="text/css" href="css/fornecedores.css">
+
+<!-- Table Style CSS -->
+<link rel="stylesheet" href="css/tables.css">
 
 <?php
     // Default Navbar
@@ -25,16 +28,16 @@
     <div id="content-wrapper">
         <div class="container-fluid">
 
-            <!-- Breadcrumbs ????? -->
+            <!-- Breadcrumbs -->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
                     <a href="#">Painel de controle</a>
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
                     <?php
-                    // Placing Header ?????
-                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
-                    echo $fileName;
+                        // Placing Header
+                        $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+                        echo $fileName;
                     ?>
                 </li>
             </ol>
@@ -42,20 +45,20 @@
             <!-- Data Tables -->
             <div class="card mb-3">
                 <div class="card-header">
-                    <i class="fas fa-table"></i>
+                    <i class="fas fa-table mt-2"></i>
                     <span>Lista de fornecedores</span>
 
+                    <div class="d-md-inline-block float-right">
                     <!-- Register Button -->
-                    <button type="button" class="btn btn-primary" href="cadastrarFornecedores.php">
+                    <button type="button" class="btn btn-primary float-right" href="cadastrarFornecedores.php">
                         <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
                         <span>Cadastrar</span>
                     </button>
 
                     <!-- Navbar Search -->
-                    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                    <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search"
-                                aria-describedby="basic-addon2">
+                            <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
                                     <i class="fas fa-search"></i>
@@ -63,22 +66,20 @@
                             </div>
                         </div>
                     </form>
-
+                    </div>
                 </div>
-
-
 
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Nome</th>
+                                    <th>Nome Fantasia</th>
                                     <th>CNPJ</th>
                                     <th>Nome do Contato</th>
                                     <th>Telefone</th>
                                     <th>E-mail</th>
-                                    <th>Ações</th>
+                                    <th>Ações</th>                                 
                                 </tr>
                             </thead>
                             <tfoot>
@@ -96,43 +97,20 @@
                                         </button>
 
                                         <!-- Button Edit Information -->
-                                        <button type="button" class="btn btn-warning">
+                                        <button type="button" class="btn btn-warning ml-1">
                                             <i class="fas fa-edit text-white icon"></i>
-
                                         </button>
 
                                         <!-- Button Remove Information -->
-                                        <button type="button" class="btn btn-danger">
+                                        <button type="button" class="btn btn-danger ml-1">
                                             <i class="fas fa-trash text-white icon"></i>
                                         </button>
                                     </td>
                                 </tr>
                             </tfoot>
                         </table>
-                        <nav aria-label="Tabelas apresentado usuarios">
-                            <ul class="pagination justify-content-center">
-                                <li class=" page-item disabled">
-                                    <span class="page-link">Anterior</span>
-
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">
-                                        1
-                                    </a>
-                                    <span class="sr-only">(atual)</span>
-                                </li>
-                                <li class="page-item">
-                                    <a href="#" class="page-link">
-                                        2
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Próximo</a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
+
                     <!-- Pagination Buttons -->
                     <nav aria-label="Paginação de tabelas dos fornecedores">
                         <ul class="pagination justify-content-center mt-3">
@@ -177,11 +155,12 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
             <div class="modal-body">
                 <h5>Código</h5>
                 <p class="text-muted info-bottom-border">001</p>
 
-                <h5>Nome</h5>
+                <h5>Nome Fantasia</h5>
                 <p class="text-muted info-bottom-border">JB - Alimentos e Bebidas</p>
 
                 <h5>CNPJ</h5>
@@ -196,8 +175,14 @@
                 <h5>Cidade</h5>
                 <p class="text-muted info-bottom-border">Belo Horizonte</p>
 
-                <h5>Endereço</h5>
-                <p class="text-muted info-bottom-border">Rua Gustavo Brandão, 329 - Horta, Belo Horizonte - MG, 12345-678, Brasil</p>
+                <h5>Logradouro</h5>
+                <p class="text-muted info-bottom-border">Rua Gustavo Brandão - Horta - CEP 12345-678</p>
+
+                <h5>Número</h5>
+                <p class="text-muted info-bottom-border">3298</p>
+
+                <h5>Complemento</h5>
+                <p class="text-muted info-bottom-border">GP02</p>
 
                 <h5>Nome do Contato</h5>
                 <p class="text-muted info-bottom-border">Carlos de Oliveira</p>
@@ -211,6 +196,7 @@
                 <h5>Data do Cadastro</h5>
                 <p class="text-muted">01/02/2003</p>
             </div>
+            
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
