@@ -1,30 +1,50 @@
 class FormController {
   constructor(form) {
     this.formEl = form;
-
     this.initEvents();
   }
 
+  /**
+   * Função para inicialização de eventos.
+   */
   initEvents() {
+    getBrStates(); // Tentando incializar o IBGE.x'
+
     this.formEl.addEventListener("submit", event => {
-      event.preventDefault();
-      this.validationInputs();
-      console.log(event.target);
+      event.preventDefault(); // Não enviar os dado, o comportamento padrão.
+
+      if (this.validationInputs().length == 0) {
+        this.formEl.submit(); // Pode enviar...
+      } else {
+        this.validationInputs().forEach(input => {
+          input.css({ borderColor: "red" }); // Colorir as bordas que não estão atendendo as condições de vermelho.
+
+          input.addEventListener("focus", () => {
+            // Quando o úsuario focar em um campo em vermelho, o retorne para a cor original.
+            input.css({ borderColor: "#ced4da" });
+          });
+        });
+      }
     });
   }
 
   validationInputs() {
     const inputs = Array.from(this.formEl.querySelectorAll("[require]"));
-    const filterInputs = inputs.filter(input => input.value == "");
+    const invalidateInputs = inputs.filter(input => input.value == "");
 
-    this.alterStyleInputs(filterInputs, { borderColor: "red" });
+    return invalidateInputs;
   }
 
-  alterStyleInputs(inputs, style) {
-    inputs.forEach(input => {
-      input.css(style);
-      input.focus();
-    });
+  /**
+   * Recebe um input e um JSON para estilização do CSS.
+   *
+   * @param input Element reference ao elemento de entrada de texto, a ser alterado.
+   * @param style JSON Recebe um objeto que contem as instruções para alterações de estilo de CSS.
+   */
+
+  alterStyleInputs(input, style) {
+    input.css(style);
+    input.focus();
   }
 
   /**
