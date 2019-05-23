@@ -1,7 +1,7 @@
 <?php
 
 class UsuarioModel
-{ 
+{
     private $matricula;
     private $cargo; // ID;
     private $nome;
@@ -18,25 +18,22 @@ class UsuarioModel
 
     public function getMatricula()
     {
-        return $this -> $matricula;
+        return $this->matricula;
     }
 
     public function setMatricula(int $value)
     {
-        $this -> $matricula = $value;
+        $this->matricula = $value;
     }
 
     // Caso o Atributo for booleano.
     public function getTemporario()
     {
-       return $this -> $temporario;
+        return $this->temporario;
     }
 
     public function isTemporario(bool $value)
-    {   
-        $this -> $temporario = $value;
+    {
+        $this->temporario = $value;
     }
-
-    
-    
 }
