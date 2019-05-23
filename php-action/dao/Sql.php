@@ -2,10 +2,10 @@
 
 class Sql
 {
-	const HOSTNAME = "127.0.0.1";
+	const HOSTNAME = "localhost";
 	const USERNAME = "root";
 	const PASSWORD = "";
-	const DBNAME = "db_ecommerce";
+	const DBNAME = "v1";
 
 	private $conn;
 	public function __construct()
@@ -34,6 +34,7 @@ class Sql
 		$this->setParams($stmt, $params);
 		$stmt->execute();
 	}
+
 	public function select($rawQuery, $params = array()): array
 	{
 		$stmt = $this->conn->prepare($rawQuery);
