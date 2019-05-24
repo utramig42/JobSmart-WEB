@@ -1,42 +1,134 @@
 <?php
 
 class UsuarioModel
-{ 
-    private $matricula;
-    private $cargo; // ID;
-    private $nome;
-    private $endereco;
-    private $uf;
-    private $cidade;
-    private $salario;
-    private $cpf;
-    private $tel;
-    private $dataNascimento;
-    private $dataRecisao;
-    private $dataAdmissao;
-    private $temporario; // Bool
-
+{
     public function getMatricula()
     {
-        return $this -> $matricula;
+        return $this->matricula;
     }
 
-    public function setMatricula(int $value)
+    public function getCargo()
     {
-        $this -> $matricula = $value;
+        return $this->cargo;
     }
 
-    // Caso o Atributo for booleano.
-    public function getTemporario()
+    public function getNome()
     {
-       return $this -> $temporario;
+        return $this->nome;
     }
 
-    public function isTemporario(bool $value)
-    {   
-        $this -> $temporario = $value;
+    public function getEndereco()
+    {
+        return $this->endereco;
     }
 
-    
-    
+    public function getUf()
+    {
+        return $this->uf;
+    }
+
+    public function getCidade()
+    {
+        return $this->cidade;
+    }
+
+    public function getSalario()
+    {
+        return $this->salario;
+    }
+
+    public function getCpf()
+    {
+        return $this->cpf;
+    }
+
+    public function getTel()
+    {
+        return $this->tel;
+    }
+
+    public function getDataNascimento()
+    {
+        return $this->dataNascimento;
+    }
+
+    public function getDataRecisao()
+    {
+        return $this->dataRecisao;
+    }
+
+    public function getDataAdmissao()
+    {
+        return $this->dataAdmissao;
+    }
+
+    public function isTemporario()
+    {
+        return $this->temporario;
+    }
+
+    public function setMatricula($matricula)
+    {
+        $this->matricula = $matricula;
+    }
+
+    public function setCargo($cargo)
+    {
+        $this->cargo = $cargo;
+    }
+
+    public function setNome($nome)
+    {
+        $this->nome = $nome;
+    }
+
+    public function setEndereco($endereco)
+    {
+        $this->endereco = $endereco;
+    }
+
+    public function setUf($uf)
+    {
+        $this->uf = $uf;
+    }
+
+    public function setCidade($cidade)
+    {
+        $this->cidade = $cidade;
+    }
+
+    public function setSalario($salario)
+    {
+        $this->salario = $salario;
+    }
+
+    public function setCpf($cpf)
+    {
+        $this->cpf = $cpf;
+    }
+
+    public function setTel($tel)
+    {
+        $this->tel = $tel;
+    }
+
+    public function setDataNascimento($dataNascimento)
+    {
+        $this->dataNascimento = $dataNascimento;
+    }
+
+    public function setDataRecisao($dataRecisao)
+    {
+        $this->dataRecisao = $dataRecisao;
+    }
+
+    public function setDataAdmissao($dataAdmissao)
+    {
+        $this->dataAdmissao = $dataAdmissao;
+    }
+
+    public function setTemporario($temporario)
+    {
+        $this->temporario = $temporario;
+    }
 }
