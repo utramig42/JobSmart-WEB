@@ -5,14 +5,13 @@ class Connection extends PDO
 	const HOSTNAME = "127.0.0.1";
 	const USERNAME = "root";
 	const PASSWORD = "";
-	const DBNAME = "v2";
+	const DBNAME = "jobsmart";
 
 	private $conn;
 
 	public function __construct()
 	{
 		try {
-
 			$this->conn = new PDO(
 				"mysql:dbname=" . Connection::DBNAME . ";host=" . Connection::HOSTNAME,
 				Connection::USERNAME,
@@ -26,11 +25,11 @@ class Connection extends PDO
 	private function setParams($statement, $parameters = array())
 	{
 		foreach ($parameters as $key => $value) {
-			$this->setParam($statement, $key, $value);
+			
+			$this->bindParam($statement, $key, $value);
 		}
 	}
-
-	private function setParam($statement, $key, $value)
+	private function bindParam($statement, $key, $value)
 	{
 		$statement->bindParam($key, $value);
 	}
@@ -39,11 +38,13 @@ class Connection extends PDO
 		$stmt = $this->conn->prepare($rawQuery);
 		$this->setParams($stmt, $params);
 		$stmt->execute();
-		return $stmt;
 	}
-	public function select($rawQuery, $params = array()): array
+	public function select($rawQuery, $params = array()):array
 	{
-		$stmt = $this->query($rawQuery, $params);
-		return $stmt->fetchAll(PDO::FETCH_ASSOC);
+		$stmt = $this->conn->prepare($rawQuery);
+		$this->setParams($stmt, $params);
+		$stmt->execute();
+		return $stmt->fetchAll(\PDO::FETCH_ASSOC);
 	}
 }
+ ?>
