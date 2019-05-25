@@ -1,0 +1,7 @@
+.icon-card:hover {
+  transform: scale(1.1, 1.1);
+}
+
+.icon-card:last-child {
+  cursor: pointer;
+}
