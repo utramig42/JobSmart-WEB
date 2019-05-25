@@ -1,6 +1,7 @@
 <?php
-include_once('includes/headers/header-init.php');
-include_once('includes/headers/header-styles.php');
+include_once 'includes/headers/header-init.php';
+include_once 'includes/headers/header-styles.php';
+include_once 'config.php';
 ?>
 
 <title> Jobsmart - Administrativo </title>
@@ -22,12 +23,9 @@ include_once('includes/navbar/navbar-main.php');
                 <li class="breadcrumb-item">
                     <a href="#">Dashboard</a>
                 </li>
-                <li class="breadcrumb-item active text-capitalize">
-                    <?php
-                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
-                    echo $fileName;
-                    ?>
-                </li>
+
+                <?php $fileName = ucfirst(str_replace(".php", '', basename(__FILE__))); ?>
+                <li class="breadcrumb-item"></li>
             </ol>
 
             <!-- Icon Cards-->
@@ -87,13 +85,13 @@ include_once('includes/navbar/navbar-main.php');
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-chart-area"></i>
-                    Area Chart Example
+                    Vendas mensais
                 </div>
                 <div class="card-body">
                     <canvas id="myAreaChart" width="100%" height="30"></canvas>
                 </div>
                 <div class="card-footer small text-muted">
-                    Updated yesterday at 11:59 PM
+                    Atualizado em <?php echo date('d/m/Y H:i:s') ?>
                 </div>
             </div>
 
@@ -167,18 +165,19 @@ include_once('includes/navbar/navbar-main.php');
                     </div>
                 </div>
                 <div class="card-footer small text-muted">
-                    Updated yesterday at 11:59 PM
+                    Atualizado em <?php echo date('d/m/Y H:i:s') ?>
                 </div>
             </div>
         </div>
         <!-- /.container-fluid -->
         <?php
-        include('includes/footers/footer-init.php');
-        include('includes/footers/footer-modal.php');
-        include('includes/footers/footer-scripts.php');
+        include_once 'includes/footers/footer-init.php';
+        include_once 'includes/footers/footer-modal.php';
+        include_once 'includes/footers/footer-scripts.php';
         ?>
 
-        <script src="vendor/template-scripts/demo/chart-area-demo.js"></script>
+        <script src="js/dashboard.js"></script>
+
         <?php
-        include('includes/footers/footer-final.php');
+        include_once 'includes/footers/footer-final.php';
         ?>
