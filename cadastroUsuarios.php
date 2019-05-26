@@ -201,7 +201,7 @@ include('includes/footers/footer-modal.php');
 include('includes/footers/footer-scripts.php');
 ?>
 
-<script src="./js/utils/ibgeUtils.js"></script>
+<script src="js/utils/IbgeUtils.js"></script>
 <script src="./js/controller/FormController.js"></script>
 <script src="./js/users.js"></script>
 
