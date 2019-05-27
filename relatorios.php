@@ -1,50 +1,55 @@
 <?php
-include_once('includes/headers/header-init.php');
-
+include_once 'config.php';
+include_once 'includes/headers/header-init.php';
 ?>
-
-    <title> Job'Smart - Administrativo </title>
-
+<title> Job'Smart - Administrativo </title>
+<link rel="stylesheet" href="css/relatorio.css">
 <?php
-include_once('includes/headers/header-styles.php');
-include_once('includes/navbar/navbar-main.php');
+include_once 'includes/headers/header-styles.php';
+include_once 'includes/navbar/navbar-main.php';
 ?>
 
-    <div id="wrapper">
+<div id="wrapper">
 
-<?php
-include_once('includes/navbar/navbar-sidebar.php');
+    <?php
+    include_once 'includes/navbar/navbar-sidebar.php';
 
-?>
+    ?>
 
     <div id="content-wrapper">
-    <div class="container-fluid">
-    <!-- Breadcrumbs-->
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item active text-capitalize">
-            <?php
-            $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
-            echo $fileName;
-            ?>
-        </li>
-    </ol>
+        <div class="container-fluid">
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="#">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active text-capitalize">
+                    <?php
+                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+                    echo $fileName;
+                    ?>
+                </li>
+            </ol>
 
-    <!-- Area Chart Example-->
-    <div class="card mb-3">
-        <div class="card-header">
-            <div class="row">
-                <div class="col-md-10">
-                    <i class="fas fa-chart-area"></i>
-                    Relatório de Vendas Mensais
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label for="filtroMesVendas">Mês de Referencia</label>
-                        <select class="form-control form-control-sm" id="filtroMesVendas">
-                        </select>
+            <!-- Area Chart Example-->
+            <div class="card mb-3">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <i class="fas fa-chart-area"></i>
+                            Relatório de Vendas Mensais
+                        </div>
+                        <div class="col-md-6">
+                            <form class="filter">
+                                <div class="">
+                                    <label for="filtroMesVendas">Mês de Referencia</label>
+                                </div>
+                                <div class="">
+                                    <select class="form-control form-control-sm" id="filtroMesVendas">
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -52,7 +57,7 @@ include_once('includes/navbar/navbar-sidebar.php');
                 <canvas id="vendas-mensais" width="100%" height="30"></canvas>
             </div>
             <div class="card-footer small text-muted">
-                Updated yesterday at 11:59 PM
+                Atualizado em <?php echo date('d/m/Y H:i:s') ?>
             </div>
         </div>
 
@@ -67,7 +72,7 @@ include_once('includes/navbar/navbar-sidebar.php');
                         <canvas id="myBarChart" width="100%" height="50"></canvas>
                     </div>
                     <div class="card-footer small text-muted">
-                        Updated yesterday at 11:59 PM
+                        Atualizado em <?php echo date('d/m/Y H:i:s') ?>
                     </div>
                 </div>
             </div>
@@ -81,7 +86,7 @@ include_once('includes/navbar/navbar-sidebar.php');
                         <canvas id="myPieChart" width="100%" height="100"></canvas>
                     </div>
                     <div class="card-footer small text-muted">
-                        Updated yesterday at 11:59 PM
+                        Atualizado em <?php echo date('d/m/Y H:i:s') ?>
                     </div>
                 </div>
             </div>
@@ -95,9 +100,9 @@ include_once('includes/navbar/navbar-sidebar.php');
 
 
     <?php
-    include('includes/footers/footer-init.php');
-    include('includes/footers/footer-modal.php');
-    include('includes/footers/footer-scripts.php');
+    include_once 'includes/footers/footer-init.php';
+    include_once 'includes/footers/footer-modal.php';
+    include_once 'includes/footers/footer-scripts.php';
     ?>
 
     <!-- Demo scripts for this page-->
@@ -109,7 +114,7 @@ include_once('includes/navbar/navbar-sidebar.php');
     <script src="vendor/template-scripts/demo/chart-bar-demo.js"></script>
     <script src="vendor/template-scripts/demo/chart-pie-demo.js"></script>
 
-<?php
+    <?php
 
-include('includes/footers/footer-final.php');
-?>
+    include_once 'includes/footers/footer-final.php';
+    ?>

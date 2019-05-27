@@ -1,0 +1,15 @@
+.filter {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+}
+
+.filter label {
+  margin-right: 10px;
+}
+
+@media (max-width: 762px) {
+  .filter {
+    justify-content: flex-start;
+  }
+}
