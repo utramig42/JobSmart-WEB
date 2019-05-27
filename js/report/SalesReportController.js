@@ -8,7 +8,6 @@ Months.mesesExtenso.forEach(mes => {
   const optionTag = `<option value="${mes.id}">${mes.nome}</option>`;
   selectMeses.innerHTML += optionTag;
 });
-
 /**
  * Verifica a quantidade de dias em um mês. Método aplicado em objetos do tipo Date
  *
