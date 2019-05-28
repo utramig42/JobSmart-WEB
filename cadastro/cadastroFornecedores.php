@@ -1,11 +1,11 @@
 <?php
-    include_once('includes/headers/header-init.php');
+include_once '../includes/headers/header-init.php';
 
-    // CSS
-    include_once('includes/headers/header-styles.php');
+// CSS
+include_once '../includes/headers/header-styles.php';
 
-    // Default Navbar
-    include_once('includes/navbar/navbar-main.php');
+// Default Navbar
+include_once '../includes/navbar/navbar-main.php';
 ?>
 
 <title>Job'Smart - Cadastro de Fornecedor</title>
@@ -17,7 +17,7 @@
 
     <!-- Sidebar -->
     <?php
-        include_once('includes/navbar/navbar-sidebar.php')
+    include_once '../includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -45,14 +45,16 @@
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input type="text" id="razao-social" name="razao-social" class="form-control" placeholder="Razão Social" autofocus="autofocus" required>
+                                        <input type="text" id="razao-social" name="razao-social" class="form-control"
+                                            placeholder="Razão Social" autofocus="autofocus" required>
                                         <label for="razao-social">Razão Social</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="CNPJ" required>
+                                        <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="CNPJ"
+                                            required>
                                         <label for="cnpj">CNPJ</label>
                                     </div>
                                 </div>
@@ -63,7 +65,8 @@
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome-fantasia" name="nome-fantasia" class="form-control" placeholder="Nome Fantasia" required>
+                                        <input type="text" id="nome-fantasia" name="nome-fantasia" class="form-control"
+                                            placeholder="Nome Fantasia" required>
                                         <label for="nome-fantasia">Nome Fantasia</label>
                                     </div>
                                 </div>
@@ -92,35 +95,40 @@
                             <div class="form-row">
                                 <div class="col-md-5">
                                     <div class="form-label-group">
-                                        <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro" required>
+                                        <input type="text" id="logradouro" name="logradouro" class="form-control"
+                                            placeholder="Logradouro" required>
                                         <label for="logradouro">Logradouro</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-1">
                                     <div class="form-label-group">
-                                        <input type="number" id="numero" name="numero" class="form-control" placeholder="Número" required>
+                                        <input type="number" id="numero" name="numero" class="form-control"
+                                            placeholder="Número" required>
                                         <label for="numero">Número</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Complemento" required>
+                                        <input type="text" id="complemento" name="complemento" class="form-control"
+                                            placeholder="Complemento" required>
                                         <label for="complemento">Complemento</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro" required>
+                                        <input type="text" id="bairro" name="bairro" class="form-control"
+                                            placeholder="Bairro" required>
                                         <label for="bairro">Bairro</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="number" id="cep" name="cep" class="form-control" placeholder="CEP" required>
+                                        <input type="number" id="cep" name="cep" class="form-control" placeholder="CEP"
+                                            required>
                                         <label for="cep">CEP</label>
                                     </div>
                                 </div>
@@ -131,21 +139,24 @@
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome-contato" name="nome-contato" class="form-control" placeholder="Nome do Contato" required>
+                                        <input type="text" id="nome-contato" name="nome-contato" class="form-control"
+                                            placeholder="Nome do Contato" required>
                                         <label for="nome-contato">Nome do Contato</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="e-mail" name="e-mail" class="form-control" placeholder="E-mail" required>
+                                        <input type="text" id="e-mail" name="e-mail" class="form-control"
+                                            placeholder="E-mail" required>
                                         <label for="e-mail">E-mail</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" required>
+                                        <input type="text" id="telefone" name="telefone" class="form-control"
+                                            placeholder="Telefone" required>
                                         <label for="telefone">Telefone</label>
                                     </div>
                                 </div>
@@ -165,10 +176,10 @@
 <!-- /#wrapper -->
 
 <?php
-    include('includes/footers/footer-init.php');
-    include('includes/footers/footer-modal.php');
-    include('includes/footers/footer-scripts.php');
-    include('includes/footers/footer-final.php');
+include_once '../includes/footers/footer-init.php';
+include_once '../includes/footers/footer-modal.php';
+include_once '../includes/footers/footer-scripts.php';
+include_once '../includes/footers/footer-final.php';
 ?>
 
 <script src="./js/controller/FormController.js"></script>

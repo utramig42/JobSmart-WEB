@@ -22,7 +22,7 @@ include_once('includes/navbar/navbar-main.php');
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
+                    <a href="index.php">Painel de controle</a>
                 </li>
 
                 <li class="breadcrumb-item"></li>
