@@ -36,18 +36,18 @@ var myLineChart = new Chart(ctx, {
         pointHitRadius: 50,
         pointBorderWidth: 2,
         data: [
-          10000,
-          10000,
-          10000,
-          10000,
-          10000,
-          10000,
-          10000,
-          10000,
-          10000,
-          10000,
-          10000,
-          10000
+          23145,
+          23044,
+          22243,
+          22142,
+          22041,
+          21940,
+          21839,
+          21738,
+          21637,
+          21536,
+          21435,
+          21234
         ]
       }
     ]
@@ -71,7 +71,7 @@ var myLineChart = new Chart(ctx, {
         {
           ticks: {
             min: 0,
-            max: 1000,
+            max: 40000,
             maxTicksLimit: 5
           },
           gridLines: {
