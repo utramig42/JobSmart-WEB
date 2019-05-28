@@ -29,7 +29,7 @@ class FormController {
   }
 
   validationInputs() {
-    const inputs = Array.from(this.formEl.querySelectorAll("[require]"));
+    const inputs = Array.from(this.formEl.querySelectorAll("[required]"));
     const invalidateInputs = inputs.filter(input => input.value == "");
 
     return invalidateInputs;

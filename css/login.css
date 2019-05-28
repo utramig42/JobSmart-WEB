@@ -1,0 +1,10 @@
+.logo-center {
+  max-width: 160px;
+  height: 160px;
+  margin-bottom: 2rem;
+}
+
+.block-center {
+  display: flex;
+  justify-content: center;
+}
