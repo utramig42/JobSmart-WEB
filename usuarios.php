@@ -1,14 +1,19 @@
 <?php
-    include_once('includes/headers/header-init.php');
+//Configuração
+include_once 'includes/config.php';
 
-    // CSS
-    include_once('includes/headers/header-styles.php');
+include_once 'includes/headers/header-init.php';
 
-    // Default Navbar
-    include_once('includes/navbar/navbar-main.php');
+// CSS
+include_once 'includes/headers/header-styles.php';
+
+// Default Navbar
+include_once 'includes/navbar/navbar-main.php';
+
+$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 ?>
 
-<title>Job'Smart - Funcionários</title>
+<title>Job'Smart - <?php echo $fileName ?></title>
 
 <!-- Global Style CSS -->
 <link rel="stylesheet" type="text/css" href="css/global-style.css">
@@ -20,7 +25,7 @@
 
     <!-- Sidebar -->
     <?php
-        include_once('includes/navbar/navbar-sidebar.php')
+    include_once('includes/navbar/navbar-sidebar.php')
     ?>
 
     <div id="content-wrapper">
@@ -33,9 +38,8 @@
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
                     <?php
-                        // Placing Header
-                        $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
-                        echo $fileName;
+                    // Placing Header
+                    echo $fileName;
                     ?>
                 </li>
             </ol>
@@ -47,17 +51,20 @@
                     <span>Lista de funcionários</span>
 
                     <div class="d-md-inline-block float-right">
-                        
+
                         <!-- Register Button -->
-                        <button type="button" class="btn btn-primary float-right" onclick="window.location.href='cadastroUsuarios.php'">
+                        <button type="button" class="btn btn-primary float-right"
+                            onclick="window.location.href='cadastroUsuarios.php'">
                             <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
                             <span>Cadastrar</span>
                         </button>
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -91,17 +98,20 @@
                                     <td class="text-truncate">
 
                                         <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#informationModal" title="Mais Informações">
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#informationModal" title="Mais Informações">
                                             <i class="fas fa-info text-white icon"></i>
                                         </button>
 
                                         <!-- Button Edit Information -->
-                                        <button type="button" class="btn btn-warning ml-1" title="Atualizar Informações" onclick="window.location.href='atualizarUsuarios.php'">
+                                        <button type="button" class="btn btn-warning ml-1" title="Atualizar Informações"
+                                            onclick="window.location.href='atualizacoes/atualizarUsuarios.php'">
                                             <i class="fas fa-edit text-white icon"></i>
                                         </button>
 
                                         <!-- Button Remove Information -->
-                                        <button type="button" class="btn btn-danger ml-1" title="Remover Informações" onclick="window.location.href='#.php'">
+                                        <button type="button" class="btn btn-danger ml-1" title="Remover Informações"
+                                            onclick="window.location.href='#.php'">
                                             <i class="fas fa-trash text-white icon"></i>
                                         </button>
                                     </td>
@@ -133,7 +143,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="card-footer small text-muted">Última atualização - 27/05/2019</div>
+                <div class="card-footer small text-muted">Última atualização - <?php echo date('d/m/Y H:i:s') ?></div>
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -145,7 +155,8 @@
 <!-- /#wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
+<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -164,10 +175,10 @@
                     <h5>Nome Completo</h5>
                     <p class="text-muted">José Ribamar</p>
                 </div>
-                <div class="modal-item">                
+                <div class="modal-item">
                     <h5>CPF</h5>
                     <p class="text-muted">12.345.678-91</p>
-                </div>               
+                </div>
                 <div class="modal-item">
                     <h5>Data de nascimento</h5>
                     <p class="text-muted">10/02/1999</p>
@@ -180,7 +191,7 @@
                     <h5>Cidade</h5>
                     <p class="text-muted">Belo Horizonte</p>
                 </div>
-                <div class="modal-item">                
+                <div class="modal-item">
                     <h5>Logradouro</h5>
                     <p class="text-muted">Rua Gustavo Brandão</p>
                 </div>
@@ -200,10 +211,10 @@
                     <h5>CEP</h5>
                     <p class="text-muted">12345-678</p>
                 </div>
-                <div class="modal-item">                
+                <div class="modal-item">
                     <h5>Telefone</h5>
                     <p class="text-muted">+55 31 91234-5678</p>
-                </div>            
+                </div>
                 <div class="modal-item">
                     <h5>Cargo</h5>
                     <p class="text-muted">Vendedor</p>
@@ -226,14 +237,14 @@
 </div>
 
 <?php
-    include('includes/footers/footer-init.php');
-    include('includes/footers/footer-modal.php');
-    include('includes/footers/footer-scripts.php');
-    include('includes/footers/footer-final.php');
+include_once 'includes/footers/footer-init.php';
+include_once 'includes/footers/footer-modal.php';
+include_once 'includes/footers/footer-scripts.php';
+include_once 'includes/footers/footer-final.php';
 ?>
 
 <script src="js/controller/TableController.js"></script>
 
 <script>
-    window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
+window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
 </script>

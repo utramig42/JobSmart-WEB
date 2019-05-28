@@ -1,11 +1,11 @@
 <?php
-    include_once('includes/headers/header-init.php');
+include_once '../includes/headers/header-init.php';
 
-    // CSS
-    include_once('includes/headers/header-styles.php');
+// CSS
+include_once '../includes/headers/header-styles.php';
 
-    // Default Navbar
-    include_once('includes/navbar/navbar-main.php');
+// Default Navbar
+include_once '../includes/navbar/navbar-main.php';
 ?>
 
 <title>Job'Smart - Cadastro de Funcionário</title>
@@ -17,7 +17,7 @@
 
     <!-- Sidebar -->
     <?php
-        include_once('includes/navbar/navbar-sidebar.php')
+    include_once '../includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -45,7 +45,8 @@
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome Completo" autofocus="autofocus" required>
+                                        <input type="text" id="nome" name="nome" class="form-control"
+                                            placeholder="Nome Completo" autofocus="autofocus" required>
                                         <label for="nome">Nome Completo</label>
                                     </div>
                                 </div>
@@ -65,7 +66,8 @@
 
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="number" id="salario" name="salario" class="form-control" placeholder="Salário" required>
+                                        <input type="number" id="salario" name="salario" class="form-control"
+                                            placeholder="Salário" required>
                                         <label for="salario">Salário</label>
                                     </div>
                                 </div>
@@ -76,21 +78,24 @@
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" required>
+                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
+                                            required>
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" required>
+                                        <input type="text" id="telefone" name="telefone" class="form-control"
+                                            placeholder="Telefone" required>
                                         <label for="telefone">Telefone</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="date" id="data-nascimento" name="data-nascimento" class="form-control" placeholder="Data de nascimento" required>
+                                        <input type="date" id="data-nascimento" name="data-nascimento"
+                                            class="form-control" placeholder="Data de nascimento" required>
                                         <label for="data-nascimento">Data de nascimento</label>
                                     </div>
                                 </div>
@@ -101,21 +106,24 @@
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro" required>
+                                        <input type="text" id="logradouro" name="logradouro" class="form-control"
+                                            placeholder="Logradouro" required>
                                         <label for="logradouro">Logradouro</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="number" id="numero" name="numero" class="form-control" placeholder="Número" required>
+                                        <input type="number" id="numero" name="numero" class="form-control"
+                                            placeholder="Número" required>
                                         <label for="numero">Número</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Complemento" required>
+                                        <input type="text" id="complemento" name="complemento" class="form-control"
+                                            placeholder="Complemento" required>
                                         <label for="complemento">Complemento</label>
                                     </div>
                                 </div>
@@ -144,7 +152,8 @@
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro" required>
+                                        <input type="text" id="bairro" name="bairro" class="form-control"
+                                            placeholder="Bairro" required>
                                         <label for="bairro">Bairro</label>
                                     </div>
                                 </div>
@@ -177,10 +186,10 @@
 <!-- /#wrapper -->
 
 <?php
-    include('includes/footers/footer-init.php');
-    include('includes/footers/footer-modal.php');
-    include('includes/footers/footer-scripts.php');
-    include('includes/footers/footer-final.php');
+include_once '../includes/footers/footer-init.php';
+include_once '../includes/footers/footer-modal.php';
+include_once '../includes/footers/footer-scripts.php';
+include_once '../includes/footers/footer-final.php';
 ?>
 
 <script src="./js/controller/FormController.js"></script>

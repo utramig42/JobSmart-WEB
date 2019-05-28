@@ -1,7 +1,8 @@
 <?php
 include_once 'includes/headers/header-init.php';
 include_once 'includes/headers/header-styles.php';
-include_once 'config.php';
+include_once 'includes/config.php';
+$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 ?>
 
 <title> Jobsmart - Administrativo </title>
@@ -13,7 +14,7 @@ include_once('includes/navbar/navbar-main.php');
 <div id="wrapper">
 
     <?php
-    include_once('includes/navbar/navbar-sidebar.php')
+    include_once 'includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -21,10 +22,9 @@ include_once('includes/navbar/navbar-main.php');
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
+                    <a href="index.php">Painel de controle</a>
                 </li>
 
-                <?php $fileName = ucfirst(str_replace(".php", '', basename(__FILE__))); ?>
                 <li class="breadcrumb-item"></li>
             </ol>
 

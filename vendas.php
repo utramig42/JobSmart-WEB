@@ -1,11 +1,14 @@
 <?php
-    include_once('includes/headers/header-init.php');
+include_once 'includes/config.php';
+include_once 'includes/headers/header-init.php';
 
-    // CSS
-    include_once('includes/headers/header-styles.php');
+// CSS
+include_once 'includes/headers/header-styles.php';
 
-    // Default Navbar
-    include_once('includes/navbar/navbar-main.php');
+// Default Navbar
+include_once 'includes/navbar/navbar-main.php';
+
+$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 ?>
 
 <title>Job'Smart - Vendas</title>
@@ -20,7 +23,7 @@
 
     <!-- Sidebar -->
     <?php
-        include_once('includes/navbar/navbar-sidebar.php')
+    include_once 'includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -33,9 +36,9 @@
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
                     <?php
-                        // Placing Header
-                        $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
-                        echo $fileName;
+                    // Placing Header
+
+                    echo $fileName;
                     ?>
                 </li>
             </ol>
@@ -49,9 +52,11 @@
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-form">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -81,7 +86,8 @@
                                     <td>
 
                                         <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#informationModal">
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#informationModal">
                                             <i class="fas fa-info text-white icon"></i>
                                         </button>
                                     </td>
@@ -125,7 +131,8 @@
 <!-- /#wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
+<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -173,14 +180,14 @@
 </div>
 
 <?php
-    include('includes/footers/footer-init.php');
-    include('includes/footers/footer-modal.php');
-    include('includes/footers/footer-scripts.php');
-    include('includes/footers/footer-final.php');
+include_once 'includes/footers/footer-init.php';
+include_once 'includes/footers/footer-modal.php';
+include_once 'includes/footers/footer-scripts.php';
+include_once 'includes/footers/footer-final.php';
 ?>
 
 <script src="js/controller/TableController.js"></script>
 
 <script>
-    window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
+window.table = new TableController(document.querySelector('#search-form'), document.querySelector('table tfoot'));
 </script>

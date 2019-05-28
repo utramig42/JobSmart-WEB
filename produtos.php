@@ -1,14 +1,17 @@
 <?php
-    include_once('includes/headers/header-init.php');
+// Configurações
+include_once 'includes/config.php';
 
-    // CSS
-    include_once('includes/headers/header-styles.php');
+include_once 'includes/headers/header-init.php';
+// CSS
+include_once 'includes/headers/header-styles.php';
 
-    // Default Navbar
-    include_once('includes/navbar/navbar-main.php');
+// Default Navbar
+include_once 'includes/navbar/navbar-main.php';
+$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 ?>
 
-<title>Job'Smart - Produtos</title>
+<title> Job'Smart - <?php echo $fileName ?> </title>
 
 <!-- Global Style CSS -->
 <link rel="stylesheet" type="text/css" href="css/global-style.css">
@@ -16,11 +19,12 @@
 <!-- Table Style CSS -->
 <link rel="stylesheet" href="css/tables.css">
 
+
 <div id="wrapper">
 
     <!-- Sidebar -->
     <?php
-        include_once('includes/navbar/navbar-sidebar.php')
+    include_once 'includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -33,9 +37,9 @@
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
                     <?php
-                        // Placing Header
-                        $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
-                        echo $fileName;
+                    // Placing Header
+                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+                    echo $fileName;
                     ?>
                 </li>
             </ol>
@@ -44,14 +48,16 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table mt-2"></i>
-                    <span>Lista de produtos</span>
+                    <span> Lista de produtos </span>
 
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -83,9 +89,10 @@
                                     <td class="text-muted text-truncate">2</td>
                                     <td class="text-muted text-truncate">Feitos diriamente.</td>
                                     <td class="text-truncate">
-                                        
+
                                         <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#informationModal">
+                                        <button type="button" class="btn btn-success" data-toggle="modal"
+                                            data-target="#informationModal">
                                             <i class="fas fa-info text-white icon"></i>
                                         </button>
                                     </td>
@@ -117,7 +124,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="card-footer small text-muted">Última atualização - 27/05/2019</div>
+                <div class="card-footer small text-muted">Última atualização - <?php echo date('d/m/Y H:i:s') ?></div>
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -129,7 +136,8 @@
 <!-- /#wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
+<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -146,7 +154,7 @@
                 <div class="modal-item">
                     <h5>Nome</h5>
                     <p class="text-muted">Pão de doce</p>
-                </div>                
+                </div>
                 <div class="modal-item">
                     <h5>Marca</h5>
                     <p class="text-muted">Pãos Mágicos</p>
@@ -177,14 +185,17 @@
 </div>
 
 <?php
-    include('includes/footers/footer-init.php');
-    include('includes/footers/footer-modal.php');
-    include('includes/footers/footer-scripts.php');
-    include('includes/footers/footer-final.php');
+include_once 'includes/footers/footer-init.php';
+include_once 'includes/footers/footer-modal.php';
+include_once 'includes/footers/footer-scripts.php';
 ?>
-
 <script src="js/controller/TableController.js"></script>
-
 <script>
-    window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
+window.table = new TableController(
+    document.querySelector("#search-table"),
+    document.querySelector("table tfoot")
+);
 </script>
+<?php
+include_once 'includes/footers/footer-final.php';
+?>

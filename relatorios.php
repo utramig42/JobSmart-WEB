@@ -1,8 +1,9 @@
 <?php
-include_once 'config.php';
+include_once 'includes/config.php';
 include_once 'includes/headers/header-init.php';
+$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 ?>
-<title> Job'Smart - Administrativo </title>
+<title> Job'Smart - <?php echo $fileName ?> </title>
 <link rel="stylesheet" href="css/relatorio.css">
 <?php
 include_once 'includes/headers/header-styles.php';
@@ -21,11 +22,11 @@ include_once 'includes/navbar/navbar-main.php';
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Dashboard</a>
+                    <a href="index.php">Painel de controle</a>
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
                     <?php
-                    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+
                     echo $fileName;
                     ?>
                 </li>
@@ -110,7 +111,6 @@ include_once 'includes/navbar/navbar-main.php';
 
     <!-- Scripts dos Relatórios entram aqui -->
     <script type="module" src="js/report/SalesReportController.js"></script>
-
     <script src="vendor/template-scripts/demo/chart-bar-demo.js"></script>
     <script src="vendor/template-scripts/demo/chart-pie-demo.js"></script>
 
