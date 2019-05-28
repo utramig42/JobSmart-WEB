@@ -1,20 +1,21 @@
 <?php
     include_once('includes/headers/header-init.php');
+
+    // CSS
+    include_once('includes/headers/header-styles.php');
+
+    // Default Navbar
+    include_once('includes/navbar/navbar-main.php');
 ?>
 
 <title>Job'Smart - Cadastro de Fornecedor</title>
 
-<?php
-    include_once('includes/headers/header-styles.php');
-?>
-
+<!-- Form Style CSS -->
 <link rel="stylesheet" href="css/forms.css">
 
-<?php
-    include_once('includes/navbar/navbar-main.php');
-?>
-
 <div id="wrapper">
+
+    <!-- Sidebar -->
     <?php
         include_once('includes/navbar/navbar-sidebar.php')
     ?>
@@ -27,11 +28,9 @@
                 <li class="breadcrumb-item">
                     <a href="index.php">Painel de controle</a>
                 </li>
-
                 <li class="breadcrumb-item">
                     <a href="fornecedores.php">Fornecedores</a>
                 </li>
-
                 <li class="breadcrumb-item active">
                     Cadastro de fornecedor
                     <?php $fileName = 'Fornecedores'; ?>
@@ -41,12 +40,12 @@
             <div class="card mx-auto">
                 <div class="card-header">Dados do fornecedor</div>
                 <div class="card-body">
-                    <form>
+                    <form id="provider">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input type="text" id="razao-social" name="razao-social" class="form-control" placeholder="Razão Social" required>
+                                        <input type="text" id="razao-social" name="razao-social" class="form-control" placeholder="Razão Social" autofocus="autofocus" required>
                                         <label for="razao-social">Razão Social</label>
                                     </div>
                                 </div>
@@ -91,14 +90,14 @@
 
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-md-8">
+                                <div class="col-md-5">
                                     <div class="form-label-group">
                                         <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro" required>
                                         <label for="logradouro">Logradouro</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-2">
+                                <div class="col-md-1">
                                     <div class="form-label-group">
                                         <input type="number" id="numero" name="numero" class="form-control" placeholder="Número" required>
                                         <label for="numero">Número</label>
@@ -109,6 +108,20 @@
                                     <div class="form-label-group">
                                         <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Complemento" required>
                                         <label for="complemento">Complemento</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro" required>
+                                        <label for="bairro">Bairro</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="number" id="cep" name="cep" class="form-control" placeholder="CEP" required>
+                                        <label for="cep">CEP</label>
                                     </div>
                                 </div>
                             </div>
@@ -155,10 +168,8 @@
     include('includes/footers/footer-init.php');
     include('includes/footers/footer-modal.php');
     include('includes/footers/footer-scripts.php');
-?>
-
-<script src="./js/validantion"></script>
-
-<?php
     include('includes/footers/footer-final.php');
 ?>
+
+<script src="./js/controller/FormController.js"></script>
+<!-- <script src="./js/users.js"></script> -->

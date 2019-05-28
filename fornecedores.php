@@ -3,26 +3,24 @@
 
     // CSS
     include_once('includes/headers/header-styles.php');
+
+    // Default Navbar
+    include_once('includes/navbar/navbar-main.php');
 ?>
 
 <title>Job'Smart - Fornecedores</title>
 
-<!-- Fornecedores Style CSS -->
-<link rel="stylesheet" type="text/css" href="css/fornecedores.css">
+<!-- Global Style CSS -->
+<link rel="stylesheet" type="text/css" href="css/global-style.css">
 
 <!-- Table Style CSS -->
 <link rel="stylesheet" href="css/tables.css">
-
-<?php
-    // Default Navbar
-    include_once('includes/navbar/navbar-main.php');
-?>
 
 <div id="wrapper">
 
     <!-- Sidebar -->
     <?php
-        include_once('includes/navbar/navbar-sidebar.php')
+        include_once('includes/navbar/navbar-sidebar.php');
     ?>
 
     <div id="content-wrapper">
@@ -31,7 +29,7 @@
             <!-- Breadcrumbs -->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="#">Painel de controle</a>
+                    <a href="index.php">Painel de controle</a>
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
                     <?php
@@ -49,23 +47,24 @@
                     <span>Lista de fornecedores</span>
 
                     <div class="d-md-inline-block float-right">
-                    <!-- Register Button -->
-                    <button type="button" class="btn btn-primary float-right" href="cadastrarFornecedores.php">
-                        <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
-                        <span>Cadastrar</span>
-                    </button>
 
-                    <!-- Navbar Search -->
-                    <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search"></i>
-                                </button>
+                        <!-- Register Button -->
+                        <button type="button" class="btn btn-primary float-right" onclick="window.location.href='cadastroFornecedores.php'">
+                            <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
+                            <span>Cadastrar</span>
+                        </button>
+
+                        <!-- Navbar Search -->
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
 
@@ -74,35 +73,35 @@
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Nome Fantasia</th>
                                     <th>CNPJ</th>
+                                    <th>Nome Fantasia</th>
                                     <th>Nome do Contato</th>
-                                    <th>Telefone</th>
                                     <th>E-mail</th>
+                                    <th>Telefone</th>
                                     <th>Ações</th>                                 
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <td class="text-muted text-truncate">JB - Alimentos e Bebidas</td>
                                     <td class="text-muted text-truncate">12.345.678/9101-11</td>
+                                    <td class="text-muted text-truncate">JB - Alimentos e Bebidas</td>
                                     <td class="text-muted text-truncate">Carlos de Oliveira</td>
-                                    <td class="text-muted text-truncate">+55 31 91234-5678</td>
                                     <td class="text-muted text-truncate">carlos_oliveira@jbcab.com.br</td>
+                                    <td class="text-muted text-truncate">+55 31 91234-5678</td>
                                     <td class="text-truncate">
 
                                         <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#informationModal">
+                                        <button type="button" class="btn btn-success" data-toggle="modal tooltip" data-target="#informationModal" title="Mais Informações">
                                             <i class="fas fa-info text-white icon"></i>
                                         </button>
 
                                         <!-- Button Edit Information -->
-                                        <button type="button" class="btn btn-warning ml-1">
+                                        <button type="button" class="btn btn-warning ml-1" title="Atualizar Informações" onclick="window.location.href='atualizarFornecedores.php'">
                                             <i class="fas fa-edit text-white icon"></i>
                                         </button>
 
                                         <!-- Button Remove Information -->
-                                        <button type="button" class="btn btn-danger ml-1">
+                                        <button type="button" class="btn btn-danger ml-1" title="Remover Informações" onclick="window.location.href='#.php'">
                                             <i class="fas fa-trash text-white icon"></i>
                                         </button>
                                     </td>
@@ -134,7 +133,7 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="card-footer small text-muted">Última atualização - 04/05/2019</div>
+                <div class="card-footer small text-muted">Última atualização - 27/05/2019</div>
             </div>
         </div>
         <!-- /.container-fluid -->
@@ -157,44 +156,66 @@
             </div>
 
             <div class="modal-body">
-                <h5>Código</h5>
-                <p class="text-muted info-bottom-border">001</p>
-
-                <h5>Nome Fantasia</h5>
-                <p class="text-muted info-bottom-border">JB - Alimentos e Bebidas</p>
-
-                <h5>CNPJ</h5>
-                <p class="text-muted info-bottom-border">12.345.678/9101-11</p>
-
-                <h5>Razão Social</h5>
-                <p class="text-muted info-bottom-border">JB - Comércio de Alimentos e Bebidas Ltda.</p>
-
-                <h5>UF</h5>
-                <p class="text-muted info-bottom-border">MG</p>
-
-                <h5>Cidade</h5>
-                <p class="text-muted info-bottom-border">Belo Horizonte</p>
-
-                <h5>Logradouro</h5>
-                <p class="text-muted info-bottom-border">Rua Gustavo Brandão - Horta - CEP 12345-678</p>
-
-                <h5>Número</h5>
-                <p class="text-muted info-bottom-border">3298</p>
-
-                <h5>Complemento</h5>
-                <p class="text-muted info-bottom-border">GP02</p>
-
-                <h5>Nome do Contato</h5>
-                <p class="text-muted info-bottom-border">Carlos de Oliveira</p>
-
-                <h5>Telefone</h5>
-                <p class="text-muted info-bottom-border">+55 31 91234-5678</p>
-
-                <h5>E-mail</h5>
-                <p class="text-muted info-bottom-border">carlos_oliveira@jbcab.com.br</p>
-
-                <h5>Data do Cadastro</h5>
-                <p class="text-muted">01/02/2003</p>
+                <div class="modal-item">
+                    <h5>Código</h5>
+                    <p class="text-muted">001</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Razão Social</h5>
+                    <p class="text-muted">JB - Comércio de Alimentos e Bebidas Ltda.</p>
+                </div>
+                <div class="modal-item">
+                    <h5>CNPJ</h5>
+                    <p class="text-muted">12.345.678/9101-11</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Nome Fantasia</h5>
+                    <p class="text-muted">JB - Alimentos e Bebidas</p>
+                </div>
+                <div class="modal-item">
+                    <h5>UF</h5>
+                    <p class="text-muted">MG</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Cidade</h5>
+                    <p class="text-muted">Belo Horizonte</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Logradouro</h5>
+                    <p class="text-muted">Rua Gustavo Brandão</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Número</h5>
+                    <p class="text-muted">3298</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Complemento</h5>
+                    <p class="text-muted">GP02</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Bairro</h5>
+                    <p class="text-muted">Horta</p>
+                </div>
+                <div class="modal-item">
+                    <h5>CEP</h5>
+                    <p class="text-muted">12345-678</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Nome do Contato</h5>
+                    <p class="text-muted">Carlos de Oliveira</p>
+                </div>
+                <div class="modal-item">
+                    <h5>E-mail</h5>
+                    <p class="text-muted">carlos_oliveira@jbcab.com.br</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Telefone</h5>
+                    <p class="text-muted">+55 31 91234-5678</p>
+                </div>
+                <div class="modal-item">
+                    <h5>Data do Cadastro</h5>
+                    <p class="text-muted">01/02/2003</p>
+                </div>
             </div>
             
             <div class="modal-footer">
@@ -210,3 +231,9 @@
     include('includes/footers/footer-scripts.php');
     include('includes/footers/footer-final.php');
 ?>
+
+<script src="js/controller/TableController.js"></script>
+
+<script>
+    window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
+</script>

@@ -1,208 +1,191 @@
 <?php
-include_once('includes/headers/header-init.php');
+    include_once('includes/headers/header-init.php');
+
+    // CSS
+    include_once('includes/headers/header-styles.php');
+
+    // Default Navbar
+    include_once('includes/navbar/navbar-main.php');
 ?>
 
-<title> Job'Smart - Administrativo </title>
+<title>Job'Smart - Atualização do Usuário</title>
 
-<?php
-include_once('includes/headers/header-styles.php');
-?>
-
+<!-- Form Style CSS -->
 <link rel="stylesheet" href="css/forms.css">
-
-<?php
-include_once('includes/navbar/navbar-main.php');
-?>
 
 <div id="wrapper">
 
+    <!-- Sidebar -->
     <?php
-    include_once('includes/navbar/navbar-sidebar.php')
+        include_once('includes/navbar/navbar-sidebar.php')
     ?>
 
     <div id="content-wrapper">
         <div class="container-fluid">
+
             <!-- Breadcrumbs-->
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="index.php">Dashboard</a>
+                    <a href="index.php">Painel de controle</a>
                 </li>
-
                 <li class="breadcrumb-item">
-                    <a href="usuarios.php"> Usuarios </a>
+                    <a href="usuarios.php">Funcionários</a>
                 </li>
-
-                <li class="breadcrumb-item active text-capitalize">
-                    Atualizar de usuarios
-                    <?php $fileName = 'Usuarios'; ?>
+                <li class="breadcrumb-item active">
+                    Atualização do funcionário
+                    <?php $fileName = 'Usuários'; ?>
                 </li>
             </ol>
 
-            <div class="card mx-auto mt-5">
-                <div class="card-header">Atualizar os usuarios</div>
+            <div class="card mx-auto">
+                <div class="card-header">Dados do usuário</div>
                 <div class="card-body">
                     <form id="user">
                         <div class="form-group">
                             <div class="form-row">
-
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" readonly id="matricula" name="matricula" class="form-control"
-                                            placeholder="Matrícula" required autofocus="autofocus">
+                                        <input type="text" readonly id="matricula" name="matricula" class="form-control" placeholder="Matrícula" readonly>
                                         <label for="matricula">Matrícula</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-10">
+                                <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome" name="nome" class="form-control"
-                                            placeholder="Nome completo" readonly required autofocus="autofocus">
+                                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome completo" readonly>
                                         <label for="nome">Nome Completo</label>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-6">
+                                <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <select id="cargo" name="cargo" class="form-control" required>
-                                            <option> Cargo </option>
-                                        </select>
-                                        <label for="cargo" class="d-none"> Cargo </label>
-
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="form-label-group">
-                                        <input type="number" id="numero" name="numero" class="form-control"
-                                            placeholder="Salario" required>
-                                        <label for="numero">Salario</label>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                    <div class="form-label-group">
-                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
-                                            readonly required>
+                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" readonly>
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+
+                                <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="tel" name="tel" class="form-control"
-                                            placeholder="Telefone" required>
-                                        <label for="tel">Telefone</label>
+                                        <input type="date" id="data-nascimento" name="data-nascimento" class="form-control" placeholder="Data de nascimento" readonly>
+                                        <label for="data-nascimento">Data de nascimento</label>
                                     </div>
                                 </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-label-group">
-                                        <input type="date" id="data" name="data" class="form-control"
-                                            placeholder="Data de nascimento" readonly required>
-                                        <label for="data">Data de nascimento</label>
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-md-6">
+                                <div class="col-md-1">
                                     <div class="form-label-group">
-                                        <input type="text" id="logradouro" name="logradouro" class="form-control"
-                                            placeholder="Logradouro" required>
-                                        <label for="logradouro">Logradouro </label>
+                                        <select id="uf" name="uf" class="form-control" autofocus="autofocus" required>
+                                            <option value="" selected>UF</option>
+                                        </select>
+                                        <label for="uf" class="d-none">UF</label>
                                     </div>
                                 </div>
-                                <div class="col-md-2">
+
+                                <div class=" col-md-3">
                                     <div class="form-label-group">
-                                        <input type="number" id="numero" name="numero" class="form-control"
-                                            placeholder="Número" required>
+                                        <select id="cidade" name="cidade" class="form-control" required>
+                                            <option value="" selected>Cidade</option>
+                                        </select>
+                                        <label for="cidade" class="d-none">Cidade</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-5">
+                                    <div class="form-label-group">
+                                        <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro" required>
+                                        <label for="logradouro">Logradouro</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <div class="form-label-group">
+                                        <input type="number" id="numero" name="numero" class="form-control" placeholder="Número" required>
                                         <label for="numero">Número</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="complemento" name="complemento" class="form-control"
-                                            placeholder="Complemento" required>
+                                        <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Complemento" required>
                                         <label for="complemento">Complemento</label>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-row">
-
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <select id="estado" name="estado" class="form-control">
-                                            <option value="" selected>
-                                                Estado
-                                            </option>
-                                        </select>
-                                        <label for="estado" class="d-none">Estado</label>
-                                    </div>
-                                </div>
-
-
-                                <div class=" col-md-4">
-                                    <div class="form-label-group">
-                                        <select id="estado" name="estado" class="form-control" required>
-
-                                            <option value="" selected>
-                                                Cidade
-                                            </option>
-                                        </select>
-                                        <label for="cidade" class="d-none">cidade</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-label-group">
-                                        <input type="text" id="bairro" name="bairro" class="form-control"
-                                            placeholder="Bairro" required>
+                                        <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro" required>
                                         <label for="bairro">Bairro</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="number" id="cep" name="cep" class="form-control" placeholder="CEP" required>
+                                        <label for="cep">CEP</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" required>
+                                        <label for="telefone">Telefone</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <select id="cargo" name="cargo" class="form-control" required>
+                                            <option value="" selected>Cargo</option>
+                                        </select>
+                                        <label for="cargo" class="d-none">Cargo</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="number" id="salario" name="salario" class="form-control" placeholder="Salário" required>
+                                        <label for="salario">Salário</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="date" readonly id="data-cadastro" id="data-cadastro" name="data-cadastro" class="form-control" placeholder="Data do Cadastro" required>
+                                        <label for="data-cadastro">Data do Cadastro</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Cadastrar</a>
+                        <button class="btn btn-primary" type="submit">Atualizar</a>
                     </form>
-
                 </div>
             </div>
-
         </div>
-
         <!-- /.container-fluid -->
+
     </div>
     <!-- /.content-wrapper -->
+
 </div>
 <!-- /#wrapper -->
+
 <?php
-include('includes/footers/footer-init.php');
-include('includes/footers/footer-modal.php');
-include('includes/footers/footer-scripts.php');
+    include('includes/footers/footer-init.php');
+    include('includes/footers/footer-modal.php');
+    include('includes/footers/footer-scripts.php');
+    include('includes/footers/footer-final.php');
 ?>
 
 <script src="./js/controller/FormController.js"></script>
-<script>
-const form = document.querySelector('#user');
-window.form = new FormController(form);
-</script>
 
-<?php
-include('includes/footers/footer-final.php');
-?>
+<script>
+    const form = document.querySelector('#user');
+    window.form = new FormController(form);
+</script>
