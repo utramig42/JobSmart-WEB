@@ -1,4 +1,4 @@
-import * as Months from "../utils/Months";
+import * as Months from "../utils/Months.js";
 
 /**
  *  Preenche as opções da tag Select com os meses

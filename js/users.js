@@ -16,7 +16,7 @@ function toggleTemp(checkbox, parentElement) {
     `;
 
   if (checkbox.checked) parentElement.appendChild(div);
-  else parentElement.removeElement(div);
+  else parentElement.removeChild(div);
 }
 
 function getElementTemporario() {}
