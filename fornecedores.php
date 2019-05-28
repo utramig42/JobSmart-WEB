@@ -1,18 +1,17 @@
 <?php
-    include_once('includes/headers/header-init.php');
+// Configurações
+include_once 'includes/config.php';
 
-    // CSS
-    include_once('includes/headers/header-styles.php');
+include_once 'includes/headers/header-init.php';
+// CSS
+include_once 'includes/headers/header-styles.php';
+// Default Navbar
+include_once 'includes/navbar/navbar-main.php';
 
-    // Default Navbar
-    include_once('includes/navbar/navbar-main.php');
+$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 ?>
 
-<title>Job'Smart - Fornecedores</title>
-
-<!-- Global Style CSS -->
-<link rel="stylesheet" type="text/css" href="css/global-style.css">
-
+<title>Job'Smart - <?php echo $fileName ?> </title>
 <!-- Table Style CSS -->
 <link rel="stylesheet" href="css/tables.css">
 
@@ -20,7 +19,7 @@
 
     <!-- Sidebar -->
     <?php
-        include_once('includes/navbar/navbar-sidebar.php');
+    include_once('includes/navbar/navbar-sidebar.php');
     ?>
 
     <div id="content-wrapper">
@@ -33,9 +32,8 @@
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
                     <?php
-                        // Placing Header
-                        $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
-                        echo $fileName;
+                    // Placing Header
+                    echo $fileName;
                     ?>
                 </li>
             </ol>
@@ -49,17 +47,20 @@
                     <div class="d-md-inline-block float-right">
 
                         <!-- Register Button -->
-                        <button type="button" class="btn btn-primary float-right" onclick="window.location.href='cadastroFornecedores.php'">
+                        <button type="button" class="btn btn-primary float-right"
+                            onclick="window.location.href='cadastro/cadastroFornecedores.php'">
                             <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
                             <span>Cadastrar</span>
                         </button>
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
-                                    <button class="btn btn-primary" type="button">
+                                    <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
@@ -78,7 +79,7 @@
                                     <th>Nome do Contato</th>
                                     <th>E-mail</th>
                                     <th>Telefone</th>
-                                    <th>Ações</th>                                 
+                                    <th>Ações</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -91,17 +92,20 @@
                                     <td class="text-truncate">
 
                                         <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal tooltip" data-target="#informationModal" title="Mais Informações">
+                                        <button type="button" class="btn btn-success" data-toggle="modal tooltip"
+                                            data-target="#informationModal" title="Mais Informações">
                                             <i class="fas fa-info text-white icon"></i>
                                         </button>
 
                                         <!-- Button Edit Information -->
-                                        <button type="button" class="btn btn-warning ml-1" title="Atualizar Informações" onclick="window.location.href='atualizarFornecedores.php'">
+                                        <button type="button" class="btn btn-warning ml-1" title="Atualizar Informações"
+                                            onclick="window.location.href='atualizacoes/atualizarFornecedores.php'">
                                             <i class="fas fa-edit text-white icon"></i>
                                         </button>
 
                                         <!-- Button Remove Information -->
-                                        <button type="button" class="btn btn-danger ml-1" title="Remover Informações" onclick="window.location.href='#.php'">
+                                        <button type="button" class="btn btn-danger ml-1" title="Remover Informações"
+                                            onclick="window.location.href='.php'">
                                             <i class="fas fa-trash text-white icon"></i>
                                         </button>
                                     </td>
@@ -133,107 +137,112 @@
                         </ul>
                     </nav>
                 </div>
-                <div class="card-footer small text-muted">Última atualização - 27/05/2019</div>
+                <div class="card-footer small text-muted">Última atualização - <?php echo date('d/m/Y H:i:s') ?> /div>
+                </div>
             </div>
+            <!-- /.container-fluid -->
+
         </div>
-        <!-- /.container-fluid -->
+        <!-- /.content-wrapper -->
 
     </div>
-    <!-- /.content-wrapper -->
+    <!-- /#wrapper -->
 
-</div>
-<!-- /#wrapper -->
+    <!-- Modal -->
+    <div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="informationModalLabel">Informações do fornecedor</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
 
-<!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="informationModalLabel">Informações do fornecedor</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+                <div class="modal-body">
+                    <div class="modal-item">
+                        <h5>Código</h5>
+                        <p class="text-muted">001</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Razão Social</h5>
+                        <p class="text-muted">JB - Comércio de Alimentos e Bebidas Ltda.</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>CNPJ</h5>
+                        <p class="text-muted">12.345.678/9101-11</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Nome Fantasia</h5>
+                        <p class="text-muted">JB - Alimentos e Bebidas</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>UF</h5>
+                        <p class="text-muted">MG</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Cidade</h5>
+                        <p class="text-muted">Belo Horizonte</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Logradouro</h5>
+                        <p class="text-muted">Rua Gustavo Brandão</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Número</h5>
+                        <p class="text-muted">3298</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Complemento</h5>
+                        <p class="text-muted">GP02</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Bairro</h5>
+                        <p class="text-muted">Horta</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>CEP</h5>
+                        <p class="text-muted">12345-678</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Nome do Contato</h5>
+                        <p class="text-muted">Carlos de Oliveira</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>E-mail</h5>
+                        <p class="text-muted">carlos_oliveira@jbcab.com.br</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Telefone</h5>
+                        <p class="text-muted">+55 31 91234-5678</p>
+                    </div>
+                    <div class="modal-item">
+                        <h5>Data do Cadastro</h5>
+                        <p class="text-muted">01/02/2003</p>
+                    </div>
+                </div>
 
-            <div class="modal-body">
-                <div class="modal-item">
-                    <h5>Código</h5>
-                    <p class="text-muted">001</p>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
-                <div class="modal-item">
-                    <h5>Razão Social</h5>
-                    <p class="text-muted">JB - Comércio de Alimentos e Bebidas Ltda.</p>
-                </div>
-                <div class="modal-item">
-                    <h5>CNPJ</h5>
-                    <p class="text-muted">12.345.678/9101-11</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Nome Fantasia</h5>
-                    <p class="text-muted">JB - Alimentos e Bebidas</p>
-                </div>
-                <div class="modal-item">
-                    <h5>UF</h5>
-                    <p class="text-muted">MG</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Cidade</h5>
-                    <p class="text-muted">Belo Horizonte</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Logradouro</h5>
-                    <p class="text-muted">Rua Gustavo Brandão</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Número</h5>
-                    <p class="text-muted">3298</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Complemento</h5>
-                    <p class="text-muted">GP02</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Bairro</h5>
-                    <p class="text-muted">Horta</p>
-                </div>
-                <div class="modal-item">
-                    <h5>CEP</h5>
-                    <p class="text-muted">12345-678</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Nome do Contato</h5>
-                    <p class="text-muted">Carlos de Oliveira</p>
-                </div>
-                <div class="modal-item">
-                    <h5>E-mail</h5>
-                    <p class="text-muted">carlos_oliveira@jbcab.com.br</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Telefone</h5>
-                    <p class="text-muted">+55 31 91234-5678</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Data do Cadastro</h5>
-                    <p class="text-muted">01/02/2003</p>
-                </div>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
             </div>
         </div>
     </div>
-</div>
 
-<?php
-    include('includes/footers/footer-init.php');
-    include('includes/footers/footer-modal.php');
-    include('includes/footers/footer-scripts.php');
-    include('includes/footers/footer-final.php');
-?>
+    <?php
+    include_once 'includes/footers/footer-init.php';
+    include_once 'includes/footers/footer-modal.php';
+    include_once 'includes/footers/footer-scripts.php';
+    ?>
+    <script src="js/controller/TableController.js"></script>
+    <script>
+    window.table = new TableController(
+        document.querySelector("#search-table"),
+        document.querySelector("table tfoot")
+    );
+    </script>
 
-<script src="js/controller/TableController.js"></script>
-
-<script>
-    window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
-</script>
+    <?php
+    include_once 'includes/footers/footer-final.php';
+    ?>
