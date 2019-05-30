@@ -25,10 +25,7 @@ include_once 'includes/navbar/navbar-main.php';
                     <a href="index.php">Painel de controle</a>
                 </li>
                 <li class="breadcrumb-item active text-capitalize">
-                    <?php
-
-                    echo $fileName;
-                    ?>
+                    <?php echo $fileName; ?>
                 </li>
             </ol>
 

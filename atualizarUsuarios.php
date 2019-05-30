@@ -6,9 +6,18 @@ include_once 'includes/headers/header-styles.php';
 
 // Default Navbar
 include_once 'includes/navbar/navbar-main.php';
+
+// Require Files Users
+require_once 'core/dao/Connection.php';
+require_once 'core/dao/UsuarioModel.php';
+require_once 'core/dll/UsuarioController.php';
+
+$userModel = new UsuarioModel();
+
+
 ?>
 
-<title>Job'Smart - Atualização do Fornecedor</title>
+<title>Job'Smart - Atualização do Usuário</title>
 
 <!-- Form Style CSS -->
 <link rel="stylesheet" href="css/forms.css">
@@ -17,7 +26,7 @@ include_once 'includes/navbar/navbar-main.php';
 
     <!-- Sidebar -->
     <?php
-    include_once 'includes/navbar/navbar-sidebar.php'
+    include_once 'includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -29,41 +38,49 @@ include_once 'includes/navbar/navbar-main.php';
                     <a href="index.php">Painel de controle</a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a href="fornecedores.php">Fornecedores</a>
+                    <a href="usuarios.php">Funcionários</a>
                 </li>
                 <li class="breadcrumb-item active">
-                    Atualização do fornecedor
-                    <?php $fileName = 'Fornecedores'; ?>
+                    Atualização do funcionário
+                    <?php $fileName = 'Usuarios'; ?>
                 </li>
             </ol>
 
             <div class="card mx-auto">
-                <div class="card-header">Dados do fornecedor</div>
+                <div class="card-header">Dados do usuário</div>
                 <div class="card-body">
-                    <form id="provider">
+                    <form id="user">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="number" id="codigo" id="codigo" name="codigo" class="form-control"
-                                            placeholder="Código" readonly>
-                                        <label for="codigo">Código</label>
+                                        <input type="text" readonly id="matricula" name="matricula" class="form-control"
+                                            placeholder="Matrícula" value="" readonly>
+                                        <label for="matricula">Matrícula</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="razao-social" id="razao-social" name="razao-social"
-                                            class="form-control" placeholder="Razão Social" readonly>
-                                        <label for="razao-social">Razão Social</label>
+                                        <input type="text" id="nome" name="nome" class="form-control"
+                                            placeholder="Nome completo" readonly>
+                                        <label for="nome">Nome Completo</label>
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="cnpj" id="cnpj" name="cnpj" class="form-control"
-                                            placeholder="CNPJ" readonly>
-                                        <label for="cnpj">CNPJ</label>
+                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
+                                            readonly>
+                                        <label for="cpf">CPF</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="date" id="data-nascimento" name="data-nascimento"
+                                            class="form-control" placeholder="Data de nascimento" readonly>
+                                        <label for="data-nascimento">Data de nascimento</label>
                                     </div>
                                 </div>
                             </div>
@@ -71,17 +88,9 @@ include_once 'includes/navbar/navbar-main.php';
 
                         <div class="form-group">
                             <div class="form-row">
-                                <div class="col-md-8">
-                                    <div class="form-label-group">
-                                        <input type="text" id="nome-fantasia" name="nome-fantasia" class="form-control"
-                                            placeholder="Nome Fantasia" autofocus="autofocus" required>
-                                        <label for="nome-fantasia">Nome Fantasia</label>
-                                    </div>
-                                </div>
-
                                 <div class="col-md-1">
                                     <div class="form-label-group">
-                                        <select id="uf" name="uf" class="form-control" required>
+                                        <select id="uf" name="uf" class="form-control" autofocus="autofocus" required>
                                             <option value="" selected>UF</option>
                                         </select>
                                         <label for="uf" class="d-none">UF</label>
@@ -96,11 +105,7 @@ include_once 'includes/navbar/navbar-main.php';
                                         <label for="cidade" class="d-none">Cidade</label>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
 
-                        <div class="form-group">
-                            <div class="form-row">
                                 <div class="col-md-5">
                                     <div class="form-label-group">
                                         <input type="text" id="logradouro" name="logradouro" class="form-control"
@@ -124,7 +129,11 @@ include_once 'includes/navbar/navbar-main.php';
                                         <label for="complemento">Complemento</label>
                                     </div>
                                 </div>
+                            </div>
+                        </div>
 
+                        <div class="form-group">
+                            <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
                                         <input type="text" id="bairro" name="bairro" class="form-control"
@@ -140,26 +149,6 @@ include_once 'includes/navbar/navbar-main.php';
                                         <label for="cep">CEP</label>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                    <div class="form-label-group">
-                                        <input type="text" id="nome-contato" name="nome-contato" class="form-control"
-                                            placeholder="Nome do Contato" required>
-                                        <label for="nome-contato">Nome do Contato</label>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4">
-                                    <div class="form-label-group">
-                                        <input type="text" id="e-mail" name="e-mail" class="form-control"
-                                            placeholder="E-mail" required>
-                                        <label for="e-mail">E-mail</label>
-                                    </div>
-                                </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
@@ -171,8 +160,26 @@ include_once 'includes/navbar/navbar-main.php';
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="date" id="data-cadastro" id="data-cadastro" name="data-cadastro"
-                                            class="form-control" placeholder="Data do Cadastro" readonly>
+                                        <select id="cargo" name="cargo" class="form-control" required>
+                                            <option value="" selected>Cargo</option>
+                                        </select>
+                                        <label for="cargo" class="d-none">Cargo</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="number" id="salario" name="salario" class="form-control"
+                                            placeholder="Salário" required>
+                                        <label for="salario">Salário</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <div class="form-label-group">
+                                        <input type="date" readonly id="data-cadastro" id="data-cadastro"
+                                            name="data-cadastro" class="form-control" placeholder="Data do Cadastro"
+                                            required>
                                         <label for="data-cadastro">Data do Cadastro</label>
                                     </div>
                                 </div>
@@ -192,15 +199,15 @@ include_once 'includes/navbar/navbar-main.php';
 <!-- /#wrapper -->
 
 <?php
-include('includes/footers/footer-init.php');
-include('includes/footers/footer-modal.php');
-include('includes/footers/footer-scripts.php');
-include('includes/footers/footer-final.php');
+include_once 'includes/footers/footer-init.php';
+include_once 'includes/footers/footer-modal.php';
+include_once 'includes/footers/footer-scripts.php';
+include_once 'includes/footers/footer-final.php';
 ?>
 
 <script src="./js/controller/FormController.js"></script>
 
 <script>
-const form = document.querySelector('#provider');
+const form = document.querySelector('#user');
 window.form = new FormController(form);
 </script>

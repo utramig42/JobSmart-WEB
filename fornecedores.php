@@ -48,7 +48,7 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 
                         <!-- Register Button -->
                         <button type="button" class="btn btn-primary float-right"
-                            onclick="window.location.href='cadastro/cadastroFornecedores.php'">
+                            onclick="window.location.href='cadastroFornecedores.php'">
                             <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
                             <span>Cadastrar</span>
                         </button>
@@ -99,7 +99,7 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 
                                         <!-- Button Edit Information -->
                                         <button type="button" class="btn btn-warning ml-1" title="Atualizar Informações"
-                                            onclick="window.location.href='atualizacoes/atualizarFornecedores.php'">
+                                            onclick="window.location.href='atualizarFornecedores.php'">
                                             <i class="fas fa-edit text-white icon"></i>
                                         </button>
 

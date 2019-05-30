@@ -1,11 +1,11 @@
 <?php
-include_once '../includes/headers/header-init.php';
+include_once 'includes/headers/header-init.php';
 
 // CSS
-include_once '../includes/headers/header-styles.php';
+include_once 'includes/headers/header-styles.php';
 
 // Default Navbar
-include_once '../includes/navbar/navbar-main.php';
+include_once 'includes/navbar/navbar-main.php';
 ?>
 
 <title>Job'Smart - Cadastro de Funcionário</title>
@@ -17,7 +17,7 @@ include_once '../includes/navbar/navbar-main.php';
 
     <!-- Sidebar -->
     <?php
-    include_once '../includes/navbar/navbar-sidebar.php';
+    include_once 'includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -186,10 +186,10 @@ include_once '../includes/navbar/navbar-main.php';
 <!-- /#wrapper -->
 
 <?php
-include_once '../includes/footers/footer-init.php';
-include_once '../includes/footers/footer-modal.php';
-include_once '../includes/footers/footer-scripts.php';
-include_once '../includes/footers/footer-final.php';
+include_once 'includes/footers/footer-init.php';
+include_once 'includes/footers/footer-modal.php';
+include_once 'includes/footers/footer-scripts.php';
+include_once 'includes/footers/footer-final.php';
 ?>
 
 <script src="./js/controller/FormController.js"></script>
