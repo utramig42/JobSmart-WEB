@@ -11,6 +11,12 @@ include_once 'includes/headers/header-styles.php';
 include_once 'includes/navbar/navbar-main.php';
 
 $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+
+// Require Files Users
+require_once 'core/dao/Connection.php';
+require_once 'core/dao/UsuarioModel.php';
+require_once 'core/dll/UsuarioController.php';
+
 ?>
 
 <title>Job'Smart - <?php echo $fileName ?></title>
@@ -25,7 +31,7 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 
     <!-- Sidebar -->
     <?php
-    include_once('includes/navbar/navbar-sidebar.php')
+    include_once 'includes/navbar/navbar-sidebar.php';
     ?>
 
     <div id="content-wrapper">
@@ -89,33 +95,14 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                                 </tr>
                             </thead>
                             <tfoot>
-                                <tr>
-                                    <td class="text-muted text-truncate">José Ribamar</td>
-                                    <td class="text-muted text-truncate">12.345.678-91</td>
-                                    <td class="text-muted text-truncate">+55 31 91234-5678</td>
-                                    <td class="text-muted text-truncate">Vendedor</td>
-                                    <td class="text-muted text-truncate">R$2.000,42</td>
-                                    <td class="text-truncate">
 
-                                        <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#informationModal" title="Mais Informações">
-                                            <i class="fas fa-info text-white icon"></i>
-                                        </button>
 
-                                        <!-- Button Edit Information -->
-                                        <button type="button" class="btn btn-warning ml-1" title="Atualizar Informações"
-                                            onclick="window.location.href='atualizacoes/atualizarUsuarios.php'">
-                                            <i class="fas fa-edit text-white icon"></i>
-                                        </button>
+                                <?php
+                                $userController = new UsuarioController();
+                                $userController->listUsersTables();
+                                $userController->listUsersModals();
+                                ?>
 
-                                        <!-- Button Remove Information -->
-                                        <button type="button" class="btn btn-danger ml-1" title="Remover Informações"
-                                            onclick="window.location.href='#.php'">
-                                            <i class="fas fa-trash text-white icon"></i>
-                                        </button>
-                                    </td>
-                                </tr>
                             </tfoot>
                         </table>
                     </div>
@@ -154,89 +141,10 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 </div>
 <!-- /#wrapper -->
 
-<!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="informationModalLabel">Informações do funcionário</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <div class="modal-item">
-                    <h5>Matrícula</h5>
-                    <p class="text-muted">001</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Nome Completo</h5>
-                    <p class="text-muted">José Ribamar</p>
-                </div>
-                <div class="modal-item">
-                    <h5>CPF</h5>
-                    <p class="text-muted">12.345.678-91</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Data de nascimento</h5>
-                    <p class="text-muted">10/02/1999</p>
-                </div>
-                <div class="modal-item">
-                    <h5>UF</h5>
-                    <p class="text-muted">MG</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Cidade</h5>
-                    <p class="text-muted">Belo Horizonte</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Logradouro</h5>
-                    <p class="text-muted">Rua Gustavo Brandão</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Número</h5>
-                    <p class="text-muted">3298</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Complemento</h5>
-                    <p class="text-muted">203</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Bairro</h5>
-                    <p class="text-muted">Horta</p>
-                </div>
-                <div class="modal-item">
-                    <h5>CEP</h5>
-                    <p class="text-muted">12345-678</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Telefone</h5>
-                    <p class="text-muted">+55 31 91234-5678</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Cargo</h5>
-                    <p class="text-muted">Vendedor</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Salário</h5>
-                    <p class="text-muted">R$2.000,42</p>
-                </div>
-                <div class="modal-item">
-                    <h5>Data do Cadastro</h5>
-                    <p class="text-muted">01/02/2003</p>
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <?php
+$userController = new UsuarioController();
+$userController->listUsersModals();
+
 include_once 'includes/footers/footer-init.php';
 include_once 'includes/footers/footer-modal.php';
 include_once 'includes/footers/footer-scripts.php';
