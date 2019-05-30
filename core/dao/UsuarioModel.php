@@ -135,7 +135,10 @@ class UsuarioModel
     public function loadById($id)
     {
         $Sql = new Connection();
-        $result = $Sql->select("SELECT * FROM funcionario WHERE mat_fun = :id", array(":id" => $id));
+        $result = $Sql->select(
+            "SELECT * FROM funcionario WHERE mat_fun = :id",
+            array(":id" => $id)
+        );
 
         return $result;
     }

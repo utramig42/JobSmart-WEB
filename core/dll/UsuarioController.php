@@ -1,6 +1,4 @@
 <?php
-
-
 class UsuarioController
 {
 
@@ -80,17 +78,16 @@ class UsuarioController
             echo "
         <!-- Modal -->
         <div class=\"modal fade\" id=\"user" . $row['matricula'] . "Modal\" tabindex=\"-1\" role=\"dialog\"
-            aria-labelledby=\"informationModalLabel\" aria-hidden=\"true\">
-            <div class=\"modal-dialog\" role=\"document\">
-                <div class=\"modal-content\">
-                    <div class=\"modal-header\">
-                        <h4 class=\"modal-title\" id=\"informationModalLabel\">Informações do funcionário</h4>
-                        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
-                            <span aria-hidden=\"true\">&times;</span>
-                        </button>
-                    </div>
-
-            <div class=\"modal-body\">";
+        aria-labelledby=\"informationModalLabel\" aria-hidden=\"true\">
+        <div class=\"modal-dialog\" role=\"document\">
+        <div class=\"modal-content\">
+        <div class=\"modal-header\">
+        <h4 class=\"modal-title\" id=\"informationModalLabel\">Informações do funcionário</h4>
+        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+        <span aria-hidden=\"true\">&times;</span>
+        </button>
+        </div>
+        <div class=\"modal-body\">";
 
             foreach ($row as $att => $attribute) {
                 echo "<div class=\"modal-item\">
@@ -99,14 +96,15 @@ class UsuarioController
                 </div>";
             }
 
+
             echo "
-            </div>
-            <div class=\"modal-footer\">
-                <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>
-            </div>
         </div>
-    </div>
-</div>";
+        <div class=\"modal-footer\">
+        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>
+        </div>
+        </div>
+        </div>
+        </div>";
         }
     }
 }
