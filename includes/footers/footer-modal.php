@@ -5,7 +5,7 @@
 
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -21,7 +21,7 @@
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">
                     Cancelar
                 </button>
-                <a class="btn btn-primary" href="login.html">Sair</a>
+                <a class="btn btn-primary" href="logoutController.php">Sair</a>
             </div>
         </div>
     </div>

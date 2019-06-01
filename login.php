@@ -1,3 +1,9 @@
+<?php
+    session_start();
+    date_default_timezone_set("America/Sao_Paulo");
+    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -27,26 +33,49 @@
             <div class="card-header">Login</div>
             <div class="card-body">
                 <div class="block-center">
-                    <img src="img\JOBSMART.png" class="logo-center" alt="">
+                    <img src="img/JOBSMART.png" class="logo-center" alt="">
                 </div>
-                <form>
+
+                <!-- Controle de avisos na tela: Exibidos de acordo com a seção.
+                     Os erros de autenticação estão sendo setados através de sessão por praticidade. -->
+                <?php
+                if (isset($_SESSION['empty_fields'])):
+                    ?>
+                    <div class="alert alert-danger" role="alert">
+                        ERRO: Verifique se os campos foram devidamente preenchidos!
+                    </div>
+                <?php
+                endif;
+                unset($_SESSION['empty_fields']);
+                ?>
+
+                <?php
+                    if (isset($_SESSION['auth_error'])):
+                ?>
+                <div class="alert alert-danger" role="alert">
+                    ERRO: Matrícula ou Senha inválidos!
+                </div>
+                <?php
+                    endif;
+                    unset($_SESSION['auth_error']);
+                ?>
+
+
+                <form action="loginController.php" method="POST">
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email"
-                                required="required" autofocus="autofocus">
-                            <label for="inputEmail">Email</label>
+                            <input type="text" id="inputMatricula" name="inputMatricula" class="form-control" required="required" autofocus="autofocus">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-label-group">
-                            <input type="Senha" id="inputPassword" class="form-control" placeholder="Senha"
-                                required="required">
-                            <label for="inputPassword">Senha</label>
+                            <input type="password" id="inputSenha" name="inputSenha" class="form-control" placeholder="Senha" required="required">
                         </div>
                     </div>
 
-                    <a class="btn btn-primary btn-block mt-3" href="index.html">Login</a>
+                    <input type="submit" class="btn btn-primary" value="Entrar">
                 </form>
+
             </div>
         </div>
     </div>
@@ -54,7 +83,6 @@
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
     <!-- Core plugin JavaScript-->
     <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 

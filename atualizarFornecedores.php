@@ -178,7 +178,7 @@ include_once 'includes/navbar/navbar-main.php';
                                 </div>
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Atualizar</a>
+                        <button class="btn btn-primary" type="submit">Atualizar</button>
                     </form>
                 </div>
             </div>
