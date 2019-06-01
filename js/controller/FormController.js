@@ -1,38 +1,68 @@
 class FormController {
   constructor(form) {
     this.formEl = form;
+    this.Ibge = new IbgeUtils();
+    this.ufEl = form.querySelector("#uf");
+    this.Ibge.getBrStates(this.ufEl); // Inicializando a listagem do IBGE.
     this.initEvents();
+  }
+
+  getSelection(select, mostrar) {
+    document.querySelector("select");
   }
 
   /**
    * Função para inicialização de eventos.
    */
   initEvents() {
-    getBrStates(); // Tentando incializar o IBGE.x'
+    this.formEl.addEventListenerAll("submit", this.validationSelects(event));
 
-    this.formEl.addEventListener("submit", event => {
-      event.preventDefault(); // Não enviar os dado, o comportamento padrão.
-
-      if (this.validationInputs().length == 0) {
-        this.formEl.submit(); // Pode enviar...
-      } else {
-        this.validationInputs().forEach(input => {
-          input.css({ borderColor: "red" }); // Colorir as bordas que não estão atendendo as condições de vermelho.
-
-          input.addEventListener("focus", () => {
-            // Quando o úsuario focar em um campo em vermelho, o retorne para a cor original.
-            input.css({ borderColor: "#ced4da" });
-          });
-        });
-      }
+    this.ufEl.addEventListener("change", () => {
+      this.Ibge.getStateCities(
+        this.ufEl.value,
+        this.formEl.querySelector("#cidade")
+      );
     });
   }
 
+  /**
+   * Criado para Validação do formulario de forma geral.
+   * @param {Event} event Com os dados necessarios para a validação do formulário.
+   */
+  validationForm(event) {
+    event.preventDefault(); // Não enviar os dado, o comportamento padrão.
+
+    if (this.validationSelects().length == 0) {
+      this.formEl.submit(); // Pode enviar...
+    } else {
+      this.validationSelects().forEach(input => {
+        input.css({ borderColor: "red" }); // Colorir as bordas que não estão atendendo as condições de vermelho.
+
+        input.addEventListener("focus", () => {
+          // Quando o úsuario focar em um campo em vermelho, o retorne para a cor original.
+          input.css({ borderColor: "#ced4da" });
+        });
+      });
+    }
+  }
+
+  /**
+   * Criado para retornar os campos que necessitam de validação
+   * @returns {Array} retorna um array com os inputs a serem validados.
+   */
   validationInputs() {
     const inputs = Array.from(this.formEl.querySelectorAll("[required]"));
-    const invalidateInputs = inputs.filter(input => input.value == "");
+    return inputs.filter(input => input.value == "");
+  }
 
-    return invalidateInputs;
+  /**
+   * Criado para retornar os campos que necessitam de validação
+   * @returns {Array} retorna um array com os selects a serem validados.
+   */
+  validationSelects() {
+    const selects = Array.from(this.formEl.querySelector("[required]"));
+    const invalidateSelects = selects.filter(select => select.value == "");
+    return [...invalidateSelects, ...this.validationInputs()];
   }
 
   /**
