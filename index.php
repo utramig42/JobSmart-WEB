@@ -1,14 +1,14 @@
 <?php
-include_once 'includes/headers/header-init.php';
-include_once 'includes/headers/header-styles.php';
-include_once 'includes/config.php';
-$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+    include_once 'includes/headers/header-init.php';
+    include_once 'includes/headers/header-styles.php';
+    include_once 'includes/config.php';
+    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 ?>
 
 <title> Jobsmart - Administrativo </title>
 <link rel="stylesheet" href="css/index.css">
 <?php
-include_once('includes/navbar/navbar-main.php');
+    include_once('includes/navbar/navbar-main.php');
 ?>
 
 <div id="wrapper">
