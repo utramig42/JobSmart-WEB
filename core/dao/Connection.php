@@ -12,7 +12,7 @@ class Connection extends PDO
     public function __construct()
     {
         $this->conn = parent::__construct(
-            "mysql:dbname=" . Connection::DBNAME . ";host=" . Connection::HOSTNAME,
+            "mysql:dbname=" . Connection::DBNAME . ";host=" . Connection::HOSTNAME . ";charset=utf8",
             Connection::USERNAME,
             Connection::PASSWORD
         );

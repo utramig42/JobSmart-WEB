@@ -19,8 +19,9 @@ class FormController {
     this.ufEl.addEventListener("change", e => {
       this.Ibge.getStateCities(
         this.ufEl.value,
-        this.formEl.querySelector("#cidade")
+        this.formEl.querySelector("#cidade"),
       );
+
     });
   }
 
