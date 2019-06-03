@@ -22,13 +22,11 @@ $query = "SELECT
         WHERE f.mat_fun = :matricula
             AND a.senha_acesso = :senha;";
 
-$statement = $sql->prepare($query);
-$statement->bindParam('matricula', $matricula);
-$statement->bindParam('senha', $senha);
+$users = $sql->select($query, array(
+    "matricula" => $matricula,
+    "senha" => $senha
+));
 
-$statement->execute();
-
-$users = $statement->fetchAll($sql::FETCH_ASSOC);
 
 if (count($users) <= 0) {
     $_SESSION['auth_error'] = true;
@@ -42,4 +40,3 @@ if (count($users) <= 0) {
     header('Location: index.php');
     exit();
 }
-

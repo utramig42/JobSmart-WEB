@@ -5,13 +5,13 @@ class IbgeUtils {
    */
   getBrStates(selectStatesMenu) {
     const ajax = new XMLHttpRequest();
-    ajax.onreadystatechange = function() {
+    ajax.onreadystatechange = function(e) {
       if (this.readyState == 4 && this.status == 200) {
         let estados = JSON.parse(this.response);
 
         estados.forEach(estado => {
           const optionTag = `<option value="${estado.id}">${
-            estado.nome
+            estado.sigla
           }</option>`;
           selectStatesMenu.innerHTML += optionTag;
         });
@@ -33,7 +33,6 @@ class IbgeUtils {
    */
   getStateCities(stateId, selectCitiesMenu) {
     const request = new XMLHttpRequest();
-    console.log("aee");
     request.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         let cidades = JSON.parse(this.response);

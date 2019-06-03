@@ -6,18 +6,17 @@ class FormController {
     this.Ibge.getBrStates(this.ufEl); // Inicializando a listagem do IBGE.
     this.initEvents();
   }
-
-  getSelection(select, mostrar) {
-    document.querySelector("select");
-  }
-
   /**
    * Função para inicialização de eventos.
    */
   initEvents() {
-    this.formEl.addEventListenerAll("submit", this.validationSelects(event));
+    this.formEl.addEventListener("load", e => {
+      console.log(e);
+    });
 
-    this.ufEl.addEventListener("change", () => {
+    // this.formEl.addEventListenerAll("submit", this.validationSelects(event));
+
+    this.ufEl.addEventListener("change", e => {
       this.Ibge.getStateCities(
         this.ufEl.value,
         this.formEl.querySelector("#cidade")
