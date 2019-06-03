@@ -18,13 +18,18 @@ $temp = isset($_POST['dataResc']) ? 1 : 0;
 $dataRes = isset($_POST['dataResc']) ? $_POST['dataResc'] : '';
 
 $endereco = $logradouro . " Nº" . $numero . ", " . $_POST['complemento'] . " - " . $_POST['bairro'] . " - " . $_POST['cidade'] . "/" . $_POST['uf'];
+$cpf = preg_replace('/[.-]/', '', $cpf);
+
+$parts = $_POST['cidade'];
+$arr = explode(':', $parts);
+var_dump($arr);
 
 $user = new UsuarioModel();
 $user->setNome($nome);
-$user->setCargo($cargo);
-$user->setSalario($salario);
+$user->setCargo(intval($cargo));
+$user->setSalario(floatval($salario));
 $user->setCpf($cpf);
-$user->setDataNascimento($cpf);
+$user->setDataNascimento($dataNascimento);
 $user->setTel($telefone);
 $user->setEndereco($endereco);
 $user->setUf($uf);

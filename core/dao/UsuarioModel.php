@@ -142,29 +142,27 @@ class UsuarioModel
 
     public function insert($user)
     {
+        $cargo = $user->getCargo();
+        $nome = $user->getNome();
+        $end = $user->getEndereco();
+        $uf = $user->getUf();
+        $cidade = $user->getCidade();
+        $sal = $user->getSalario();
+        $cpf = $user->getCpf();
+        $tel = $user->getTel();
+        $dtNasc = $user->getDataNascimento();
 
-        $rawQuery = "INSERT INTO `jobsmart`.`funcionario`(`id_cargo`,nm_fun,end_fun,uf_fun,cid_fun,sal_fun,cpf_fun,tel_fun,dt_nasc_fun) 
-        VALUES(':cargo',':nome', ':end', ':uf',':cidade',':sal',':cpf',':tel',':dtNasc');";
-        $params = array(
-            'cargo' => $user->getCargo(),
-            'nome' => $user->getNome(),
-            'end' => $user->getEndereco(),
-            'uf' => $user->getUf(),
-            'cidade' => $user->getCidade(),
-            'sal' => $user->getSalario(),
-            'cpf' => $user->getCpf(),
-            'tel' => $user->getTel(),
-            'dtNasc' => $user->getDataNascimento(),
-        );
+        $rawQuery = "INSERT INTO funcionario(id_cargo,nm_fun,end_fun,uf_fun,cid_fun,sal_fun,cpf_fun,tel_fun,dt_nasc_fun) 
+        VALUES($cargo,'$nome', '$end', '$uf','$cidade',$sal,'$cpf','$tel','$dtNasc');";
 
-        $res = $this->Sql->insert($rawQuery, $params);
+
+        $res = $this->Sql->insert($rawQuery);
 
         print_r($res);
     }
 
     public function update($user)
     {
-
         $rawQuery = "UPDATE funcionario SET 
         uf_fun = ':uf',
         cid_fun = ':cid',
