@@ -16,7 +16,6 @@ class Connection extends PDO
             Connection::USERNAME,
             Connection::PASSWORD
         );
-
     }
 
     private function setParams($statement, $parameters = array())
@@ -34,14 +33,26 @@ class Connection extends PDO
 
     public function query($rawQuery, $params = array())
     {
-        $stmt = $this->conn->prepare($rawQuery);
+        $stmt = $this->prepare($rawQuery);
         $this->setParams($stmt, $params);
         $stmt->execute();
     }
 
+    public function insert($rawQuery, $params = array())
+    {
+        try {
+            $stmt = $this->prepare($rawQuery);
+            $stmt->execute($params);
+            return $stmt->errorInfo();
+            // return $stmt->rowCount();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
     public function select($rawQuery, $params = array()): array
     {
-        $stmt = $this->conn->prepare($rawQuery);
+        $stmt = $this->prepare($rawQuery);
         $this->setParams($stmt, $params);
         $stmt->execute();
         return $stmt->fetchAll(\PDO::FETCH_ASSOC);

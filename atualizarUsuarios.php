@@ -11,13 +11,14 @@ include_once 'includes/navbar/navbar-main.php';
 // Require Files Users
 require_once 'core/dao/Connection.php';
 require_once 'core/dao/UsuarioModel.php';
-require_once 'core/dll/UsuarioController.php';
 
-$userModel = new UsuarioModel();
-$data = $userModel->loadById($_GET['matricula'])[0];
-var_dump($data);
+$userController = new UsuarioModel();
 
-echo date('Y-m-d', strtotime($data['dt_admin']));
+if (!isset($_GET['matricula'])) {
+    include_once 'includes/error.php';
+}
+
+$data = $userController->loadById($_GET['matricula'])[0];
 
 ?>
 
@@ -53,38 +54,33 @@ echo date('Y-m-d', strtotime($data['dt_admin']));
             <div class="card mx-auto">
                 <div class="card-header">Dados do usuário</div>
                 <div class="card-body">
-                    <form id="user">
+                    <form id="user" method="post" action="core/dll/UsuarioController.php">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" readonly id="matricula" name="matricula" class="form-control"
-                                            placeholder="Matrícula" value="<?php echo $data['mat_fun'] ?>" readonly>
+                                        <input type="text" readonly id="matricula" name="matricula" class="form-control" placeholder="Matrícula" value="<?php echo $data['mat_fun'] ?>" readonly>
                                         <label for="matricula">Matrícula</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome" name="nome" class="form-control"
-                                            placeholder="Nome completo" readonly value="<?php echo $data['nm_fun'] ?>">
+                                        <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome completo" readonly value="<?php echo $data['nm_fun'] ?>">
                                         <label for="nome">Nome Completo</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
-                                            readonly value="<?php echo $data['cpf_fun'] ?>">
+                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" readonly value="<?php echo $data['cpf_fun'] ?>">
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="date" id="data-nascimento" name="data-nascimento"
-                                            class="form-control" placeholder="Data de nascimento" readonly
-                                            value="<?php echo $data['dt_nasc_fun']  ?>">
+                                        <input type="date" id="data-nascimento" name="data-nascimento" class="form-control" placeholder="Data de nascimento" readonly value="<?php echo $data['dt_nasc_fun']  ?>">
                                         <label for="data-nascimento">Data de nascimento</label>
                                     </div>
                                 </div>
@@ -95,26 +91,31 @@ echo date('Y-m-d', strtotime($data['dt_admin']));
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <select id="uf" name="uf" class="form-control" autofocus="autofocus" required>
-                                            <option value="">UF</option>
-                                        </select>
-                                        <label for="uf" class="d-none">UF</label>
+
+
+
+                                        <input type="text" id="uf" name="uf" class="form-control" placeholder="UF" required value="<?php echo $data['uf_fun'] ?>">
+                                        <label for="uf">Estado</label>
+
+
                                     </div>
                                 </div>
 
+
+
                                 <div class=" col-md-3">
                                     <div class="form-label-group">
-                                        <select id="cidade" name="cidade" class="form-control" required>
-                                            <option value="">Cidade</option>
-                                        </select>
-                                        <label for="cidade" class="d-none">Cidade</label>
+
+
+                                        <input type="text" id="cidade" name="cidade" class="form-control" placeholder="Cidade" required value="<?php echo $data['cid_fun'] ?>">
+                                        <label for="cidade">Cidade</label>
+
                                     </div>
                                 </div>
 
                                 <div class="col-md-7">
                                     <div class="form-label-group">
-                                        <input type="text" id="endereco" name="endereco" class="form-control"
-                                            placeholder="Endereço" required value="<?php echo $data['end_fun'] ?>">
+                                        <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço" required value="<?php echo $data['end_fun'] ?>">
                                         <label for="endereco">Endereço</label>
                                     </div>
                                 </div>
@@ -127,34 +128,31 @@ echo date('Y-m-d', strtotime($data['dt_admin']));
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="telefone" name="telefone" class="form-control"
-                                            placeholder="Telefone" required value="<?php echo $data['tel_fun'] ?>">
+                                        <input type="text" id="telefone" name="telefone" class="form-control" placeholder="Telefone" required value="<?php echo $data['tel_fun'] ?>">
                                         <label for="telefone">Telefone</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <select id="cargo" name="cargo" class="form-control" required>
-                                            <option value="" selected>Cargo</option>
-                                        </select>
-                                        <label for="cargo" class="d-none">Cargo</label>
+
+
+                                        <input type="text" id="cargo" name="cidade" class="form-control" placeholder="cidade" required value="<?php echo $data['cargo'] ?>">
+                                        <label for="cargo">Cargo</label>
+
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="number" id="salario" name="salario" class="form-control"
-                                            placeholder="Salário" required value="<?php echo $data['sal_fun'] ?>">
+                                        <input type="number" id="salario" name="salario" class="form-control" placeholder="Salário" required value="<?php echo $data['sal_fun'] ?>">
                                         <label for="salario">Salário</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="date" readonly id="data-cadastro" id="data-cadastro"
-                                            name="data-cadastro" class="form-control" placeholder="Data do Cadastro"
-                                            required value="<?php echo date('Y-m-d', strtotime($data['dt_admin'])); ?>">
+                                        <input type="date" readonly id="data-cadastro" id="data-cadastro" name="data-cadastro" class="form-control" placeholder="Data do Cadastro" required value="<?php echo date('Y-m-d', strtotime($data['dt_admin'])); ?>">
                                         <label for="data-cadastro">Data do Cadastro</label>
                                     </div>
                                 </div>
@@ -162,8 +160,7 @@ echo date('Y-m-d', strtotime($data['dt_admin']));
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="date" id="dataresc" name="dataresc" readonly class="form-control"
-                                            placeholder="Data Termino de contrato" required>
+                                        <input type="date" id="dataresc" name="dataresc" readonly class="form-control" placeholder="Data Termino de contrato" value="<?php echo $data['dt_rec_fun'] ?>" required>
                                         <label for="dataresc">Data Termino de contrato</label>
                                     </div>
                                 </div>
@@ -191,7 +188,7 @@ include_once 'includes/footers/footer-scripts.php';
 <script src="./js/utils/IbgeUtils.js"></script>
 <script src="./js/controller/FormController.js"></script>
 <script>
-window.form = new FormController(document.querySelector('#user'));
+    window.form = new FormController(document.querySelector('#user'));
 </script>
 <?php
 include_once 'includes/footers/footer-final.php';
