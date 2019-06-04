@@ -163,24 +163,25 @@ class UsuarioModel
 
     public function update($user)
     {
-        $rawQuery = "UPDATE funcionario SET 
-        uf_fun = ':uf',
-        cid_fun = ':cid',
-        end_fun = ':end',
+        $rawQuery = "UPDATE funcionario SET
+        uf_fun = 'MG',
+        cid_fun = 'Belo Horizonte',
+        end_fun = 'Avenida Afonso PENA',
         tel_fun = ':tel',
-        id_cargo = :cargo,	
-        sal_fun = :sal
-        WHERE mat_fun = :mat;";
+        id_cargo = 1,
+        sal_fun = 1000 WHERE mat_fun = 1;";
 
-        $this->Sql->query($rawQuery, array(
-            'uf' => $user->getUf(),
-            'cid' => $user->getCidade(),
-            'end' => $user->getEndereco(),
-            'tel' => $user->getTel(),
-            'cargo' => $user->getCargo(),
-            'sal' => $user->getSalario(),
-            'mat' => $user->getMatricula()
+        $res = $this->Sql->query($rawQuery, array(
+            $mat => $user->getMatricula(),
+            $cargo => $user->getCargo(),
+            $sal => $user->getSalario(),
+            $tel => $user->getTel(),
+            $uf => $user->getUf(),
+            $cid => $user->getCidade(),
+            $end => $user->getEndereco()
         ));
+
+        var_dump($res);
     }
 
     public function getAllUsers(): array
@@ -247,9 +248,8 @@ class UsuarioModel
     {
         $this->Sql = new Connection();
         $result = $this->Sql->select(
-            "SELECT f.*,c.nm_cargo as cargo 
-            FROM funcionario f 
-            INNER JOIN cargo c on c.id_cargo = f.id_cargo 
+            "SELECT *
+            FROM funcionario 
             WHERE mat_fun = :id",
             array(":id" => $id)
         );

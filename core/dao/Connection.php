@@ -2,9 +2,9 @@
 
 class Connection extends PDO
 {
-    const HOSTNAME = "localhost";
+    const HOSTNAME = "10.14.93.20";
     const USERNAME = "root";
-    const PASSWORD = "";
+    const PASSWORD = "123456";
     const DBNAME = "jobsmart";
 
     private $conn;
@@ -38,11 +38,11 @@ class Connection extends PDO
         $stmt->execute();
     }
 
-    public function insert($rawQuery, $params = array())
+    public function insert($rawQuery)
     {
         try {
             $stmt = $this->prepare($rawQuery);
-            $stmt->execute($params);
+            $stmt->execute();
             return $stmt->errorInfo();
             // return $stmt->rowCount();
         } catch (PDOException $e) {

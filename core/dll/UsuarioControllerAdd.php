@@ -1,5 +1,4 @@
 <?php
-
 if (file_exists('../dao/Connection.php')) require_once '../dao/Connection.php';
 if (file_exists('../dao/UsuarioModel.php')) require_once '../dao/UsuarioModel.php';
 
@@ -17,12 +16,10 @@ $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
 $temp = isset($_POST['dataResc']) ? 1 : 0;
 $dataRes = isset($_POST['dataResc']) ? $_POST['dataResc'] : '';
 
-$endereco = $logradouro . " Nº" . $numero . ", " . $_POST['complemento'] . " - " . $_POST['bairro'] . " - " . $_POST['cidade'] . "/" . $_POST['uf'];
+$endereco = $logradouro . " Nº" . $numero . ", " . $_POST['complemento'];
+// . " - " . $_POST['bairro'] . " - " . $_POST['cidade'] . "/" . $_POST['uf'];
 $cpf = preg_replace('/[.-]/', '', $cpf);
 
-$parts = $_POST['cidade'];
-$arr = explode(':', $parts);
-var_dump($arr);
 
 $user = new UsuarioModel();
 $user->setNome($nome);
@@ -36,5 +33,6 @@ $user->setUf($uf);
 $user->setCidade($cidade);
 $user->setTemporario($temp);
 $user->setDataRecisao($dataRes);
+
 
 $user->insert($user);
