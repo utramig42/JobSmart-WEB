@@ -43,12 +43,26 @@ class Connection extends PDO
         try {
             $stmt = $this->prepare($rawQuery);
             $stmt->execute();
-            return $stmt->errorInfo();
-            // return $stmt->rowCount();
+            var_dump($stmt->rowCount());
+            return $stmt->rowCount();
         } catch (PDOException $e) {
             return $e->getMessage();
         }
     }
+
+
+    public function update($rawQuery)
+    {
+        try {
+            $stmt = $this->prepare($rawQuery);
+            $stmt->execute();
+            var_dump($stmt->rowCount());
+            return $stmt->rowCount();
+        } catch (PDOException $e) {
+            return $e->getMessage();
+        }
+    }
+
 
     public function select($rawQuery, $params = array()): array
     {

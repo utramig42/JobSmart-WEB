@@ -1,6 +1,6 @@
 <?php
 session_start();
-require('core/dao/Connection.php');
+require_once 'core/dao/Connection.php';
 
 $sql = new Connection();
 
