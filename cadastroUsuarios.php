@@ -78,7 +78,7 @@ $usuarioModel = new UsuarioModel();
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="number" id="salario" name="salario" class="form-control"
+                                        <input type="text" id="salario" name="salario" class="form-control"
                                             placeholder="Salário">
                                         <label for="salario">Salário</label>
                                     </div>

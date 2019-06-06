@@ -43,7 +43,6 @@ class Connection extends PDO
         try {
             $stmt = $this->prepare($rawQuery);
             $stmt->execute();
-            var_dump($stmt->rowCount());
             return $stmt->rowCount();
         } catch (PDOException $e) {
             return $e->getMessage();
@@ -56,7 +55,7 @@ class Connection extends PDO
         try {
             $stmt = $this->prepare($rawQuery);
             $stmt->execute();
-            var_dump($stmt->rowCount());
+
             return $stmt->rowCount();
         } catch (PDOException $e) {
             return $e->getMessage();

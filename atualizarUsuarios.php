@@ -154,7 +154,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="number" id="salario" name="salario" class="form-control"
+                                        <input type="text" id="salario" name="salario" class="form-control"
                                             placeholder="Salário" required value="<?php echo $data['sal_fun'] ?>">
                                         <label for="salario">Salário</label>
                                     </div>
