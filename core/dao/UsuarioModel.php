@@ -154,10 +154,11 @@ class UsuarioModel
         $cpf = $user->getCpf();
         $tel = $user->getTel();
         $dtNasc = $user->getDataNascimento();
+        $temp = $user->isTemporario();
+        $dataRecisao = $user->getDataRecisao();
 
-        $rawQuery = "INSERT INTO funcionario(id_cargo,nm_fun,end_fun,uf_fun,cid_fun,sal_fun,cpf_fun,tel_fun,dt_nasc_fun) 
-        VALUES($cargo,'$nome', '$end', '$uf','$cidade',$sal,'$cpf','$tel','$dtNasc');";
-
+        $rawQuery = "INSERT INTO funcionario(id_cargo,nm_fun,end_fun,uf_fun,cid_fun,sal_fun,cpf_fun,tel_fun,dt_nasc_fun,temp_ativo_fun,dt_rec_fun) 
+        VALUES($cargo,'$nome', '$end', '$uf','$cidade',$sal,'$cpf','$tel','$dtNasc',$temp,'$dataRecisao');";
 
         $res = $this->Sql->insert($rawQuery);
         if ($res > 0) {
@@ -171,6 +172,36 @@ class UsuarioModel
                 Ocorreu um erro ao cadastrar!
             </div>';
         }
+        header('location: ../../usuarios.php');
+    }
+
+    public function remove($user)
+    {
+        $mat = $user->getMatricula();
+        $data = $user->getDataRecisao();
+
+        $rawQuery = "UPDATE funcionario SET
+		dt_rec_fun = '$data'
+        WHERE mat_fun = $mat";
+
+
+
+        $res = $this->Sql->update($rawQuery);
+
+        if ($res > 0) {
+
+            $_SESSION['mensagem'] =
+
+                '<div class="alert alert-success" role="alert">
+                    Atualizado com sucesso!
+                </div>';
+        } else {
+            $_SESSION['mensagem'] =
+                '<div class="alert alert-danger" role="alert">
+                Ocorreu um erro ao atualizar!
+            </div>';
+        }
+
         header('location: ../../usuarios.php');
     }
 
@@ -193,6 +224,8 @@ class UsuarioModel
         id_cargo = $cargo,
         sal_fun = $sal
         WHERE mat_fun = $mat;";
+
+
         $res = $this->Sql->update($rawQuery);
 
         if ($res > 0) {
@@ -204,14 +237,17 @@ class UsuarioModel
         } else {
             $_SESSION['mensagem'] =
                 '<div class="alert alert-danger" role="alert">
-                Ocorreu um erro ao cadastrar!
+                Ocorreu um erro ao atualizar!
             </div>';
         }
 
         header('location: ../../usuarios.php');
     }
 
-    public function getAllUsers(): array
+    public function getUsersPagination()
+    { }
+
+    public function getAllUsers($pagesSql = 0, $maxItens = 10): array
     {
         $command = "SELECT 
         f.mat_fun AS 'matricula',
@@ -231,14 +267,17 @@ class UsuarioModel
         funcionario f
             INNER JOIN
         cargo c ON c.id_cargo = f.id_cargo
-        WHERE 'data recisão' < " . date('Y-m-d');
+        WHERE f.dt_rec_fun  > '" . date('Y-m-d') . "'  OR f.dt_rec_fun IS NULL OR f.dt_rec_fun  = '0000-00-00'
+        ORDER BY f.mat_fun
+        LIMIT  $pagesSql,$maxItens";
+
 
         return $this->Sql->select($command);
     }
 
-    public function listUsersTables()
+    public function listUsersTables($pagesSql, $maxItens)
     {
-        $rows = $this->getAllUsers();
+        $rows = $this->getAllUsers($pagesSql, $maxItens);
         foreach ($rows as  $row) {
             echo '<tr>';
             echo "<td>" . $row['nome'] . "</td>";
@@ -285,11 +324,14 @@ class UsuarioModel
         return $result;
     }
 
-    public function listCargos()
+    public function listCargos($id = null)
     {
-        $rawQuery = "SELECT * FROM cargo WHERE ativo_cargo = 1";
+        $update = isset($id) ? "ORDER BY id_cargo = $id desc" : '';
+        $rawQuery = "SELECT * FROM cargo WHERE ativo_cargo = 1" . $update;
+
         return $this->Sql->select($rawQuery);
     }
+
 
     public function listUsersModals()
     {
@@ -311,21 +353,33 @@ class UsuarioModel
                     </button>
                 </div>
                 <div class=\"modal-body\">
-                <form id=\"user\" method=\"POST\" action=\"core/dll/UsuarioControllerAdd.php\">
-                    <div class=\"form-group\">
-                    <div class=\"form-label-group\">
-                    <input type=\"date\" id=\"data\" name=\"data\" class=\"form-control\"
-                        placeholder=\"Data de Recisão\" autofocus=\"autofocus\">
-                    <label for=\"data\">Data de Recisão</label>
+                <form id=\"user\" method=\"POST\" action=\"core/dll/UsuarioControllerRemove.php\">
+
+                <div class=\"form-group\">
+                <div class=\"form-label-group\">
+                    <input type=\"text\"  id=\"mat\" name=\"mat\" class=\"form-control\"
+                        placeholder=\"Matricula\" autofocus=\"autofocus\" readonly value=\"" . $row['matricula'] . " \">
+                    <label for=\"mat\">Matricula</label>
                 </div>
+            </div>
+
+                    <div class=\"form-group\">
+                        <div class=\"form-label-group\">
+                        <input type=\"date\" id=\"data\" name=\"data\" class=\"form-control\"
+                            placeholder=\"Data de Recisão\" autofocus=\"autofocus\">
+                        <label for=\"data\">Data de Recisão</label>
+                        </div>
                     </div>
-                </form>
+
+         
+           
                 </div>
                 <div class=\"modal-footer\">
                     <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>
-                    <button type=\"button\" class=\"btn btn-primary\">Salvar mudanças</button>
+                    <button type=\"submit\" class=\"btn btn-primary\">Salvar mudanças</button>
                 </div>
                 </div>
+                </form>
             </div>
             </div>
                         
@@ -366,7 +420,7 @@ class UsuarioModel
             foreach ($row as $att => $attribute) {
                 echo "<div class=\"modal-item\">
                     <h5>" . (ucfirst($att)) . "</h5>
-                    <p class=\"text-muted\">" . utf8_encode($attribute) . "</p>
+                    <p class=\"text-muted\">" . $attribute . "</p>
                 </div>";
             }
 

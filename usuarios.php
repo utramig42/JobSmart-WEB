@@ -48,7 +48,8 @@ require_once 'core/dao/UsuarioModel.php';
                     ?>
                 </li>
             </ol>
-            <?php if (isset($_SESSION['mensagem'])) echo $_SESSION['mensagem']; ?>
+            <?php if (isset($_SESSION['mensagem'])) echo $_SESSION['mensagem'];
+            unset($_SESSION['mensagem'])   ?>
             <!-- Data Tables -->
             <div class="card mb-3">
                 <div class="card-header">
@@ -97,37 +98,23 @@ require_once 'core/dao/UsuarioModel.php';
 
 
                                 <?php
+
+
+                                $maxItens = 10; // Número de itens por pagina.
+                                $page = (isset($_GET['pagina']) ? intval($_GET['pagina']) : 0); // Pagina Atual.
+                                $pagesSql = $page * $maxItens; // Para pegar o dado de 10 em 10.
+
                                 $userModel = new UsuarioModel();
-                                $userModel->listUsersTables();
+                                $userModel->listUsersTables($pagesSql, $maxItens);
                                 $userModel->listUsersModals();
+
                                 ?>
 
                             </tfoot>
                         </table>
                     </div>
 
-                    <!-- Pagination Buttons -->
-                    <nav aria-label="Paginação de tabelas dos fornecedores">
-                        <ul class="pagination justify-content-center mt-3">
-                            <li class=" page-item disabled">
-                                <span class="page-link">Anterior</span>
-                                <!-- <a class="page-link" href="#">Anterior</a> ????? -->
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                                <span class="sr-only">Atual</span>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Próximo</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <?php include_once 'core/dll/UsuarioPagination.php' ?>
                 </div>
                 <div class="card-footer small text-muted">Última atualização - <?php echo date('d/m/Y H:i:s') ?></div>
             </div>

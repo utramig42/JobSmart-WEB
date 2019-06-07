@@ -14,12 +14,14 @@ $numero = isset($_POST['numero']) ? $_POST['numero'] : '';
 $uf = isset($_POST['uf']) ? $_POST['uf'] : '';
 $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
 $temp = isset($_POST['dataResc']) ? 1 : 0;
-$dataRes = isset($_POST['dataResc']) ? $_POST['dataResc'] : '';
+$dataRes = $_POST['dataResc'] == null && $_POST['dataResc'] == ''  ? null : $_POST['dataResc'];
 
 $endereco = $logradouro . " Nº" . $numero . ", " . $_POST['complemento'];
 // . " - " . $_POST['bairro'] . " - " . $_POST['cidade'] . "/" . $_POST['uf'];
 $cpf = preg_replace('/[.-]/', '', $cpf);
 
+// var_dump($dataRes);
+// exit;
 
 $user = new UsuarioModel();
 $user->setNome($nome);

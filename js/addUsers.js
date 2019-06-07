@@ -8,15 +8,9 @@ checkbox.addEventListenerAll("change click", () => {
 });
 
 function toggleTemp(checkbox, parentElement) {
-  div.classList.add("form-label-group");
-  div.innerHTML = `                                        
-    <input type="date" id="dataResc" name="dataResc" class="form-control"
-    placeholder="Data do fim do contrato" required />
-    <label for="dataResc">Data do fim do contrato</label>
-    `;
-
-  if (checkbox.checked) parentElement.appendChild(div);
-  else parentElement.removeChild(div);
+  !checkbox.checked
+    ? parentElement.classList.add("d-none")
+    : parentElement.classList.remove("d-none");
 }
 
 function getElementTemporario() {}

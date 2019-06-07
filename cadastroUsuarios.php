@@ -56,11 +56,13 @@ $usuarioModel = new UsuarioModel();
                                         <label for="nome">Nome Completo</label>
                                     </div>
                                 </div>
-
                                 <div class="col-md-4">
                                     <div class="form-label-group">
                                         <select id="cargo" name="cargo" class="form-control">
                                             <option value="" selected>Cargo</option>
+
+                                            <?php if ($data['id_cargo']) ?>
+
                                             <?php foreach ($usuarioModel->listCargos() as $cargo) : ?>
                                             <option value="<?php echo $cargo['id_cargo'] ?>">
                                                 <?php echo $cargo['nm_cargo'] ?>
@@ -78,7 +80,7 @@ $usuarioModel = new UsuarioModel();
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="number" id="salario" name="salario" class="form-control"
+                                        <input type="text" id="salario" name="salario" class="form-control"
                                             placeholder="Salário">
                                         <label for="salario">Salário</label>
                                     </div>
@@ -188,7 +190,14 @@ $usuarioModel = new UsuarioModel();
                                     </div>
                                 </div>
 
-                                <div class="col-md-4 " id="parent"></div>
+                                <div class="col-md-4 d-none" id="parent">
+                                    <div class="form-group form-label-group">
+                                        <input type="date" id="dataResc" name="dataResc" class="form-control"
+                                            placeholder="Data do fim do contrato" />
+                                        <label for="dataResc">Data do fim do contrato</label>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                         <button class="btn btn-primary" type="submit">Cadastrar</a>
