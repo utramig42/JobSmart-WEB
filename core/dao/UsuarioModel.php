@@ -1,5 +1,8 @@
 <?php
 
+if (file_exists('../../includes/config.php')) require_once '../../includes/config.php';
+
+
 class UsuarioModel
 {
 
@@ -157,30 +160,55 @@ class UsuarioModel
 
 
         $res = $this->Sql->insert($rawQuery);
-
-        print_r($res);
+        if ($res > 0) {
+            $_SESSION['mensagem'] =
+                '<div class="alert alert-success" role="alert">
+                Cadastrado com sucesso!
+            </div>';
+        } else {
+            $_SESSION['mensagem'] =
+                '<div class="alert alert-danger" role="alert">
+                Ocorreu um erro ao cadastrar!
+            </div>';
+        }
+        header('location: ../../usuarios.php');
     }
 
     public function update($user)
     {
-        $rawQuery = "UPDATE funcionario SET 
-        uf_fun = ':uf',
-        cid_fun = ':cid',
-        end_fun = ':end',
-        tel_fun = ':tel',
-        id_cargo = :cargo,	
-        sal_fun = :sal
-        WHERE mat_fun = :mat;";
 
-        $this->Sql->query($rawQuery, array(
-            'uf' => $user->getUf(),
-            'cid' => $user->getCidade(),
-            'end' => $user->getEndereco(),
-            'tel' => $user->getTel(),
-            'cargo' => $user->getCargo(),
-            'sal' => $user->getSalario(),
-            'mat' => $user->getMatricula()
-        ));
+        $mat = $user->getMatricula();
+        $cargo = $user->getCargo();
+        $sal = $user->getSalario();
+        $tel = $user->getTel();
+        $uf = $user->getUf();
+        $cid = $user->getCidade();
+        $end = $user->getEndereco();
+
+        $rawQuery = "UPDATE funcionario SET
+        uf_fun = '$uf',
+        cid_fun = '$cid',
+        end_fun = '$end',
+        tel_fun = '$tel',
+        id_cargo = $cargo,
+        sal_fun = $sal
+        WHERE mat_fun = $mat;";
+        $res = $this->Sql->update($rawQuery);
+
+        if ($res > 0) {
+            $_SESSION['mensagem'] =
+
+                '<div class="alert alert-success" role="alert">
+                    Atualizado com sucesso!
+                </div>';
+        } else {
+            $_SESSION['mensagem'] =
+                '<div class="alert alert-danger" role="alert">
+                Ocorreu um erro ao cadastrar!
+            </div>';
+        }
+
+        header('location: ../../usuarios.php');
     }
 
     public function getAllUsers(): array
@@ -202,7 +230,8 @@ class UsuarioModel
     FROM
         funcionario f
             INNER JOIN
-        cargo c ON c.id_cargo = f.id_cargo;";
+        cargo c ON c.id_cargo = f.id_cargo
+        WHERE 'data recisão' < " . date('Y-m-d');
 
         return $this->Sql->select($command);
     }
@@ -233,7 +262,7 @@ class UsuarioModel
 
             <!-- Button Remove Information -->
             <button type=\"button\" class=\"btn btn-danger ml-1\" title=\"Remover Informações\"
-                href=\"atualizarUsuarios.php?matricula\">
+            data-toggle=\"modal\" data-target=\"#remove" . $row['matricula'] . "\">
                 <i class=\"fas fa-trash text-white icon\"></i>
             </button>
             </td>      
@@ -247,9 +276,8 @@ class UsuarioModel
     {
         $this->Sql = new Connection();
         $result = $this->Sql->select(
-            "SELECT f.*,c.nm_cargo as cargo 
-            FROM funcionario f 
-            INNER JOIN cargo c on c.id_cargo = f.id_cargo 
+            "SELECT *
+            FROM funcionario 
             WHERE mat_fun = :id",
             array(":id" => $id)
         );
@@ -269,8 +297,61 @@ class UsuarioModel
 
         foreach ($rows as $row) {
             echo "
+
+            <!-- Botão para acionar modal -->
+
+            <!-- Modal -->
+            <div class=\"modal fade\" id=\"remove" . $row['matricula'] . "\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"TituloModalCentralizado\" aria-hidden=\"true\">
+            <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
+                <div class=\"modal-content\">
+                <div class=\"modal-header\">
+                    <h5 class=\"modal-title\" id=\"TituloModalCentralizado\">Remover Usuario</h5>
+                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Fechar\">
+                    <span aria-hidden=\"true\">&times;</span>
+                    </button>
+                </div>
+                <div class=\"modal-body\">
+                <form id=\"user\" method=\"POST\" action=\"core/dll/UsuarioControllerAdd.php\">
+                    <div class=\"form-group\">
+                    <div class=\"form-label-group\">
+                    <input type=\"date\" id=\"data\" name=\"data\" class=\"form-control\"
+                        placeholder=\"Data de Recisão\" autofocus=\"autofocus\">
+                    <label for=\"data\">Data de Recisão</label>
+                </div>
+                    </div>
+                </form>
+                </div>
+                <div class=\"modal-footer\">
+                    <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>
+                    <button type=\"button\" class=\"btn btn-primary\">Salvar mudanças</button>
+                </div>
+                </div>
+            </div>
+            </div>
+                        
+            <!-- Modal -->
+            <div class=\"modal fade\" id=\"remove\"" . $row['matricula'] . " tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"TituloModalCentralizado\" aria-hidden=\"true\">
+              <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">
+                <div class=\"modal-content\">
+                  <div class=\"modal-header\">
+                    <h5 class=\"modal-title\" id=\"TituloModalCentralizado\">Título do modal</h5>
+                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Fechar\">
+                      <span aria-hidden=\"true\">&times;</span>
+                    </button>
+                  </div>
+                  <div class=\"modal-body\">
+                        Deseja Realmente excluir este usuario ? 
+                </div>
+                  <div class=\"modal-footer\">
+                    <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Fechar</button>
+                    <button type=\"button\" class=\"btn btn-primary\">Salvar mudanças</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
         <!-- Modal -->
-        <div class=\"modal fade\" id=\"user" . $row['matricula'] . "Modal\" tabindex=\"-1\" role=\"dialog\"
+        <div class=\"modal  fade\" id=\"user" . $row['matricula'] . "Modal\" tabindex=\"-1\" role=\"dialog\"
         aria-labelledby=\"informationModalLabel\" aria-hidden=\"true\">
         <div class=\"modal-dialog\" role=\"document\">
         <div class=\"modal-content\">
