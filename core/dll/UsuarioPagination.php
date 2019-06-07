@@ -2,19 +2,7 @@
     if (file_exists('../dao/Connection.php')) require_once '../dao/Connection.php';
     if (file_exists('../dao/UsuarioModel.php')) require_once '../dao/UsuarioModel.php';
 
-
-    // Configurações. 
-    $maxItens = 10; // Número de itens por pagina.
-    $page = (isset($_GET['pagina']) ? intval($_GET['pagina']) : 0); // Pagina Atual.
-
-    // Buscando informações a serem mostradas do banco.
-
-    $pagesSql = $page * $maxItens; // Para pegar o dado de 10 em 10.
-    $sql = "SELECT mat_fun FROM funcionario LIMIT $pagesSql,$maxItens"; // Selecionando os itens a serem mostrados;
-
-
     $Sql = new Connection();
-
     $execute = $Sql->select("SELECT id_fun FROM funcionario LIMIT $pagesSql,$maxItens"); // Guardando informação.
 
     // Calculo de número de paginas total.

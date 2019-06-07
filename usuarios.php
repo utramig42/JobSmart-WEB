@@ -48,7 +48,8 @@ require_once 'core/dao/UsuarioModel.php';
                     ?>
                 </li>
             </ol>
-            <?php if (isset($_SESSION['mensagem'])) echo $_SESSION['mensagem']; ?>
+            <?php if (isset($_SESSION['mensagem'])) echo $_SESSION['mensagem'];
+            unset($_SESSION['mensagem'])   ?>
             <!-- Data Tables -->
             <div class="card mb-3">
                 <div class="card-header">

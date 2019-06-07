@@ -143,11 +143,18 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
+                                        <select id="cargo" name="cargo" class="form-control">
+                                            <?php foreach ($userController->listCargos() as $cargo) : ?>
+                                            <option value="<?php echo $cargo['id_cargo'] ?>">
+                                                <?php echo $cargo['nm_cargo'] ?>
+                                            </option>
+                                            <?php endforeach ?>
+                                        </select>
+                                        <label for="cargo" class="d-none">Cargo</label>
 
-
-                                        <input type="text" id="cargo" name="cargo" class="form-control"
+                                        <!-- <input type="text" id="cargo" name="cargo" class="form-control"
                                             placeholder="cidade" required value="<?php echo $data['id_cargo'] ?>">
-                                        <label for="cargo">Cargo</label>
+                                        <label for="cargo">Cargo</label> -->
 
                                     </div>
                                 </div>

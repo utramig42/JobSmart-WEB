@@ -154,10 +154,11 @@ class UsuarioModel
         $cpf = $user->getCpf();
         $tel = $user->getTel();
         $dtNasc = $user->getDataNascimento();
+        $temp = $user->isTemporario();
+        $dataRecisao = $user->getDataRecisao();
 
-        $rawQuery = "INSERT INTO funcionario(id_cargo,nm_fun,end_fun,uf_fun,cid_fun,sal_fun,cpf_fun,tel_fun,dt_nasc_fun) 
-        VALUES($cargo,'$nome', '$end', '$uf','$cidade',$sal,'$cpf','$tel','$dtNasc');";
-
+        $rawQuery = "INSERT INTO funcionario(id_cargo,nm_fun,end_fun,uf_fun,cid_fun,sal_fun,cpf_fun,tel_fun,dt_nasc_fun,temp_ativo_fun,dt_rec_fun) 
+        VALUES($cargo,'$nome', '$end', '$uf','$cidade',$sal,'$cpf','$tel','$dtNasc',$temp,'$dataRecisao');";
 
         $res = $this->Sql->insert($rawQuery);
         if ($res > 0) {
@@ -183,6 +184,8 @@ class UsuarioModel
 		dt_rec_fun = '$data'
         WHERE mat_fun = $mat";
 
+
+
         $res = $this->Sql->update($rawQuery);
 
         if ($res > 0) {
@@ -198,9 +201,6 @@ class UsuarioModel
                 Ocorreu um erro ao atualizar!
             </div>';
         }
-
-
-
 
         header('location: ../../usuarios.php');
     }
@@ -224,6 +224,8 @@ class UsuarioModel
         id_cargo = $cargo,
         sal_fun = $sal
         WHERE mat_fun = $mat;";
+
+
         $res = $this->Sql->update($rawQuery);
 
         if ($res > 0) {
@@ -265,7 +267,7 @@ class UsuarioModel
         funcionario f
             INNER JOIN
         cargo c ON c.id_cargo = f.id_cargo
-        WHERE f.dt_rec_fun  > '" . date('Y-m-d') . "'  OR f.dt_rec_fun IS NULL
+        WHERE f.dt_rec_fun  > '" . date('Y-m-d') . "'  OR f.dt_rec_fun IS NULL OR f.dt_rec_fun  = '0000-00-00'
         ORDER BY f.mat_fun
         LIMIT  $pagesSql,$maxItens";
 
@@ -322,11 +324,14 @@ class UsuarioModel
         return $result;
     }
 
-    public function listCargos()
+    public function listCargos($id = null)
     {
-        $rawQuery = "SELECT * FROM cargo WHERE ativo_cargo = 1";
+        $update = isset($id) ? "ORDER BY id_cargo = $id desc" : '';
+        $rawQuery = "SELECT * FROM cargo WHERE ativo_cargo = 1" . $update;
+
         return $this->Sql->select($rawQuery);
     }
+
 
     public function listUsersModals()
     {
@@ -415,7 +420,7 @@ class UsuarioModel
             foreach ($row as $att => $attribute) {
                 echo "<div class=\"modal-item\">
                     <h5>" . (ucfirst($att)) . "</h5>
-                    <p class=\"text-muted\">" . utf8_encode($attribute) . "</p>
+                    <p class=\"text-muted\">" . $attribute . "</p>
                 </div>";
             }
 
