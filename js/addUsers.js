@@ -13,7 +13,5 @@ function toggleTemp(checkbox, parentElement) {
     : parentElement.classList.remove("d-none");
 }
 
-function getElementTemporario() {}
-
 const form = document.querySelector("#user");
 window.form = new FormController(form);
