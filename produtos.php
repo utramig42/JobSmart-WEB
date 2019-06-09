@@ -1,14 +1,21 @@
 <?php
-// Configurações
+//Configuração
 include_once 'includes/config.php';
 
 include_once 'includes/headers/header-init.php';
+
 // CSS
 include_once 'includes/headers/header-styles.php';
 
 // Default Navbar
 include_once 'includes/navbar/navbar-main.php';
+
 $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+
+// Require Files Users
+require_once 'core/dao/Connection.php';
+require_once 'core/dao/ProdutoModel.php';
+
 ?>
 
 <title> Job'Smart - <?php echo $fileName ?> </title>
@@ -53,11 +60,9 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
-                            id="search-table">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..."
-                                    aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -77,52 +82,33 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                                     <th>Marca</th>
                                     <th>Categoria</th>
                                     <th>Quantidade Mínima</th>
+                                    <th>Quantidade Atual</th>
                                     <th>Observações</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
                             <tfoot>
-                                <tr>
-                                    <td class="text-muted text-truncate">Pão de doce</td>
-                                    <td class="text-muted text-truncate">Pãos Mágicos</td>
-                                    <td class="text-muted text-truncate">Panificadores</td>
-                                    <td class="text-muted text-truncate">2</td>
-                                    <td class="text-muted text-truncate">Feitos diriamente.</td>
-                                    <td class="text-truncate">
 
-                                        <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#informationModal">
-                                            <i class="fas fa-info text-white icon"></i>
-                                        </button>
-                                    </td>
-                                </tr>
+                                <?php
+
+
+                                $maxItens = 10; // Número de itens por pagina.
+                                $page = (isset($_GET['pagina']) ? intval($_GET['pagina']) : 0); // Pagina Atual.
+                                $pagesSql = $page * $maxItens; // Para pegar o dado de 10 em 10.
+
+                                $produtoModel = new ProdutoModel();
+                                $produtoModel->listProductsTables($pagesSql, $maxItens);
+                                $produtoModel->listProductsModals($pagesSql, $maxItens);
+                                $table = 'produto';
+
+                                ?>
+
+
                             </tfoot>
                         </table>
                     </div>
 
-                    <!-- Pagination Buttons -->
-                    <nav aria-label="Paginação de tabelas dos usuários">
-                        <ul class="pagination justify-content-center mt-3">
-                            <li class=" page-item disabled">
-                                <span class="page-link">Anterior</span>
-                                <!-- <a class="page-link" href="#">Anterior</a> ????? -->
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                                <span class="sr-only">Atual</span>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Próximo</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <?php include_once 'core/dll/Pagination.php' ?>
                 </div>
                 <div class="card-footer small text-muted">Última atualização - <?php echo date('d/m/Y H:i:s') ?></div>
             </div>
@@ -136,8 +122,7 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 <!-- /#wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -191,10 +176,10 @@ include_once 'includes/footers/footer-scripts.php';
 ?>
 <script src="js/controller/TableController.js"></script>
 <script>
-window.table = new TableController(
-    document.querySelector("#search-table"),
-    document.querySelector("table tfoot")
-);
+    window.table = new TableController(
+        document.querySelector("#search-table"),
+        document.querySelector("table tfoot")
+    );
 </script>
 <?php
 include_once 'includes/footers/footer-final.php';

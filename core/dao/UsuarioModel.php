@@ -253,7 +253,7 @@ class UsuarioModel
         f.mat_fun AS 'matricula',
         c.nm_cargo AS 'cargo',
         f.nm_fun AS 'nome',
-        f.end_fun AS 'endereco',
+        f.end_fun AS 'endereço',
         f.uf_fun AS 'uf',
         f.cid_fun AS 'cidade',
         f.sal_fun AS 'salario',
@@ -333,9 +333,9 @@ class UsuarioModel
     }
 
 
-    public function listUsersModals()
+    public function listUsersModals($pagesSql, $maxItens)
     {
-        $rows = $this->getAllUsers();
+        $rows = $this->getAllUsers($pagesSql, $maxItens);
 
         foreach ($rows as $row) {
             echo "

@@ -38,7 +38,7 @@ class IbgeUtils {
         let cidades = JSON.parse(this.response);
 
         cidades.forEach(cidade => {
-          const optionTag = `<option value="${cidade.id}">${
+          const optionTag = `<option value="${cidade.nome}">${
             cidade.nome
           }</option>`;
 
