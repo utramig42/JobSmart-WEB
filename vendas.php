@@ -9,6 +9,10 @@ include_once 'includes/headers/header-styles.php';
 include_once 'includes/navbar/navbar-main.php';
 
 $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+// Require Files Users
+require_once 'core/dao/Connection.php';
+require_once 'core/dao/VendaModel.php';
+$vendaModel = new VendaModel();
 ?>
 
 <title>Job'Smart - Vendas</title>
@@ -52,7 +56,7 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-form">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
                             <div class="input-group">
                                 <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
@@ -70,51 +74,28 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
+                                    <th>ID</th>
                                     <th>Funcionário</th>
                                     <th>Valor</th>
                                     <th>Data e Hora da venda</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <td class="text-muted">Dinheiro</td>
-                                    <td class="text-muted">R$20,00</td>
-                                    <td class="text-muted">2019-05-13 20:08</td>
-                                    <td>
+                            <tbody>
+                                <?php
 
-                                        <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#informationModal">
-                                            <i class="fas fa-info text-white icon"></i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                                $maxItens = 10; // Número de itens por pagina.
+                                $page = (isset($_GET['pagina']) ? intval($_GET['pagina']) : 0); // Pagina Atual.
+                                $pagesSql = $page * $maxItens; // Para pegar o dado de 10 em 10.
+                                $vendaModel->listOrdersTables($pagesSql, $maxItens);
+                                $vendaModel->listOrdersModels($pagesSql, $maxItens);
+                                $table = 'venda';
+                                ?>
+                            </tbody>
                         </table>
                     </div>
 
-                    <!-- Pagination Buttons -->
-                    <nav aria-label="Paginação de tabelas dos fornecedores">
-                        <ul class="pagination justify-content-center mt-3">
-                            <li class=" page-item disabled">
-                                <span class="page-link">Anterior</span>
-                                <!-- <a class="page-link" href="#">Anterior</a> ????? -->
-                            </li>
-                            <li class="page-item active">
-                                <a class="page-link" href="#">1</a>
-                                <span class="sr-only">Atual</span>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">2</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">3</a>
-                            </li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Próximo</a>
-                            </li>
-                        </ul>
-                    </nav>
+                    <?php include_once 'core/dll/Pagination.php' ?>
                 </div>
                 <div class="card-footer small text-muted">Última atualização - 27/05/2019</div>
             </div>
@@ -179,11 +160,15 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 include_once 'includes/footers/footer-init.php';
 include_once 'includes/footers/footer-modal.php';
 include_once 'includes/footers/footer-scripts.php';
-include_once 'includes/footers/footer-final.php';
 ?>
 
 <script src="js/controller/TableController.js"></script>
-
 <script>
-    window.table = new TableController(document.querySelector('#search-form'), document.querySelector('table tfoot'));
+    window.table = new TableController(
+        document.querySelector("#search-table"),
+        document.querySelector("table tbody")
+    );
 </script>
+<?php
+include_once 'includes/footers/footer-final.php';
+?>

@@ -12,9 +12,9 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 
 // Require Files Providers.
 require_once 'core/dao/Connection.php';
-require_once 'core/dll/DashboardController.php';
-$controller = new DashboardController();
-$controller->loadModal();
+require_once 'core/dao/DashboardModel.php';
+$dashboard = new DashboardModel();
+$dashboard->loadModal();
 ?>
 
 <title>Job'Smart - <?php echo 'Administrativo' ?></title>
@@ -48,7 +48,7 @@ $controller->loadModal();
                                 <i class="fas fa-fw fa-money-bill"></i>
                             </div>
                             <div class="mr-5"> Faturamento do dia <?php echo date('d/m/Y') ?></div>
-                            <div class="h2"> <?php echo money_format('%.2n', $controller->billingOfDay()) ?> </div class="h1">
+                            <div class="h2"> <?php echo money_format('%.2n', $dashboard->billingOfDay()) ?> </div class="h1">
                         </div>
 
                     </div>
@@ -60,7 +60,7 @@ $controller->loadModal();
                                 <i class="fas fa-fw fa-shopping-cart"></i>
                             </div>
                             <div class="mr-5"> Produto + Vendido do dia <?php echo date('d/m/Y') ?> </div>
-                            <div class="h2"> <?php echo $controller->productOfDay(); ?> </div>
+                            <div class="h2"> <?php echo $dashboard->productOfDay(); ?> </div>
 
                         </div>
 
@@ -73,7 +73,7 @@ $controller->loadModal();
                                 <i class="fas fa-fw fa-user"></i>
                             </div>
                             <div class="mr-5"> Funcionário Destaque do dia <?php echo date('d/m/Y') ?> </div>
-                            <div class="h2"> <?php echo $controller->userOfDay(); ?> </div>
+                            <div class="h2"> <?php echo $dashboard->userOfDay(); ?> </div>
                         </div>
 
                     </div>
@@ -85,7 +85,7 @@ $controller->loadModal();
                                 <i class="fas fa-fw fa-exclamation-triangle"></i>
                             </div>
                             <div class="mr-5"> Produtos em quantidade Mínima </div>
-                            <div class="h2"><?php echo $controller->minimumQuantity(); ?></div>
+                            <div class="h2"><?php echo $dashboard->minimumQuantity(); ?></div>
                         </div>
                         <button class="btn btn-danger card-footer text-white clearfix small z-1" data-toggle="modal" data-target="#minium">
                             <span class="float-left">Veja os Detalhes</span>
@@ -146,7 +146,7 @@ $controller->loadModal();
 
 
                             <tbody>
-                                <?php $controller->loadEmployees(); ?>
+                                <?php $dashboard->loadEmployees(); ?>
                             </tbody>
 
                         </table>

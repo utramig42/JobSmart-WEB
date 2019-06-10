@@ -1,6 +1,6 @@
 <?php
 
-class DashboardController
+class DashboardModel
 {
     private $Sql;
 
