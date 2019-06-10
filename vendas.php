@@ -52,11 +52,9 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
-                            id="search-form">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-form">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..."
-                                    aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -72,9 +70,9 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Forma de Pagamento</th>
+                                    <th>Funcionário</th>
                                     <th>Valor</th>
-                                    <th>Data e Hora do Cadastro</th>
+                                    <th>Data e Hora da venda</th>
                                     <th>Ações</th>
                                 </tr>
                             </thead>
@@ -86,8 +84,7 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
                                     <td>
 
                                         <!-- Button Trigger Modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal"
-                                            data-target="#informationModal">
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#informationModal">
                                             <i class="fas fa-info text-white icon"></i>
                                         </button>
                                     </td>
@@ -131,8 +128,7 @@ $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 <!-- /#wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
-    aria-hidden="true">
+<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -189,5 +185,5 @@ include_once 'includes/footers/footer-final.php';
 <script src="js/controller/TableController.js"></script>
 
 <script>
-window.table = new TableController(document.querySelector('#search-form'), document.querySelector('table tfoot'));
+    window.table = new TableController(document.querySelector('#search-form'), document.querySelector('table tfoot'));
 </script>

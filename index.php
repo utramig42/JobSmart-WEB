@@ -1,15 +1,25 @@
 <?php
-    include_once 'includes/headers/header-init.php';
-    include_once 'includes/headers/header-styles.php';
-    include_once 'includes/config.php';
-    $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+// Configurações
+include_once 'includes/config.php';
+
+include_once 'includes/headers/header-init.php';
+// CSS
+include_once 'includes/headers/header-styles.php';
+// Default Navbar
+include_once 'includes/navbar/navbar-main.php';
+
+$fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+
+// Require Files Providers.
+require_once 'core/dao/Connection.php';
+require_once 'core/dll/DashboardController.php';
+$controller = new DashboardController();
+$controller->loadModal();
 ?>
 
-<title> Jobsmart - Administrativo </title>
-<link rel="stylesheet" href="css/index.css">
-<?php
-    include_once('includes/navbar/navbar-main.php');
-?>
+<title>Job'Smart - <?php echo 'Administrativo' ?></title>
+<!-- Table Style CSS -->
+<link rel="stylesheet" href="css/tables.css">
 
 <div id="wrapper">
 
@@ -38,7 +48,7 @@
                                 <i class="fas fa-fw fa-money-bill"></i>
                             </div>
                             <div class="mr-5"> Faturamento do dia <?php echo date('d/m/Y') ?></div>
-                            <div class="h2"> R$ 2.00 </div class="h1">
+                            <div class="h2"> <?php echo money_format('%.2n', $controller->billingOfDay()) ?> </div class="h1">
                         </div>
 
                     </div>
@@ -50,7 +60,8 @@
                                 <i class="fas fa-fw fa-shopping-cart"></i>
                             </div>
                             <div class="mr-5"> Produto + Vendido do dia <?php echo date('d/m/Y') ?> </div>
-                            <div class="h2"> Sabonete </div>
+                            <div class="h2"> <?php echo $controller->productOfDay(); ?> </div>
+
                         </div>
 
                     </div>
@@ -62,7 +73,7 @@
                                 <i class="fas fa-fw fa-user"></i>
                             </div>
                             <div class="mr-5"> Funcionário Destaque do dia <?php echo date('d/m/Y') ?> </div>
-                            <div class="h2"> JobUser </div>
+                            <div class="h2"> <?php echo $controller->userOfDay(); ?> </div>
                         </div>
 
                     </div>
@@ -74,9 +85,14 @@
                                 <i class="fas fa-fw fa-exclamation-triangle"></i>
                             </div>
                             <div class="mr-5"> Produtos em quantidade Mínima </div>
-                            <div class="h2">2</div>
+                            <div class="h2"><?php echo $controller->minimumQuantity(); ?></div>
                         </div>
-
+                        <button class="btn btn-danger card-footer text-white clearfix small z-1" data-toggle="modal" data-target="#minium">
+                            <span class="float-left">Veja os Detalhes</span>
+                            <span class="float-right">
+                                <i class="fas fa-angle-right"></i>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -89,6 +105,7 @@
                 </div>
                 <div class="card-body">
                     <canvas id="myAreaChart" width="100%" height="30"></canvas>
+
                 </div>
                 <div class="card-footer small text-muted">
                     Atualizado em <?php echo date('d/m/Y H:i:s') ?>
@@ -99,43 +116,37 @@
             <div class="card mb-3">
                 <div class="card-header">
                     <i class="fas fa-table"></i>
-                    Data Table Example
+                    Demonstrativo Funcionarios - <?php echo strftime('%B de %Y', strtotime('today')); ?>
+
+                    <div class="d-md-inline-block float-right">
+
+                        <!-- Navbar Search -->
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>Nome</th>
+                                    <th>Cargo</th>
+                                    <th>Número de vendas</th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
-                                </tr>
-                            </tfoot>
+
 
                             <tbody>
-                                <tr>
-                                    <td>Tiger Nixon</td>
-                                    <td>System Architect</td>
-                                    <td>Edinburgh</td>
-                                    <td>61</td>
-                                    <td>2011/04/25</td>
-                                    <td>$320,800</td>
-                                </tr>
-                                <tr>
-
+                                <?php $controller->loadEmployees(); ?>
                             </tbody>
 
                         </table>
@@ -177,7 +188,13 @@
         ?>
 
         <script src="js/dashboard.js"></script>
-
+        <script src="js/controller/TableController.js"></script>
+        <script>
+            window.table = new TableController(
+                document.querySelector("#search-table"),
+                document.querySelector("table tfoot")
+            );
+        </script>
         <?php
         include_once 'includes/footers/footer-final.php';
         ?>
