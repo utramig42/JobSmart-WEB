@@ -2,9 +2,9 @@
 
 class Connection extends PDO
 {
-    const HOSTNAME = "localhost";
+    const HOSTNAME = "10.14.93.20";
     const USERNAME = "root";
-    const PASSWORD = "";
+    const PASSWORD = "123456";
     const DBNAME = "jobsmart";
 
     private $conn;

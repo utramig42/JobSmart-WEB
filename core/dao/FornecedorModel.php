@@ -217,9 +217,12 @@ class FornecedorModel
         ;";
 
 
+
+
         $res = $this->Sql->update($rawQuery);
 
         if ($res > 0) {
+
             $_SESSION['mensagem'] =
                 '<div class="alert alert-success" role="alert">
                     Atualizado com sucesso!
@@ -378,9 +381,9 @@ class FornecedorModel
 
         foreach ($row as $att => $attribute) {
             echo "<div class=\"modal-item\">
-                                <h5>" . (ucfirst($att)) . "</h5>
-                                <p class=\"text-muted\">" . $attribute . "</p>
-                            </div>";
+                    <h5>" . (ucfirst($att)) . "</h5>
+                    <p class=\"text-muted\">" . $attribute . "</p>
+                 </div>";
         }
 
         echo '</div>

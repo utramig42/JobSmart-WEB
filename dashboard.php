@@ -45,7 +45,8 @@ $dashboard->loadModal();
                                 <i class="fas fa-fw fa-money-bill"></i>
                             </div>
                             <div class="mr-5"> Faturamento do dia <?php echo date('d/m/Y') ?></div>
-                            <div class="h2"> <?php echo number_format('%.2n', $dashboard->billingOfDay()) ?> </div class="h1">
+                            <div class="h2"> <?php echo number_format($dashboard->billingOfDay(), 2) ?> </div
+                                class="h1">
                         </div>
 
                     </div>
@@ -84,7 +85,8 @@ $dashboard->loadModal();
                             <div class="mr-5"> Produtos em quantidade Mínima </div>
                             <div class="h2"><?php echo $dashboard->minimumQuantity(); ?></div>
                         </div>
-                        <button class="btn btn-danger card-footer text-white clearfix small z-1" data-toggle="modal" data-target="#minium">
+                        <button class="btn btn-danger card-footer text-white clearfix small z-1" data-toggle="modal"
+                            data-target="#minium">
                             <span class="float-left">Veja os Detalhes</span>
                             <span class="float-right">
                                 <i class="fas fa-angle-right"></i>
@@ -118,9 +120,11 @@ $dashboard->loadModal();
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -148,28 +152,6 @@ $dashboard->loadModal();
 
                         </table>
 
-                        <!-- Pagination Buttons -->
-                        <nav aria-label="Paginação de tabelas dos fornecedores">
-                            <ul class="pagination justify-content-center mt-3">
-                                <li class=" page-item disabled">
-                                    <span class="page-link">Anterior</span>
-                                    <!-- <a class="page-link" href="#">Anterior</a> ????? -->
-                                </li>
-                                <li class="page-item active">
-                                    <a class="page-link" href="#">1</a>
-                                    <span class="sr-only">Atual</span>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">2</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">3</a>
-                                </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#">Próximo</a>
-                                </li>
-                            </ul>
-                        </nav>
                     </div>
                 </div>
                 <div class="card-footer small text-muted">
@@ -187,10 +169,10 @@ $dashboard->loadModal();
         <script src="js/dashboard.js"></script>
         <script src="js/controller/TableController.js"></script>
         <script>
-            window.table = new TableController(
-                document.querySelector("#search-table"),
-                document.querySelector("table tfoot")
-            );
+        window.table = new TableController(
+            document.querySelector("#search-table"),
+            document.querySelector("table tbody")
+        );
         </script>
         <?php
         include_once 'includes/footers/footer-final.php';
