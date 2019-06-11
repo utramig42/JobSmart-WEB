@@ -13,7 +13,7 @@ $cidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
 $endereco = isset($_POST['endereco']) ? $_POST['endereco'] : '';
 $contato = isset($_POST['nome-contato']) ? $_POST['nome-contato'] : '';
 $telFixo = isset($_POST['fixo']) ? $_POST['fixo'] : '';
-$telCel = isset($_POST['cel']) ? $_POST['cel'] : '';
+$telCel = isset($_POST['celular']) ? $_POST['celular'] : '';
 
 
 $provider = new FornecedorModel();
@@ -25,5 +25,6 @@ $provider->setEndereco($endereco);
 $provider->setContato($contato);
 $provider->setTelFixo($telFixo);
 $provider->setTelCel($telCel);
+
 
 $provider->update($provider);

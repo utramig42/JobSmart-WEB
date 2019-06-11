@@ -63,15 +63,18 @@ class DashboardModel
             pagamento P
                 INNER JOIN
             venda v ON v.id_venda = P.id_venda
+		
         GROUP BY v.dt_venda
-        ORDER BY 'faturamento' desc;";
+        HAVING date(v.dt_venda) = date(now())
+        ORDER BY SUM(P.vlr_pag) - SUM(P.vlr_troco_pag) desc;
+        ";
 
-        return $this->Sql->select($rawQuery)[0]['faturamento'];
+        return isset($this->Sql->select($rawQuery)[0]['faturamento']) ? $this->Sql->select($rawQuery)[0]['faturamento'] : 0;
     }
 
     public function minimumQuantity()
     {
-        $rawQuery = "SELECT count(id_prod) as 'alerta' from produto WHERE ativo_prod = 1 AND qtd_prod*0.20 <= qtd_min_prod;";
+        $rawQuery = "SELECT count(id_prod) as 'alerta' from produto WHERE ativo_prod = 1 AND qtd_prod  <= qtd_min_prod;";
         return $this->Sql->select($rawQuery)[0]['alerta'];
     }
 
@@ -90,7 +93,7 @@ class DashboardModel
                 categoria c ON c.id_cat = p.id_cat
             WHERE
                 ativo_prod = 1
-                    AND qtd_prod * 0.20 <= qtd_min_prod;";
+                    AND qtd_prod <= qtd_min_prod;";
 
         return $this->Sql->select($rawQuery);
     }
@@ -147,7 +150,8 @@ class DashboardModel
         INNER JOIN 
             venda v ON f.mat_fun = v.mat_fun
         WHERE MONTH(v.dt_venda) = MONTH(now()) 
-        GROUP BY v.mat_fun;";
+        GROUP BY v.mat_fun
+        ORDER BY count(v.id_venda) desc ";
 
         $result = $this->Sql->select($rawQuery);
 

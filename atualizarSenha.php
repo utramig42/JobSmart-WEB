@@ -10,9 +10,8 @@ include_once 'includes/navbar/navbar-main.php';
 ?>
 
 <title>Job'Smart - Configurações </title>
-
 <!-- Form Style CSS -->
-<link rel="stylesheet" href="css/forms.css">
+<link rel="stylesheet" href="css/password.css">
 
 <div id="wrapper">
 
@@ -37,20 +36,23 @@ include_once 'includes/navbar/navbar-main.php';
             <div class="card mx-auto w-50">
                 <div class="card-header">Atualizar Senha </div>
                 <div class="card-body">
-                    <form id="provider" method="POST" action="core/dll/FornecedorControllerAdd.php">
+                    <form id="password" method="POST" action="">
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="id" name="id" class="form-control" placeholder="ID" readonly autofocus="autofocus" value="<?php echo $_SESSION['user_id'] ?>">
+                                        <input type="text" id="id" name="id" class="form-control" placeholder="ID"
+                                            readonly autofocus="autofocus" value="<?php echo $_SESSION['user_id'] ?>">
                                         <label for="id">ID</label>
                                     </div>
                                 </div>
                                 <div class="col-md-10">
                                     <div class="form-group">
                                         <div class="form-label-group">
-                                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" autofocus="autofocus" value="<?php echo $_SESSION['user_nome'] ?>" readonly>
+                                            <input type="text" id="nome" name="nome" class="form-control"
+                                                placeholder="Nome" autofocus="autofocus"
+                                                value="<?php echo $_SESSION['user_nome'] ?>" readonly>
                                             <label for="nome">Nome </label>
                                         </div>
                                     </div>
@@ -62,17 +64,28 @@ include_once 'includes/navbar/navbar-main.php';
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaAtual" name="senhaAtual" class="form-control" placeholder="Senha Atual" autofocus="autofocus">
+                                <input type="password" id="senhaAtual" name="senhaAtual" class="form-control"
+                                    placeholder="Senha Atual" autofocus="autofocus">
                                 <label for="senhaAtual">Senha Atual</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaNova" name="senhaNova" class="form-control" placeholder="Nova Senha">
+                                <input type="password" id="senhaNova" name="senhaNova" class="form-control"
+                                    placeholder="Nova Senha">
                                 <label for="senhaNova">Nova Senha</label>
                             </div>
                         </div>
+
+                        <div class="form-group">
+                            <div class="form-label-group">
+                                <input type="password" id="senhaNovaConfirmacao" name="senhaNovaConfirmacao"
+                                    class="form-control" placeholder="Nova Senha">
+                                <label for="senhaNovaConfirmacao"> Confirmar Nova Senha</label>
+                            </div>
+                        </div>
+
                         <button type="submit" class="btn btn-primary w-100"> Atualizar Senha </button>
 
                     </form>
@@ -91,13 +104,8 @@ include_once 'includes/footers/footer-init.php';
 include_once 'includes/footers/footer-modal.php';
 include_once 'includes/footers/footer-scripts.php';
 ?>
-<script src="./js/utils/IbgeUtils.js"></script>
-<script src="./js/utils/CepUtils.js"></script>
-<script src="./js/controller/FormController.js"></script>
-<script>
-    const form = document.querySelector("#provider");
-    window.form = new FormController(form);
-</script>
+<script src="./js/updatePassword.js"></script>
+
 <?php
 include_once 'includes/footers/footer-final.php';
 ?>
