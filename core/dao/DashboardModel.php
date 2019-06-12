@@ -41,7 +41,7 @@ class DashboardModel
         GROUP BY it.id_est
         ORDER BY sum(quant_itens_venda) desc, v.dt_venda desc;";
 
-        return $this->Sql->select($rawQuery)[0]['produto'];
+        return isset($this->Sql->select($rawQuery)[0]['produto']) ? $this->Sql->select($rawQuery)[0]['produto'] : 'Vendas não iniciadas';
     }
 
     public function billingOfDay()
@@ -62,67 +62,69 @@ class DashboardModel
 
     public function minimumQuantity()
     {
-        $rawQuery = "SELECT count(id_prod) as 'alerta' from produto WHERE ativo_prod = 1 AND qtd_prod  <= qtd_min_prod;";
-        return $this->Sql->select($rawQuery)[0]['alerta'];
+
+        return count($this->getMinProducts());
     }
 
-    private function getAllProducts()
+    private function getMinProducts(): array
     {
         $rawQuery = "SELECT 
-                p.nm_prod as 'nome',
-                p.qtd_min_prod as 'quantidade minima',
-                p.qtd_prod as 'quantidade atual'
-
-            FROM
-                produto p
-                    INNER JOIN
-                marca m ON m.id_marca = p.id_marca
-                    INNER JOIN
-                categoria c ON c.id_cat = p.id_cat
-            WHERE
-                ativo_prod = 1
-                    AND qtd_prod <= qtd_min_prod;";
+        e.id_prod as 'ID', 
+        p.nm_prod as 'Nome',
+        SUM(qtd_prod_est) AS 'Quantidade Atual', 
+        SUM(p.qtd_min_prod) AS 'Quantidade minima'
+    FROM
+        produto p
+            INNER JOIN
+        estoque e ON p.id_prod = e.id_prod
+    WHERE
+        p.qtd_min_prod < e.qtd_prod_est
+    GROUP BY p.id_prod;";
 
         return $this->Sql->select($rawQuery);
     }
 
     public function loadModal()
     {
-        echo '<!-- Modal -->
-        <div class="modal fade" id="minium" tabindex="-1" role="dialog" aria-labelledby="Titulominium" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header ">
-                <h5 class="modal-title" id="Titulominium">
-                Produtos em quantidade Mínima
-                </h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">';
-        $rows = $this->getAllProducts();
+
+
+
+        echo '
+        <!-- Modal -->
+        <div class="modal fade" id="minium" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h4 class="modal-title" id="informationModalLabel">Produtos em quantidade Mínima
+        </h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        
+        <div class="modal-body">';
+
+        $rows = $this->getMinProducts();
         foreach ($rows as  $index => $row) {
             $index++;
             echo " <h3> Produto " . $index . "</h3>";
 
             foreach ($row as $att => $attribute) {
                 echo "<div class=\"modal-item\">
-                                        <b>" . (ucfirst($att)) . "</b>
-                                        <p class=\"text-muted\">" . $attribute . "</p>
-                                    </div>";
+                <b>" . (ucfirst($att)) . "</b>
+                <p class=\"text-muted\">" . $attribute . "</p>
+            </div>";
             }
         }
 
-
-        echo '
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-              </div>
-            </div>
-          </div>
-        </div>';
+        echo '</div>
+   
+                   <div class="modal-footer">
+                       <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                   </div>
+               </div>
+           </div>
+       </div>';
     }
 
     public function loadEmployees()
