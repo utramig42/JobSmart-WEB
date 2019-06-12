@@ -9,18 +9,6 @@ class DashboardModel
         $this->Sql = new Connection();
     }
 
-    public function monthlySalesGraph()
-    {
-        $rawQuery = "SELECT 
-        count(id_venda) as 'vendas', MONTH(dt_venda) as 'mes'
-        FROM
-            venda
-        GROUP by MONTH(dt_venda) AND year(2019);";
-
-        return json_encode($this->Sql->select($rawQuery));
-    }
-
-
     public function userOfDay()
     {
         $rawQuery = "SELECT 
@@ -29,17 +17,17 @@ class DashboardModel
             venda v
                 INNER JOIN
             funcionario f ON f.mat_fun = v.mat_fun
+		WHERE date(v.dt_venda) = date(now())
         GROUP BY v.mat_fun, v.dt_venda
         ORDER BY count(v.mat_fun) DESC, v.dt_venda DESC
         LIMIT 1;";
-
 
         return $this->Sql->select($rawQuery)[0]['nome'];
     }
 
     public function productOfDay()
     {
-        $rawQuery = "SELECT 
+        $rawQuery = "SELECT sum(quant_itens_venda),
             p.nm_prod as 'produto'
         FROM
             itens_venda it
@@ -49,6 +37,7 @@ class DashboardModel
             produto p ON p.id_prod = e.id_prod
         INNER JOIN  
             venda v ON v.id_venda = it.id_venda
+		WHERE date(v.dt_venda) = date(now())
         GROUP BY it.id_est
         ORDER BY sum(quant_itens_venda) desc, v.dt_venda desc;";
 
@@ -63,10 +52,9 @@ class DashboardModel
             pagamento P
                 INNER JOIN
             venda v ON v.id_venda = P.id_venda
-		
-        GROUP BY v.dt_venda
-        HAVING date(v.dt_venda) = date(now())
-        ORDER BY SUM(P.vlr_pag) - SUM(P.vlr_troco_pag) desc;
+                    where date(v.dt_venda) = date(now())
+        GROUP BY DATE(v.dt_venda)
+        ORDER BY SUM(P.vlr_pag) - SUM(P.vlr_troco_pag) desc;;
         ";
 
         return isset($this->Sql->select($rawQuery)[0]['faturamento']) ? $this->Sql->select($rawQuery)[0]['faturamento'] : 0;
