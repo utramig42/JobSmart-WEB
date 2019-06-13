@@ -22,7 +22,7 @@ class DashboardModel
         ORDER BY count(v.mat_fun) DESC, v.dt_venda DESC
         LIMIT 1;";
 
-        return $this->Sql->select($rawQuery)[0]['nome'];
+        return isset($this->Sql->select($rawQuery)[0]['nome']) ? $this->Sql->select($rawQuery)[0]['nome'] : 'Vendas não iniciadas';
     }
 
     public function productOfDay()
@@ -78,7 +78,7 @@ class DashboardModel
             INNER JOIN
         estoque e ON p.id_prod = e.id_prod
     WHERE
-        p.qtd_min_prod < e.qtd_prod_est
+    p.qtd_min_prod >= qtd_prod_est
     GROUP BY p.id_prod;";
 
         return $this->Sql->select($rawQuery);

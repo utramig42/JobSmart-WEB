@@ -12,22 +12,25 @@ class ProdutoModel
     public function getAllProducts($pagesSql = 0, $maxItens = 10)
     {
         $command = "SELECT 
-        p.id_prod as 'ID',
-        m.nm_marca as 'marca',
-        c.nm_cat as 'categoria',
-        p.nm_prod as 'nome',
-        p.qtd_min_prod as 'quantidade minima',
-        p.qtd_prod as 'quantidade atual',
-        p.dt_cad_prod as 'data de cadastro',
-        p.obs_prod as 'observações'
-        FROM
-            produto p
-        INNER JOIN
-            marca m ON m.id_marca = p.id_marca
-        INNER JOIN
-            categoria c ON c.id_cat = p.id_cat
-        WHERE 
-            ativo_prod = 1
+        p.id_prod AS 'ID',
+        m.nm_marca AS 'marca',
+        c.nm_cat AS 'categoria',
+        p.nm_prod AS 'nome',
+        p.qtd_min_prod AS 'quantidade minima',
+        p.dt_cad_prod AS 'data de cadastro',
+        p.obs_prod AS 'observações',
+        SUM(e.qtd_prod_est) AS 'quantidade atual'
+    FROM
+        produto p
+            RIGHT JOIN
+        estoque e ON p.id_prod = e.id_prod
+            INNER JOIN
+        marca m ON m.id_marca = p.id_marca
+            INNER JOIN
+        categoria c ON c.id_cat = p.id_cat
+    WHERE
+        ativo_prod = 1
+    GROUP BY p.id_prod
         LIMIT 
             $pagesSql,$maxItens";
 

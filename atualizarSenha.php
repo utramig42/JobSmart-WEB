@@ -36,7 +36,8 @@ include_once 'includes/navbar/navbar-main.php';
             <div class="card mx-auto w-50">
                 <div class="card-header">Atualizar Senha </div>
                 <div class="card-body">
-                    <form id="password" method="POST" action="">
+                    <form id="password" method="POST" autocomplete="off"
+                        action="core/dll/UsuarioControllerUpdatePassword.php">
 
                         <div class="form-group">
                             <div class="form-row">
@@ -51,8 +52,8 @@ include_once 'includes/navbar/navbar-main.php';
                                     <div class="form-group">
                                         <div class="form-label-group">
                                             <input type="text" id="nome" name="nome" class="form-control"
-                                                placeholder="Nome" autofocus="autofocus"
-                                                value="<?php echo $_SESSION['user_nome'] ?>" readonly>
+                                                placeholder="Nome" value="<?php echo $_SESSION['user_nome'] ?>"
+                                                readonly>
                                             <label for="nome">Nome </label>
                                         </div>
                                     </div>
@@ -64,24 +65,24 @@ include_once 'includes/navbar/navbar-main.php';
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaAtual" name="senhaAtual" class="form-control"
-                                    placeholder="Senha Atual" autofocus="autofocus">
+                                <input type="password" id="senhaAtual" autocomplete="false" name="senhaAtual"
+                                    class="form-control" placeholder="Senha Atual">
                                 <label for="senhaAtual">Senha Atual</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaNova" name="senhaNova" class="form-control"
-                                    placeholder="Nova Senha">
+                                <input type="password" id="senhaNova" autocomplete="off" name="senhaNova"
+                                    class="form-control" placeholder="Nova Senha">
                                 <label for="senhaNova">Nova Senha</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaNovaConfirmacao" name="senhaNovaConfirmacao"
-                                    class="form-control" placeholder="Nova Senha">
+                                <input type="password" id="senhaNovaConfirmacao" autocomplete="off"
+                                    name="senhaNovaConfirmacao" class="form-control" placeholder="Nova Senha">
                                 <label for="senhaNovaConfirmacao"> Confirmar Nova Senha</label>
                             </div>
                         </div>
@@ -90,6 +91,12 @@ include_once 'includes/navbar/navbar-main.php';
 
                     </form>
                 </div>
+
+                <?php
+                if (isset($_SESSION['msg'])) echo $_SESSION['msg'];
+                unset($_SESSION['msg'])
+                ?>
+
             </div>
         </div>
         <!-- /.container-fluid -->
