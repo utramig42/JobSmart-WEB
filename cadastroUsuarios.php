@@ -200,7 +200,7 @@ $usuarioModel = new UsuarioModel();
 
                             </div>
                         </div>
-                        <button class="btn btn-primary" type="submit">Cadastrar</a>
+                        <button class="btn btn-primary" type="submit">Cadastrar</button>
                     </form>
                 </div>
             </div>
