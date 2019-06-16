@@ -45,18 +45,75 @@ include_once 'includes/navbar/navbar-main.php';
             </div>
 
 
-            <div class="card mt-5 mb-3">
-                <div class="card-header">
-                    <i class="fas fa-chart-bar"></i>
-                    Bar Chart Example
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="card mt-5 mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            Faturamento Mensal
+                        </div>
+                        <div class="card-body">
+                            <canvas id="receitas-mensais" width="100%" height="30"></canvas>
+                        </div>
+                        <div class="card-footer small text-muted">
+                            Atualizado em <?php echo date('d/m/Y H:i:s') ?>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <canvas id="receitas-mensais" width="100%" height="30"></canvas>
-                </div>
-                <div class="card-footer small text-muted">
-                    Atualizado em <?php echo date('d/m/Y H:i:s') ?>
+
+                <div class="col-md-6">
+                    <div class="card mt-5 mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            Mais e Menos Vendidos
+                        </div>
+                        <div class="card-body">
+                            <canvas id="top-down-venda-mensal" width="100%" height="30"></canvas>
+                        </div>
+                        <div class="card-footer small text-muted">
+                            Atualizado em <?php echo date('d/m/Y H:i:s') ?>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <div class="card mt-5 mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            Número de vendas anuais por funcionário
+                        </div>
+                        <div class="card-body">
+                            <canvas id="funcionario-anual" width="100%" height="30"></canvas>
+                        </div>
+                        <div class="card-footer small text-muted">
+                            Atualizado em <?php echo date('d/m/Y H:i:s') ?>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div class="card mt-5 mb-3">
+                        <div class="card-header">
+                            <i class="fas fa-chart-bar"></i>
+                            Mais e Menos Vendidos
+                        </div>
+                        <div class="card-body">
+                            <canvas id="top-down-funcionario-venda-mensal" width="100%" height="30"></canvas>
+                        </div>
+                        <div class="card-footer small text-muted">
+                            Atualizado em <?php echo date('d/m/Y H:i:s') ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
         </div>
     </div>
     <!-- /.container-fluid -->

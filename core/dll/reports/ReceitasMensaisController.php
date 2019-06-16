@@ -1,5 +1,5 @@
 <?php
-if (file_exists('../dao/Connection.php')) require_once '../dao/Connection.php';
+if (file_exists('../../dao/Connection.php')) require_once '../../dao/Connection.php';
 //setting header to json
 header('Content-Type: application/json');
 
@@ -10,7 +10,7 @@ $query = "SELECT
             month(dt_venda) AS 'mes'
           FROM venda
           WHERE MONTH(dt_venda) between 1 and 12
-          AND YEAR(dt_venda) = 2019
+          AND YEAR(dt_venda) = YEAR(now())
           GROUP BY mes;";
 
 $result = $mysql->select($query);
@@ -62,8 +62,5 @@ foreach ($result as $row) {
 
     $data[] = $row;
 }
-
-$result->close();
-$mysql->close();
 
 print json_encode($data);

@@ -1,4 +1,6 @@
 import * as Months from "../utils/Months.js";
+import * as Round from "../utils/RoundPlus.js";
+import * as Color from "../utils/RandomColor.js";
 
 /**
  * Verifica a quantidade de dias em um mês. Método aplicado em objetos do tipo Date
@@ -27,7 +29,8 @@ Chart.defaults.global.defaultFontColor = "#292b2c";
 $(document).ready(function() {
   // Vendas Mensais
   $.ajax({
-    url: "../../core/dll/VendasMensaisController.php",
+    url:
+      "http://localhost/JobSmart-WEB/core/dll/reports/VendasMensaisController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
@@ -96,16 +99,18 @@ $(document).ready(function() {
       });
     },
     error: function(data) {
-      console.log(data);
+      console.error(data);
     }
   });
 
   $.ajax({
-    url: "../../core/dll/ReceitasMensaisController.php",
+    url:
+      "http://localhost/JobSmart-WEB/core/dll/reports/ReceitasMensaisController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
       let dados = [];
+
       debugger;
       for (let i in data) {
         labels.push(data[i].mes);
@@ -120,7 +125,7 @@ $(document).ready(function() {
           labels: labels,
           datasets: [
             {
-              label: "receitas-mensais",
+              label: "Faturamento",
               backgroundColor: "rgba(0,216,23,0.2)",
               borderColor: "rgb(0,216,48)",
               data: dados
@@ -145,12 +150,12 @@ $(document).ready(function() {
             yAxes: [
               {
                 ticks: {
-                  min:
+                  min: Math.round10(
                     Math.min.apply(Math, dados) -
-                    Math.min.apply(Math, dados) * 0.5,
-                  max:
-                    Math.max.apply(Math, dados) +
-                    Math.min.apply(Math, dados) * 0.5,
+                      Math.min.apply(Math, dados) * 0.5,
+                    1
+                  ),
+                  max: Math.ceil10(Math.max.apply(Math, dados), 2),
                   maxTicksLimit: 10
                 },
                 gridLines: {
@@ -167,7 +172,214 @@ $(document).ready(function() {
       });
     },
     error: function(data) {
+      console.error(data);
+    }
+  });
+
+  $.ajax({
+    url:
+      "http://localhost/JobSmart-WEB/core/dll/reports/TopDownVendasController.php",
+    method: "GET",
+    success: function(data) {
+      let labels = [];
+      let dados = [];
+      let dadosMenor = [];
+      let dadosMaior = [];
+      let labelMenor = [];
+      let labelMaior = [];
+      debugger;
+
+      for (let i in data) {
+        labels.push(data[i].mes);
+        labelMenor.push(data[i].menosvendido);
+        labelMaior.push(data[i].maisvendido);
+        dados.push(parseInt(data[i].menor));
+        dados.push(parseInt(data[i].maior));
+        dadosMenor.push(parseInt(data[i].menor));
+        dadosMaior.push(parseInt(data[i].maior));
+      }
+
+      // Bar Chart Example
+      var ctx = document.getElementById("top-down-venda-mensal");
+      var maisMenosVendidosMensais = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: labelMaior,
+              backgroundColor: "rgb(57, 99, 168)",
+              borderColor: "rgb(24, 107, 242)",
+              data: dadosMaior
+            },
+            {
+              label: labelMenor,
+              backgroundColor: "rgb(186, 5, 5)",
+              borderColor: "rgb(244, 4, 4)",
+              data: dadosMenor
+            }
+          ]
+        },
+        options: {
+          scales: {
+            xAxes: [
+              {
+                time: {
+                  unit: "date"
+                },
+                gridLines: {
+                  display: true
+                },
+                ticks: {
+                  maxTicksLimit: date.diasNoMes()
+                }
+              }
+            ],
+            yAxes: [
+              {
+                ticks: {
+                  min: dados.menor,
+                  max: Math.ceil10(Math.max.apply(Math, dados), 2),
+                  maxTicksLimit: 10
+                },
+                gridLines: {
+                  color: "rgba(0, 0, 0, .125)",
+                  display: true
+                }
+              }
+            ]
+          },
+          legend: {
+            display: false
+          }
+        }
+      });
+    },
+    error: function(data) {
+      console.error(data);
+    }
+  });
+
+  $.ajax({
+    url:
+      "http://localhost/JobSmart-WEB/core/dll/reports/VendasFuncionarioAnuaisController.php",
+    method: "GET",
+    success: function(data) {
+      let labels = [];
+      let dados = [];
+      let bg = [];
+
+      debugger;
+      for (let i in data) {
+        labels.push(data[i].nome);
+        dados.push(parseInt(data[i].vendas));
+        bg.push(Color.generateColor());
+      }
+
+      // Bar Chart Example
+      var ctx = document.getElementById("funcionario-anual");
+      var receitasMensais = new Chart(ctx, {
+        type: "pie",
+        data: {
+          datasets: [
+            {
+              backgroundColor: bg,
+              borderColor: bg,
+              data: dados
+            }
+          ],
+          labels
+        }
+      });
+    },
+    error: function(data) {
+      console.error(data);
+    }
+  });
+
+  $.ajax({
+    url:
+      "http://localhost/JobSmart-WEB/core/dll/reports/TopDownFuncionarioVendasController.php",
+    method: "GET",
+    success: function(data) {
+      let labels = [];
+      let dados = [];
+      let dadosMenor = [];
+      let dadosMaior = [];
+      let labelMenor = [];
+      let labelMaior = [];
+      debugger;
+
+      for (let i in data) {
+        labels.push(data[i].mes);
+        labelMenor.push(data[i].nomeMenor);
+        labelMaior.push(data[i].nomeMaior);
+        dados.push(parseInt(data[i].menor));
+        dados.push(parseInt(data[i].maior));
+        dadosMenor.push(parseInt(data[i].menor));
+        dadosMaior.push(parseInt(data[i].maior));
+      }
+
       console.log(data);
+
+      // Bar Chart Example
+      var ctx = document.getElementById("top-down-funcionario-venda-mensal");
+      var maisMenosVendidosMensais = new Chart(ctx, {
+        type: "bar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: labelMaior,
+              backgroundColor: "rgb(57, 99, 168)",
+              borderColor: "rgb(24, 107, 242)",
+              data: dadosMaior
+            },
+            {
+              label: labelMenor,
+              backgroundColor: "rgb(186, 5, 5)",
+              borderColor: "rgb(244, 4, 4)",
+              data: dadosMenor
+            }
+          ]
+        },
+        options: {
+          scales: {
+            xAxes: [
+              {
+                time: {
+                  unit: "date"
+                },
+                gridLines: {
+                  display: true
+                },
+                ticks: {
+                  maxTicksLimit: date.diasNoMes()
+                }
+              }
+            ],
+            yAxes: [
+              {
+                ticks: {
+                  min: dados.menor,
+                  max: Math.ceil10(Math.max.apply(Math, dados), 2),
+                  maxTicksLimit: 10
+                },
+                gridLines: {
+                  color: "rgba(0, 0, 0, .125)",
+                  display: true
+                }
+              }
+            ]
+          },
+          legend: {
+            display: false
+          }
+        }
+      });
+    },
+    error: function(data) {
+      console.error(data);
     }
   });
 });
