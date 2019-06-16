@@ -1,18 +1,9 @@
 <?php
-// setting header to json
+if (file_exists('../dao/Connection.php')) require_once '../dao/Connection.php';
+//setting header to json
 header('Content-Type: application/json');
 
-// database
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'jobsmart');
-
-$mysql = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-if (!$mysql) {
-    die("Connection Failed: " . $mysql->error);
-}
+$mysql = new Connection();
 
 $query = "SELECT 
             SUM(vlr_venda) 'vlrVendas',
@@ -22,7 +13,7 @@ $query = "SELECT
           AND YEAR(dt_venda) = 2019
           GROUP BY mes;";
 
-$result = $mysql->query($query);
+$result = $mysql->select($query);
 
 $data = array();
 
