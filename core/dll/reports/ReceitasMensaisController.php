@@ -1,27 +1,19 @@
 <?php
+if (file_exists('../../dao/Connection.php')) require_once '../../dao/Connection.php';
 //setting header to json
 header('Content-Type: application/json');
 
-//database
-define('DB_HOST', 'localhost');
-define('DB_USERNAME', 'root');
-define('DB_PASSWORD', '');
-define('DB_NAME', 'jobsmart');
+$mysql = new Connection();
 
-$mysql = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_NAME);
-
-if (!$mysql) {
-    die("Connection Failed: " . $mysql->error);
-}
-
-$query = "SELECT
-            COUNT(id_venda) 'qtdVendas',
+$query = "SELECT 
+            SUM(vlr_venda) 'vlrVendas',
             month(dt_venda) AS 'mes'
           FROM venda
           WHERE MONTH(dt_venda) between 1 and 12
-          AND YEAR(dt_venda) = 2019 GROUP BY mes;";
+          AND YEAR(dt_venda) = YEAR(now())
+          GROUP BY mes;";
 
-$result = $mysql->query($query);
+$result = $mysql->select($query);
 
 $data = array();
 
@@ -70,8 +62,5 @@ foreach ($result as $row) {
 
     $data[] = $row;
 }
-
-$result->close();
-$mysql->close();
 
 print json_encode($data);

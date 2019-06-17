@@ -19,7 +19,7 @@
         <li class="nav-item">
             <a class="nav-link" href="relatorios.php">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Relatorios</span>
+                <span>Relatorios</span> <span> Gerais </span>
             </a>
         </li>
         <li class="nav-item">
@@ -58,7 +58,7 @@
         <li class="nav-item">
             <a class="nav-link" href="relatorios.php">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Relatorios</span>
+                <span>Relatorios</span> <span> Operacionais </span>
             </a>
         </li>
         <li class="nav-item">
@@ -96,16 +96,9 @@
         </li>
 
         <li class="nav-item">
-            <a class="nav-link" href="fornecedores.php">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Fornecedores</span>
-            </a>
-        </li>
-
-        <li class="nav-item">
             <a class="nav-link" href="relatorios.php">
                 <i class="fas fa-fw fa-chart-area"></i>
-                <span>Relatorios</span>
+                <span>Relatorios</span> <span> Administrativo </span>
             </a>
         </li>
 
