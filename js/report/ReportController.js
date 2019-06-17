@@ -308,6 +308,7 @@ $(document).ready(function() {
       let dadosMaior = [];
       let labelMenor = [];
       let labelMaior = [];
+      let bg = [];
       debugger;
 
       for (let i in data) {
@@ -318,14 +319,14 @@ $(document).ready(function() {
         dados.push(parseInt(data[i].maior));
         dadosMenor.push(parseInt(data[i].menor));
         dadosMaior.push(parseInt(data[i].maior));
+        bg.push(Color.generateColor());
       }
 
       console.log(data);
 
-      // Bar Chart Example
       var ctx = document.getElementById("top-down-funcionario-venda-mensal");
       var maisMenosVendidosMensais = new Chart(ctx, {
-        type: "bar",
+        type: "horizontalBar",
         data: {
           labels: labels,
           datasets: [
@@ -361,7 +362,91 @@ $(document).ready(function() {
             yAxes: [
               {
                 ticks: {
-                  min: dados.menor,
+                  min: Math.round10(
+                    Math.min.apply(Math, dados) -
+                      Math.min.apply(Math, dados) * 0.5,
+                    1
+                  ),
+                  max: Math.ceil10(Math.max.apply(Math, dados), 2),
+                  maxTicksLimit: 10
+                },
+                gridLines: {
+                  color: "rgba(0, 0, 0, .125)",
+                  display: true
+                }
+              }
+            ]
+          },
+          legend: {
+            display: false
+          }
+        }
+      });
+    },
+    error: function(data) {
+      console.error(data);
+    }
+  });
+
+  $.ajax({
+    url:
+      "http://localhost/JobSmart-WEB/core/dll/reports/ProdutoVendidoFuncionarioController.php",
+    method: "GET",
+    success: function(data) {
+      let labels = [];
+      let dados = [];
+      let labelMaior = [];
+
+      let bg = [];
+      debugger;
+
+      for (let i in data) {
+        labels.push(data[i].nome);
+        labelMaior.push(data[i].produto);
+        dados.push(parseInt(data[i].maior));
+        bg.push(Color.generateColor());
+      }
+
+      console.log(data);
+
+      // Bar Chart Example
+      var ctx = document.getElementById("produto-funcionario-venda-mensal");
+      var chartJax = new Chart(ctx, {
+        type: "horizontalBar",
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: labelMaior,
+              backgroundColor: bg,
+              borderColor: bg,
+              data: dados
+            }
+          ]
+        },
+        options: {
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  display: true
+                },
+                ticks: {
+                  maxTicksLimit: date.diasNoMes()
+                }
+              }
+            ],
+            yAxes: [
+              {
+                time: {
+                  unit: "date"
+                },
+                ticks: {
+                  min: Math.round10(
+                    Math.min.apply(Math, dados) -
+                      Math.min.apply(Math, dados) * 0.5,
+                    1
+                  ),
                   max: Math.ceil10(Math.max.apply(Math, dados), 2),
                   maxTicksLimit: 10
                 },

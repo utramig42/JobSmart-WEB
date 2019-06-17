@@ -9,7 +9,7 @@ $result = array();
 for ($i = 1; $i <= 12; $i++) {
     $query = "SELECT 
     f.nm_fun as 'nomeMaior', count(v.id_venda) as 'maior',
-    month(dt_venda) as 'mes'
+    month(dt_venda) as 'mes',
     (SELECT 
     f.nm_fun
 from
@@ -17,7 +17,7 @@ from
         INNER JOIN
     funcionario f ON v.mat_fun = f.mat_fun
 WHERE
-    MONTH(dt_venda) = 6
+    MONTH(dt_venda) = $i
 GROUP BY v.mat_fun ORDER BY count(v.id_venda)  LIMIT 1) as 'nomeMenor',
 (SELECT 
     count(v.id_venda)
@@ -26,14 +26,14 @@ from
         INNER JOIN
     funcionario f ON v.mat_fun = f.mat_fun
 WHERE
-    MONTH(dt_venda) = 6
+    MONTH(dt_venda) = $i
 GROUP BY v.mat_fun ORDER BY count(v.id_venda) ASC  LIMIT 1) as 'menor'
 from
     venda v
         INNER JOIN
     funcionario f ON v.mat_fun = f.mat_fun
 WHERE
-    MONTH(dt_venda) = 6
+    MONTH(dt_venda) = $i
 GROUP BY v.mat_fun ORDER BY count(v.id_venda) DESC LIMIT 1;
 ";
 
