@@ -93,7 +93,8 @@ $usuarioModel = new UsuarioModel();
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input required type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF">
+                                        <input required type="text" id="cpf" name="cpf" class="form-control"
+                                            placeholder="CPF">
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>

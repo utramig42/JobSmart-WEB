@@ -5,14 +5,29 @@ if (file_exists('../dao/UsuarioModel.php')) require_once '../dao/UsuarioModel.ph
 new UsuarioControllerRemove();
 
 class UsuarioControllerRemove
-{ }
+{
+    public function __construct()
+    {
 
-$this->user = new UsuarioModel();
+        $this->user = new UsuarioModel();
+        $this->setDataGeneral();
+        $this->setDataModel();
+        $this->user->remove($this->user);
+    }
 
-$this->matricula = isset($_POST['mat']) ? $_POST['mat'] : '';
-$this->data = isset($_POST['data']) ? $_POST['data'] : '';
 
-$this->user->setDataRecisao($this->data);
-$this->user->setMatricula($this->matricula);
+    public function setDataGeneral()
+    {
 
-$this->user->remove($user);
+        $this->matricula = isset($_POST['mat']) ? $_POST['mat'] : '';
+        $this->data = isset($_POST['data']) ? $_POST['data'] : '';
+        $this->matricula = isset($_POST['mat']) ? $_POST['mat'] : '';
+        $this->data = isset($_POST['data']) ? $_POST['data'] : '';
+    }
+
+    public function setDataModel()
+    {
+        $this->user->setDataRecisao($this->data);
+        $this->user->setMatricula($this->matricula);
+    }
+}

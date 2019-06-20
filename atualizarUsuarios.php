@@ -79,8 +79,8 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input required type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
-                                            readonly value="<?php echo $data['cpf_fun'] ?>">
+                                        <input required type="text" id="cpf" name="cpf" class="form-control"
+                                            placeholder="CPF" readonly value="<?php echo $data['cpf_fun'] ?>">
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>

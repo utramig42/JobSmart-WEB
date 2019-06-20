@@ -14,4 +14,4 @@ function toggleTemp(checkbox, parentElement) {
 }
 
 const form = document.querySelector("#user");
-window.form = new FormController(form);
+window.formController = new FormController(form);
