@@ -66,7 +66,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome" name="nome" class="form-control"
+                                        <input required type="text" id="nome" name="nome" class="form-control"
                                             placeholder="Nome completo" readonly value="<?php echo $data['nm_fun'] ?>">
                                         <label for="nome">Nome Completo</label>
                                     </div>
@@ -74,7 +74,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
+                                        <input required type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF"
                                             readonly value="<?php echo $data['cpf_fun'] ?>">
                                         <label for="cpf">CPF</label>
                                     </div>
@@ -82,7 +82,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="date" id="data-nascimento" name="data-nascimento"
+                                        <input required type="date" id="data-nascimento" name="data-nascimento"
                                             class="form-control" placeholder="Data de nascimento" readonly
                                             value="<?php echo $data['dt_nasc_fun']  ?>">
                                         <label for="data-nascimento">Data de nascimento</label>
@@ -135,7 +135,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="telefone" name="telefone" class="form-control"
+                                        <input required type="text" id="telefone" name="telefone" class="form-control"
                                             placeholder="Telefone" required value="<?php echo $data['tel_fun'] ?>">
                                         <label for="telefone">Telefone</label>
                                     </div>
@@ -161,7 +161,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="salario" name="salario" class="form-control"
+                                        <input required type="text" id="salario" name="salario" class="form-control"
                                             placeholder="Salário" required value="<?php echo $data['sal_fun'] ?>">
                                         <label for="salario">Salário</label>
                                     </div>

@@ -44,14 +44,14 @@ include_once 'includes/navbar/navbar-main.php';
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input type="text" id="razao-social" name="razao-social" class="form-control" placeholder="Razão Social" autofocus="autofocus">
+                                        <input required type="text" id="razao-social" name="razao-social" class="form-control" placeholder="Razão Social" autofocus="autofocus">
                                         <label for="razao-social">Razão Social</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="cnpj" name="cnpj" class="form-control" placeholder="CNPJ">
+                                        <input required type="text" id="cnpj" name="cnpj" class="form-control" placeholder="CNPJ">
                                         <label for="cnpj">CNPJ</label>
                                     </div>
                                 </div>
@@ -69,7 +69,7 @@ include_once 'includes/navbar/navbar-main.php';
 
                                 <div class="col-md-1">
                                     <div class="form-label-group">
-                                        <select id="uf" name="uf" class="form-control">
+                                        <select required id="uf" name="uf" class="form-control">
                                             <option value="" selected>UF</option>
                                         </select>
                                         <label for="uf" class="d-none">UF</label>
@@ -78,7 +78,7 @@ include_once 'includes/navbar/navbar-main.php';
 
                                 <div class=" col-md-3">
                                     <div class="form-label-group">
-                                        <select id="cidade" name="cidade" class="form-control">
+                                        <select required id="cidade" name="cidade" class="form-control">
                                             <option value="" selected>Cidade</option>
                                         </select>
                                         <label for="cidade" class="d-none">Cidade</label>
@@ -91,20 +91,20 @@ include_once 'includes/navbar/navbar-main.php';
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="number" id="cep" name="cep" class="form-control" placeholder="CEP">
+                                        <input required type="number" id="cep" name="cep" class="form-control" placeholder="CEP">
                                         <label for="cep">CEP</label>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-label-group">
-                                        <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro">
+                                        <input required type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro">
                                         <label for="logradouro">Logradouro</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-1">
                                     <div class="form-label-group">
-                                        <input type="number" id="numero" name="numero" class="form-control" placeholder="Número">
+                                        <input required type="number" id="numero" name="numero" class="form-control" placeholder="Número">
                                         <label for="numero">Número</label>
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@ include_once 'includes/navbar/navbar-main.php';
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro">
+                                        <input required type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro">
                                         <label for="bairro">Bairro</label>
                                     </div>
                                 </div>
@@ -145,7 +145,7 @@ include_once 'includes/navbar/navbar-main.php';
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="celular" name="celular" class="form-control" placeholder="Telefone Celular">
+                                        <input required type="text" id="celular" name="celular" class="form-control" placeholder="Telefone Celular">
                                         <label for="celular">Telefone Celular</label>
                                     </div>
                                 </div>
