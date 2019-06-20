@@ -71,7 +71,7 @@ $data = $providerModal->loadById($_GET['id'])[0];
 
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="razao-social" id="razao-social"
+                                        <input required type="text" id="razao-social" id="razao-social"
                                             value="<?php echo $data['raz_soc_for'] ?>" name="razao-social"
                                             class="form-control" placeholder="Razão Social" readonly>
                                         <label for="razao-social">Razão Social</label>
@@ -80,7 +80,7 @@ $data = $providerModal->loadById($_GET['id'])[0];
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="cnpj" id="cnpj" name="cnpj"
+                                        <input required type="text" id="cnpj" id="cnpj" name="cnpj"
                                             value="<?php echo $data['cnpj_for'] ?>" class="form-control"
                                             placeholder="CNPJ" readonly>
                                         <label for="cnpj">CNPJ</label>
@@ -102,15 +102,16 @@ $data = $providerModal->loadById($_GET['id'])[0];
 
                                 <div class="col-md-1">
                                     <div class="form-label-group">
-                                        <input type="text" id="uf" name="uf" value="<?php echo $data['uf_for'] ?>"
-                                            class="form-control" placeholder="Estado" autofocus="autofocus" required>
+                                        <input required type="text" id="uf" name="uf"
+                                            value="<?php echo $data['uf_for'] ?>" class="form-control"
+                                            placeholder="Estado" autofocus="autofocus" required>
                                         <label for="uf">Estado</label>
                                     </div>
                                 </div>
 
                                 <div class=" col-md-3">
                                     <div class="form-label-group">
-                                        <input type="text" id="cidade" name="cidade"
+                                        <input required type="text" id="cidade" name="cidade"
                                             value="<?php echo $data['cid_for'] ?>" class="form-control"
                                             placeholder="Cidade" autofocus="autofocus" required>
                                         <label for="cidade">Cidade</label>
@@ -123,7 +124,7 @@ $data = $providerModal->loadById($_GET['id'])[0];
                             <div class="form-row">
                                 <div class="col-md-12">
                                     <div class="form-label-group">
-                                        <input type="text" value="<?php echo $data['end_for'] ?>" id="endereco"
+                                        <input required type="text" value="<?php echo $data['end_for'] ?>" id="endereco"
                                             name="endereco" class="form-control" placeholder="Endereço" required>
                                         <label for="endereco">Endereço</label>
                                     </div>
@@ -156,7 +157,7 @@ $data = $providerModal->loadById($_GET['id'])[0];
 
                                 <div class="col-md-3">
                                     <div class="form-label-group">
-                                        <input type="text" id="celular" name="celular" class="form-control"
+                                        <input required type="text" id="celular" name="celular" class="form-control"
                                             placeholder="Telefone Celular" value="<?php echo $data['tel_cel_for'] ?>"
                                             required>
                                         <label for="celular">Telefone Celular</label>
