@@ -30,7 +30,7 @@
                 <i class="fas fa-user-circle fa-fw"></i>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="atualizarSenha.php"><i class="fas fa-cog"></i> Configurações</a>
+                <a class="dropdown-item" href="atualizarSenha.php"><i class="fas fa-cog"></i> Alterar Senha</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal"> <i
                         class="fas fa-sign-out-alt"></i> Sair</a>

@@ -8,6 +8,11 @@ include_once 'includes/navbar/navbar-main.php';
 
 $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 
+if ($_SESSION['user_profile'] == 3) {
+    include_once 'includes/error.php';
+    exit;
+}
+
 // Require Files Providers.
 require_once 'core/dao/Connection.php';
 require_once 'core/dao/DashboardModel.php';
@@ -49,7 +54,8 @@ $dashboard->loadModal();
                                 <i class="fas fa-fw fa-money-bill"></i>
                             </div>
                             <div class="mr-5"> Faturamento do dia <?php echo date('d/m/Y') ?></div>
-                            <div class="h2"> <?php echo number_format($dashboard->billingOfDay(), 2) ?> </div class="h1">
+                            <div class="h2"> <?php echo number_format($dashboard->billingOfDay(), 2) ?> </div
+                                class="h1">
                         </div>
 
                     </div>
@@ -88,7 +94,8 @@ $dashboard->loadModal();
                             <div class="mr-5"> Produtos em quantidade Mínima </div>
                             <div class="h2"><?php echo $dashboard->minimumQuantity(); ?></div>
                         </div>
-                        <button class="btn btn-danger card-footer text-white clearfix small z-1" data-toggle="modal" data-target="#minium">
+                        <button class="btn btn-danger card-footer text-white clearfix small z-1" data-toggle="modal"
+                            data-target="#minium">
                             <span class="float-left">Veja os Detalhes</span>
                             <span class="float-right">
                                 <i class="fas fa-angle-right"></i>
@@ -122,9 +129,11 @@ $dashboard->loadModal();
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -169,10 +178,10 @@ $dashboard->loadModal();
         <script src="js/dashboard.js"></script>
         <script src="js/controller/TableController.js"></script>
         <script>
-            window.table = new TableController(
-                document.querySelector("#search-table"),
-                document.querySelector("table tbody")
-            );
+        window.table = new TableController(
+            document.querySelector("#search-table"),
+            document.querySelector("table tbody")
+        );
         </script>
         <!-- Scripts dos Relatórios entram aqui -->
         <script type="module" src="js/report/ReportController.js"></script>

@@ -11,6 +11,11 @@ include_once 'includes/navbar/navbar-main.php';
 require_once 'core/dao/Connection.php';
 require_once 'core/dao/UsuarioModel.php';
 
+if ($_SESSION['user_profile'] == 2) {
+    include_once 'includes/error.php';
+    exit;
+}
+
 $usuarioModel = new UsuarioModel();
 ?>
 

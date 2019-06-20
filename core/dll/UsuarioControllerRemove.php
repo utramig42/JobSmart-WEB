@@ -2,18 +2,17 @@
 if (file_exists('../dao/Connection.php')) require_once '../dao/Connection.php';
 if (file_exists('../dao/UsuarioModel.php')) require_once '../dao/UsuarioModel.php';
 
+new UsuarioControllerRemove();
 
-// var_dump($_POST);
-// exit;
+class UsuarioControllerRemove
+{ }
 
-$sql = new Connection();
+$this->user = new UsuarioModel();
 
-$user = new UsuarioModel();
+$this->matricula = isset($_POST['mat']) ? $_POST['mat'] : '';
+$this->data = isset($_POST['data']) ? $_POST['data'] : '';
 
-$matricula = isset($_POST['mat']) ? $_POST['mat'] : '';
-$data = isset($_POST['data']) ? $_POST['data'] : '';
+$this->user->setDataRecisao($this->data);
+$this->user->setMatricula($this->matricula);
 
-$user->setDataRecisao($data);
-$user->setMatricula($matricula);
-
-$user->remove($user);
+$this->user->remove($user);

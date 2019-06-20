@@ -12,6 +12,11 @@ include_once 'includes/navbar/navbar-main.php';
 
 $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 
+if ($_SESSION['user_profile'] == 3) {
+    include_once 'includes/error.php';
+    exit;
+}
+
 // Require Files Users
 require_once 'core/dao/Connection.php';
 require_once 'core/dao/ProdutoModel.php';
@@ -60,9 +65,11 @@ require_once 'core/dao/ProdutoModel.php';
                     <div class="d-md-inline-block float-right">
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -122,7 +129,8 @@ require_once 'core/dao/ProdutoModel.php';
 <!-- /#wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel" aria-hidden="true">
+<div class="modal fade" id="informationModal" tabindex="-1" role="dialog" aria-labelledby="informationModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -176,10 +184,10 @@ include_once 'includes/footers/footer-scripts.php';
 ?>
 <script src="js/controller/TableController.js"></script>
 <script>
-    window.table = new TableController(
-        document.querySelector("#search-table"),
-        document.querySelector("table tfoot")
-    );
+window.table = new TableController(
+    document.querySelector("#search-table"),
+    document.querySelector("table tfoot")
+);
 </script>
 <?php
 include_once 'includes/footers/footer-final.php';

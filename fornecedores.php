@@ -10,6 +10,12 @@ include_once 'includes/navbar/navbar-main.php';
 
 $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
 
+
+if ($_SESSION['user_profile'] == 3) {
+    include_once 'includes/error.php';
+    exit;
+}
+
 // Require Files Providers.
 require_once 'core/dao/Connection.php';
 require_once 'core/dao/FornecedorModel.php';
@@ -53,15 +59,18 @@ require_once 'core/dao/FornecedorModel.php';
                     <div class="d-md-inline-block float-right">
 
                         <!-- Register Button -->
-                        <button type="button" class="btn btn-primary float-right" onclick="window.location.href='cadastroFornecedores.php'">
+                        <button type="button" class="btn btn-primary float-right"
+                            onclick="window.location.href='cadastroFornecedores.php'">
                             <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
                             <span>Cadastrar</span>
                         </button>
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="submit">
                                         <i class="fas fa-search"></i>
@@ -97,7 +106,7 @@ require_once 'core/dao/FornecedorModel.php';
                                 $fornecedorModel = new FornecedorModel();
                                 $fornecedorModel->listProvidersTables($pagesSql, $maxItens);
                                 $fornecedorModel->listProvidersModals($pagesSql, $maxItens);
-                                $table = 'fornecedor';
+                                $table = 'fornecedor WHERE ativo_for = 1';
 
                                 ?>
 
@@ -107,7 +116,8 @@ require_once 'core/dao/FornecedorModel.php';
 
                     <!-- Pagination Buttons -->
                     <?php include_once 'core/dll/Pagination.php' ?>
-                    <div class="card-footer small text-muted">Última atualização - <?php echo date('d/m/Y H:i:s') ?> </div>
+                    <div class="card-footer small text-muted">Última atualização - <?php echo date('d/m/Y H:i:s') ?>
+                    </div>
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -126,10 +136,10 @@ require_once 'core/dao/FornecedorModel.php';
     ?>
     <script src="js/controller/TableController.js"></script>
     <script>
-        window.table = new TableController(
-            document.querySelector("#search-table"),
-            document.querySelector("table tfoot")
-        );
+    window.table = new TableController(
+        document.querySelector("#search-table"),
+        document.querySelector("table tfoot")
+    );
     </script>
 
     <?php

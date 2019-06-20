@@ -18,6 +18,11 @@ if (!isset($_GET['matricula'])) {
     include_once 'includes/error.php';
 }
 
+if ($_SESSION['user_profile'] == 2) {
+    include_once 'includes/error.php';
+    exit;
+}
+
 $data = $userController->loadById($_GET['matricula'])[0];
 ?>
 

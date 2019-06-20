@@ -9,7 +9,7 @@ include_once 'includes/headers/header-styles.php';
 include_once 'includes/navbar/navbar-main.php';
 ?>
 
-<title>Job'Smart - Configurações </title>
+<title>Job'Smart - Alterar Senha </title>
 <!-- Form Style CSS -->
 <link rel="stylesheet" href="css/password.css">
 
@@ -28,7 +28,7 @@ include_once 'includes/navbar/navbar-main.php';
                 </li>
 
                 <li class="breadcrumb-item active">
-                    Configurações
+                    Alterar Senha
                     <?php $fileName = 'Dashboard'; ?>
                 </li>
             </ol>

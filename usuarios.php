@@ -2,6 +2,8 @@
 //Configuração
 include_once 'includes/config.php';
 
+
+
 include_once 'includes/headers/header-init.php';
 
 // CSS
@@ -11,6 +13,11 @@ include_once 'includes/headers/header-styles.php';
 include_once 'includes/navbar/navbar-main.php';
 
 $fileName = ucfirst(str_replace(".php", '', basename(__FILE__)));
+
+if ($_SESSION['user_profile'] == 2) {
+    include_once 'includes/error.php';
+    exit;
+}
 
 // Require Files Users
 require_once 'core/dao/Connection.php';
@@ -56,15 +63,18 @@ require_once 'core/dao/UsuarioModel.php';
                     <div class="d-md-inline-block float-right">
 
                         <!-- Register Button -->
-                        <button type="button" class="btn btn-primary float-right" onclick="window.location.href='cadastroUsuarios.php'">
+                        <button type="button" class="btn btn-primary float-right"
+                            onclick="window.location.href='cadastroUsuarios.php'">
                             <i class="fas fa-plus text-white icon" aria-hidden="true"></i>
                             <span>Cadastrar</span>
                         </button>
 
                         <!-- Navbar Search -->
-                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0" id="search-table">
+                        <form class="d-none d-md-inline-block form-inline float-right ml-auto mr-0 mr-md-5 my-2 my-md-0"
+                            id="search-table">
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Pesquisar por..." aria-label="Search" aria-describedby="basic-addon2">
+                                <input type="text" class="form-control" placeholder="Pesquisar por..."
+                                    aria-label="Search" aria-describedby="basic-addon2">
                                 <div class="input-group-append">
                                     <button class="btn btn-primary" type="button">
                                         <i class="fas fa-search"></i>
@@ -132,5 +142,5 @@ include_once 'includes/footers/footer-final.php';
 <script src="js/controller/TableController.js"></script>
 
 <script>
-    window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
+window.table = new TableController(document.querySelector('#search-table'), document.querySelector('table tfoot'));
 </script>
