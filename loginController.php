@@ -33,12 +33,17 @@ $users = $sql->select($query, array(
     "senha" => $senha
 ));
 
+$update = "UPDATE acesso SET dt_ult_acesso = now() WHERE mat_fun = $matricula";
+
 
 if (count($users) <= 0) {
     $_SESSION['auth_error'] = true;
     header('Location: login.php');
     exit;
 } else {
+    // Atualizando último acesso.
+    $sql->update($update);
+
     $user = $users[0];
     $_SESSION['logged_in'] = true;
     $_SESSION['user_id'] = $user['mat_fun'];
