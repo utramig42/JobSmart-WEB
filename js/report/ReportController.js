@@ -1,6 +1,6 @@
 import * as Months from "../utils/Months.js";
 import * as Round from "../utils/RoundPlus.js";
-import * as Color from "../utils/RandomColor.js";
+import * as Color from "../utils/Color.js";
 
 /**
  * Verifica a quantidade de dias em um mês. Método aplicado em objetos do tipo Date
@@ -29,8 +29,7 @@ Chart.defaults.global.defaultFontColor = "#292b2c";
 $(document).ready(function() {
   // Vendas Mensais
   $.ajax({
-    url:
-      "http://localhost/JobSmart-WEB/core/dll/reports/VendasMensaisController.php",
+    url: "./core/dll/reports/VendasMensaisController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
@@ -104,14 +103,12 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url:
-      "http://localhost/JobSmart-WEB/core/dll/reports/ReceitasMensaisController.php",
+    url: "./core/dll/reports/ReceitasMensaisController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
       let dados = [];
 
-      debugger;
       for (let i in data) {
         labels.push(data[i].mes);
         dados.push(parseInt(data[i].vlrVendas));
@@ -177,8 +174,7 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url:
-      "http://localhost/JobSmart-WEB/core/dll/reports/TopDownVendasController.php",
+    url: "./core/dll/reports/TopDownVendasController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
@@ -187,7 +183,6 @@ $(document).ready(function() {
       let dadosMaior = [];
       let labelMenor = [];
       let labelMaior = [];
-      debugger;
 
       for (let i in data) {
         labels.push(data[i].mes);
@@ -261,19 +256,15 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url:
-      "http://localhost/JobSmart-WEB/core/dll/reports/VendasFuncionarioAnuaisController.php",
+    url: "./core/dll/reports/VendasFuncionarioAnuaisController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
       let dados = [];
-      let bg = [];
 
-      debugger;
       for (let i in data) {
         labels.push(data[i].nome);
         dados.push(parseInt(data[i].vendas));
-        bg.push(Color.generateColor());
       }
 
       // Bar Chart Example
@@ -283,8 +274,8 @@ $(document).ready(function() {
         data: {
           datasets: [
             {
-              backgroundColor: bg,
-              borderColor: bg,
+              backgroundColor: Color.uniformColor(),
+              borderColor: Color.uniformColor(),
               data: dados
             }
           ],
@@ -298,8 +289,7 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url:
-      "http://localhost/JobSmart-WEB/core/dll/reports/TopDownFuncionarioVendasController.php",
+    url: "./core/dll/reports/TopDownFuncionarioVendasController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
@@ -308,8 +298,6 @@ $(document).ready(function() {
       let dadosMaior = [];
       let labelMenor = [];
       let labelMaior = [];
-      let bg = [];
-      debugger;
 
       for (let i in data) {
         labels.push(data[i].mes);
@@ -319,10 +307,7 @@ $(document).ready(function() {
         dados.push(parseInt(data[i].maior));
         dadosMenor.push(parseInt(data[i].menor));
         dadosMaior.push(parseInt(data[i].maior));
-        bg.push(Color.generateColor());
       }
-
-      console.log(data);
 
       var ctx = document.getElementById("top-down-funcionario-venda-mensal");
       var maisMenosVendidosMensais = new Chart(ctx, {
@@ -389,37 +374,30 @@ $(document).ready(function() {
   });
 
   $.ajax({
-    url:
-      "http://localhost/JobSmart-WEB/core/dll/reports/ProdutoVendidoFuncionarioController.php",
+    url: "./core/dll/reports/ProdutoVendidoFuncionarioController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
       let dados = [];
       let labelMaior = [];
 
-      let bg = [];
-      debugger;
-
       for (let i in data) {
         labels.push(data[i].nome);
         labelMaior.push(data[i].produto);
         dados.push(parseInt(data[i].maior));
-        bg.push(Color.generateColor());
       }
-
-      console.log(data);
 
       // Bar Chart Example
       var ctx = document.getElementById("produto-funcionario-venda-mensal");
       var chartJax = new Chart(ctx, {
-        type: "horizontalBar",
+        type: "bar",
         data: {
           labels: labels,
           datasets: [
             {
               label: labelMaior,
-              backgroundColor: bg,
-              borderColor: bg,
+              backgroundColor: Color.uniformColor(),
+              borderColor: Color.uniformColor(),
               data: dados
             }
           ]
