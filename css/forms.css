@@ -2,3 +2,24 @@
   padding: var(--input-padding-y) var(--input-padding-x);
   height: auto;
 }
+
+input:required + label::after {
+  margin-left: 2px;
+  content: "*";
+  color: red;
+}
+
+input:required,
+select:required {
+  border-bottom: 2px solid red;
+}
+
+select:required:focus {
+  border-bottom: none;
+}
+
+.required-text {
+  border-bottom: 2px solid red;
+  max-width: 150px;
+  padding-bottom: 3px;
+}

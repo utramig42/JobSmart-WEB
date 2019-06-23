@@ -14,11 +14,14 @@
 
 <!-- Custom scripts for all pages-->
 <script src="vendor/template-scripts/sb-admin.min.js"></script>
+<!-- Jquery Mask Inputs -->
+<script src="https://igorescobar.github.io/jQuery-Mask-Plugin/js/jquery.mask.min.js"></script>
+
 <!-- Fim  dos Arquivos imutaveis -->
 
 <!-- Arquivos criados para o projeto especificamente -->
 <script src="js/sidebarActive.js"></script>
 <script>
-sideBarActive("<?php echo $fileName;  ?>")
+    sideBarActive("<?php echo $fileName;  ?>")
 </script>
 <script src="js/utils/index.js"></script>

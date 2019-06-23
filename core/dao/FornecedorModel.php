@@ -123,7 +123,7 @@ class FornecedorModel
     public function insert(FornecedorModel $provider)
     {
         $razaoSocial = $provider->getRazaoSocial();
-        $cnpj = $provider->getRazaoSocial();
+        $cnpj = $provider->getCnpj();
         $nome = $provider->getNome();
         $uf = $provider->getUf();
         $cidade = $provider->getCidade();
@@ -132,7 +132,18 @@ class FornecedorModel
         $telFixo = $provider->getTelFixo();
         $telCel = $provider->getTelCel();
 
-        $rawQuery = "INSERT INTO fornecedor(nm_for,cnpj_for,raz_soc_for,uf_for,cid_for,end_for,nm_cont_for,tel_fix_for,tel_cel_for,ativo_for)
+        $rawQuery = "INSERT INTO 
+            fornecedor(
+            nm_for,
+            cnpj_for,
+            raz_soc_for,
+            uf_for,
+            cid_for,
+            end_for,
+            nm_cont_for,
+            tel_fix_for,
+            tel_cel_for,
+            ativo_for)
         VALUES(
             '$nome',
             '$cnpj',

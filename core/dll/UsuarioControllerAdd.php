@@ -9,6 +9,7 @@ class UsuarioControllerAdd
 
     public function __construct()
     {
+        // Deve seguir estritamente esta ordem na chamada.
         $this->setDataUserPersonal();
         $this->setAddress();
         $this->isTemp();
@@ -16,17 +17,24 @@ class UsuarioControllerAdd
         $this->user->insert($this->user);
     }
 
-    public function setDataUserPersonal()
+    private function setSalario()
+    {
+        $this->salario = isset($_POST['salario']) ? $_POST['salario'] : '';
+        $this->salario = preg_replace("/\./", '', $this->salario);
+        $this->salario = preg_replace("/\,/", '.', $this->salario);
+    }
+
+    private function setDataUserPersonal()
     {
         $this->nome = isset($_POST['nome']) ? $_POST['nome'] : '';
         $this->cargo = isset($_POST['cargo']) ? $_POST['cargo'] : '';
-        $this->salario = isset($_POST['salario']) ? $_POST['salario'] : '';
+        $this->setSalario();
         $this->cpf = isset($_POST['cpf']) ? $_POST['cpf'] : '';
         $this->dataNascimento = isset($_POST['data-nascimento']) ? $_POST['data-nascimento'] : '';
         $this->telefone = isset($_POST['telefone']) ? $_POST['telefone'] : '';
     }
 
-    public function setAddress()
+    private function setAddress()
     {
         $logradouro = isset($_POST['logradouro']) ? $_POST['logradouro'] : '';
         $numero = isset($_POST['numero']) ? $_POST['numero'] : '';
@@ -39,7 +47,7 @@ class UsuarioControllerAdd
         $this->endereco = "$logradouro , $numero $complemento - $bairro, $this->cidade - $this->uf, $cep ";
     }
 
-    public function isTemp()
+    private function isTemp()
     {
 
         $this->temp = isset($_POST['dataResc']) ? 1 : 0;
@@ -49,6 +57,9 @@ class UsuarioControllerAdd
 
     public function setDataUserGeneral()
     {
+
+
+
         $this->user = new UsuarioModel();
         $this->user->setNome($this->nome);
         $this->user->setCargo(intval($this->cargo));
