@@ -82,7 +82,17 @@ include_once 'includes/navbar/navbar-main.php';
                 <div class="card-header">
                     <i class="fas fa-chart-bar"></i>
                     Produtos mais vendidos por funcionário
-
+                    <div class="filter">
+                        <select>
+                            <option> Selecione um produto </option>
+                            <?php
+                            require_once 'core/dao/Connection.php';
+                            require_once 'core/dao/ProdutoModel.php';
+                            $product = new ProdutoModel();
+                            $product->listOptionsProducts();
+                            ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="card-body">
                     <canvas id="produto-funcionario-venda-mensal" width="100%" height="30"></canvas>

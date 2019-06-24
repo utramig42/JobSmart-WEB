@@ -23,8 +23,11 @@ foreach ($users as $user) {
         INNER JOIN funcionario f ON v.mat_fun = f.mat_fun
         WHERE YEAR(dt_venda) = YEAR(now())
         AND v.mat_fun = '" . $user['ID'] . "'
+        AND p.id_prod = '" . $_GET['id'] . "'
         GROUP BY it.id_est
         ORDER BY SUM(quant_itens_venda) DESC LIMIT 1;";
+
+
 
     $result[] = $mysql->select($query);
 }

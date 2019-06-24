@@ -2,6 +2,7 @@
 // Configurações
 include_once 'includes/config.php';
 
+
 if ($_SESSION['user_profile'] == 1) {
     include_once 'relatoriosGeral.php';
     exit;

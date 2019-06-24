@@ -9,8 +9,26 @@ class ProdutoModel
         $this->Sql = new Connection();
     }
 
-    public function getAllProducts($pagesSql = 0, $maxItens = 10)
+    public function numberOfProducts()
     {
+        return $this->Sql->select('SELECT count(id_prod) as "num" FROM produto')[0]['num'];
+    }
+
+    public function listOptionsProducts()
+    {
+        $rows = $this->getAllProducts();
+        foreach ($rows as $row) {
+            $id = $row['ID'];
+            $name = $row['nome'];
+
+            echo "<option value=\"$id\"> $name </option>";
+        }
+    }
+
+    public function getAllProducts($pagesSql = 0, $maxItens = 0)
+    {
+        if ($maxItens == 0) $maxItens = $this->numberOfProducts();
+
         $command = "SELECT 
         p.id_prod AS 'ID',
         m.nm_marca AS 'marca',

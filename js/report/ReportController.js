@@ -7,7 +7,7 @@ import * as Color from "../utils/Color.js";
  *
  * @returns {number}
  */
-Date.prototype.diasNoMes = function() {
+Date.prototype.diasNoMes = function () {
   const days = [30, 31];
   const m = this.getMonth();
 
@@ -26,12 +26,12 @@ Chart.defaults.global.defaultFontFamily =
   '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = "#292b2c";
 
-$(document).ready(function() {
+$(document).ready(function () {
   // Vendas Mensais
   $.ajax({
     url: "./core/dll/reports/VendasMensaisController.php",
     method: "GET",
-    success: function(data) {
+    success: function (data) {
       let labels = [];
       let dados = [];
 
@@ -97,7 +97,7 @@ $(document).ready(function() {
         }
       });
     },
-    error: function(data) {
+    error: function (data) {
       console.error(data);
     }
   });
@@ -105,7 +105,7 @@ $(document).ready(function() {
   $.ajax({
     url: "./core/dll/reports/ReceitasMensaisController.php",
     method: "GET",
-    success: function(data) {
+    success: function (data) {
       let labels = [];
       let dados = [];
 
@@ -149,7 +149,7 @@ $(document).ready(function() {
                 ticks: {
                   min: Math.round10(
                     Math.min.apply(Math, dados) -
-                      Math.min.apply(Math, dados) * 0.5,
+                    Math.min.apply(Math, dados) * 0.5,
                     1
                   ),
                   max: Math.ceil10(Math.max.apply(Math, dados), 2),
@@ -168,7 +168,7 @@ $(document).ready(function() {
         }
       });
     },
-    error: function(data) {
+    error: function (data) {
       console.error(data);
     }
   });
@@ -176,7 +176,7 @@ $(document).ready(function() {
   $.ajax({
     url: "./core/dll/reports/TopDownVendasController.php",
     method: "GET",
-    success: function(data) {
+    success: function (data) {
       let labels = [];
       let dados = [];
       let dadosMenor = [];
@@ -250,7 +250,7 @@ $(document).ready(function() {
         }
       });
     },
-    error: function(data) {
+    error: function (data) {
       console.error(data);
     }
   });
@@ -258,7 +258,7 @@ $(document).ready(function() {
   $.ajax({
     url: "./core/dll/reports/VendasFuncionarioAnuaisController.php",
     method: "GET",
-    success: function(data) {
+    success: function (data) {
       let labels = [];
       let dados = [];
 
@@ -283,7 +283,7 @@ $(document).ready(function() {
         }
       });
     },
-    error: function(data) {
+    error: function (data) {
       console.error(data);
     }
   });
@@ -291,7 +291,7 @@ $(document).ready(function() {
   $.ajax({
     url: "./core/dll/reports/TopDownFuncionarioVendasController.php",
     method: "GET",
-    success: function(data) {
+    success: function (data) {
       let labels = [];
       let dados = [];
       let dadosMenor = [];
@@ -349,7 +349,7 @@ $(document).ready(function() {
                 ticks: {
                   min: Math.round10(
                     Math.min.apply(Math, dados) -
-                      Math.min.apply(Math, dados) * 0.5,
+                    Math.min.apply(Math, dados) * 0.5,
                     1
                   ),
                   max: Math.ceil10(Math.max.apply(Math, dados), 2),
@@ -368,81 +368,109 @@ $(document).ready(function() {
         }
       });
     },
-    error: function(data) {
+    error: function (data) {
       console.error(data);
     }
   });
 
-  $.ajax({
-    url: "./core/dll/reports/ProdutoVendidoFuncionarioController.php",
-    method: "GET",
-    success: function(data) {
-      let labels = [];
-      let dados = [];
-      let labelMaior = [];
 
-      for (let i in data) {
-        labels.push(data[i].nome);
-        labelMaior.push(data[i].produto);
-        dados.push(parseInt(data[i].maior));
-      }
 
-      // Bar Chart Example
-      var ctx = document.getElementById("produto-funcionario-venda-mensal");
-      var chartJax = new Chart(ctx, {
-        type: "bar",
-        data: {
-          labels: labels,
-          datasets: [
-            {
-              label: "Vendas",
-              backgroundColor: Color.uniformColor(),
-              borderColor: Color.uniformColor(),
-              data: dados
+  // Primeiro Carregamento 
+  const stage = document.getElementById("produto-funcionario-venda-mensal");
+
+  let span = document.createElement('div');
+  span.innerHTML = 'Selecione um produto';
+  span.classList.add('h1', 'text-center');
+
+  stage.parentElement.appendChild(span);
+
+
+  const product = document.querySelector('.filter > select');
+  product.addEventListener('change', () => {
+
+    if (stage.parentElement.querySelector('.h1')) stage.parentElement.removeChild(span);
+
+
+    $.ajax({
+      url: `./core/dll/reports/ProdutoVendidoFuncionarioController.php?id=${product.value}`,
+      method: "GET",
+      success: function (data) {
+        let labels = [];
+        let dados = [];
+        let labelMaior = [];
+
+        for (let i in data) {
+          labels.push(data[i].nome);
+          labelMaior.push(data[i].produto);
+          dados.push(parseInt(data[i].maior));
+        }
+
+
+
+        // Bar Chart Example
+        var ctx = document.getElementById("produto-funcionario-venda-mensal");
+        var chartJax = new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: "Vendas",
+                backgroundColor: Color.uniformColor(),
+                borderColor: Color.uniformColor(),
+                data: dados
+              }
+            ]
+          },
+          options: {
+            scales: {
+              xAxes: [
+                {
+                  gridLines: {
+                    display: true
+                  },
+                  ticks: {
+                    maxTicksLimit: date.diasNoMes()
+                  }
+                }
+              ],
+              yAxes: [
+                {
+                  time: {
+                    unit: "date"
+                  },
+                  ticks: {
+                    min: Math.round10(
+                      Math.min.apply(Math, dados) -
+                      Math.min.apply(Math, dados) * 0.5,
+                      1
+                    ),
+                    max: Math.ceil10(Math.max.apply(Math, dados), 2),
+                    maxTicksLimit: 10
+                  },
+                  gridLines: {
+                    color: "rgba(0, 0, 0, .125)",
+                    display: true
+                  }
+                }
+              ]
+            },
+            legend: {
+              display: false
             }
-          ]
-        },
-        options: {
-          scales: {
-            xAxes: [
-              {
-                gridLines: {
-                  display: true
-                },
-                ticks: {
-                  maxTicksLimit: date.diasNoMes()
-                }
-              }
-            ],
-            yAxes: [
-              {
-                time: {
-                  unit: "date"
-                },
-                ticks: {
-                  min: Math.round10(
-                    Math.min.apply(Math, dados) -
-                      Math.min.apply(Math, dados) * 0.5,
-                    1
-                  ),
-                  max: Math.ceil10(Math.max.apply(Math, dados), 2),
-                  maxTicksLimit: 10
-                },
-                gridLines: {
-                  color: "rgba(0, 0, 0, .125)",
-                  display: true
-                }
-              }
-            ]
-          },
-          legend: {
-            display: false
           }
-        }
-      });
-    },
-    error: function(data) {
-      console.error(data);
-    }
-  });
+        });
+      },
+      { destroy() },
+      error: function (data) {
+        console.error(data);
+      }
+    });
+
+  chartJax.destroy();
+
+})
+
+
+
 });
