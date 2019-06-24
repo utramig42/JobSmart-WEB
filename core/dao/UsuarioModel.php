@@ -219,7 +219,7 @@ class UsuarioModel
         $rawQuery = "UPDATE funcionario SET
         uf_fun = '$uf',
         cid_fun = '$cid',
-        end_fun = '$end',
+        end_fun = '$end',   
         tel_fun = '$tel',
         id_cargo = $cargo,
         sal_fun = $sal
@@ -262,7 +262,7 @@ class UsuarioModel
         f.dt_nasc_fun AS 'data nascismento',
         f.dt_admin AS 'data admissão',
         if(f.temp_ativo_fun,'Sim','Não') AS 'temporario',
-        f.dt_rec_fun AS 'data recisão'
+        f.dt_rec_fun AS 'data recisão' -- Importante sempre ser o último a ser chamado.
     FROM
         funcionario f
             INNER JOIN
@@ -284,7 +284,7 @@ class UsuarioModel
             echo "<td>" . $row['cpf'] . "</td>";
             echo "<td>" . $row['telefone'] . "</td>";
             echo "<td>" . $row['cargo'] . "</td>";
-            echo "<td>" . $row['salario'] . "</td>";
+            echo "<td> R$ " . number_format($row['salario'], 2) . "</td>";
             echo "
             <td>                               
             <!-- Button Trigger Modal -->
@@ -418,9 +418,13 @@ class UsuarioModel
         <div class=\"modal-body\">";
 
             foreach ($row as $att => $attribute) {
+
+                if ($att === 'salario') $attribute = 'R$ ' . number_format($attribute, 2);
+                if ($att === 'data recisão' && ($attribute == null || $attribute == ""  || $attribute == "0000-00-00")) break;
+
                 echo "<div class=\"modal-item\">
                     <h5>" . (ucfirst($att)) . "</h5>
-                    <p class=\"text-muted\">" . $attribute . "</p>
+                    <p class=\"text-muted\">" .  $attribute . "</p>
                 </div>";
             }
 

@@ -7,6 +7,15 @@ include_once 'includes/headers/header-styles.php';
 
 // Default Navbar
 include_once 'includes/navbar/navbar-main.php';
+
+if (isset($_GET['mat']) && isset($_GET['name'])) {
+    $mat = $_GET['mat'];
+    $name = $_GET['name'];
+} else {
+    $mat = $_SESSION['user_id'];
+    $name = $_SESSION['user_nome'];
+}
+
 ?>
 
 <title>Job'Smart - Alterar Senha </title>
@@ -36,24 +45,21 @@ include_once 'includes/navbar/navbar-main.php';
             <div class="card mx-auto w-50">
                 <div class="card-header">Atualizar Senha </div>
                 <div class="card-body">
-                    <form id="password" method="POST" autocomplete="off"
-                        action="core/dll/UsuarioControllerUpdatePassword.php">
+                    <div class="mb-2 required-text"> <span class="text-danger"> * </span> Campos obrigários </div>
+                    <form id="password" method="POST" autocomplete="off" action="core/dll/UsuarioControllerUpdatePassword.php">
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="id" name="id" class="form-control" placeholder="ID"
-                                            readonly autofocus="autofocus" value="<?php echo $_SESSION['user_id'] ?>">
+                                        <input type="text" id="id" name="id" class="form-control" placeholder="ID" readonly autofocus="autofocus" value="<?php echo $mat  ?>">
                                         <label for="id">ID</label>
                                     </div>
                                 </div>
                                 <div class="col-md-10">
                                     <div class="form-group">
                                         <div class="form-label-group">
-                                            <input type="text" id="nome" name="nome" class="form-control"
-                                                placeholder="Nome" value="<?php echo $_SESSION['user_nome'] ?>"
-                                                readonly>
+                                            <input type="text" id="nome" name="nome" class="form-control" placeholder="Nome" value="<?php echo $name ?>" readonly>
                                             <label for="nome">Nome </label>
                                         </div>
                                     </div>
@@ -65,24 +71,21 @@ include_once 'includes/navbar/navbar-main.php';
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaAtual" autocomplete="false" name="senhaAtual"
-                                    class="form-control" placeholder="Senha Atual">
+                                <input type="password" id="senhaAtual" autocomplete="false" name="senhaAtual" class="form-control" placeholder="Senha Atual">
                                 <label for="senhaAtual">Senha Atual</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaNova" autocomplete="off" name="senhaNova"
-                                    class="form-control" placeholder="Nova Senha">
+                                <input type="password" id="senhaNova" autocomplete="off" name="senhaNova" class="form-control" placeholder="Nova Senha">
                                 <label for="senhaNova">Nova Senha</label>
                             </div>
                         </div>
 
                         <div class="form-group">
                             <div class="form-label-group">
-                                <input type="password" id="senhaNovaConfirmacao" autocomplete="off"
-                                    name="senhaNovaConfirmacao" class="form-control" placeholder="Nova Senha">
+                                <input type="password" id="senhaNovaConfirmacao" autocomplete="off" name="senhaNovaConfirmacao" class="form-control" placeholder="Nova Senha">
                                 <label for="senhaNovaConfirmacao"> Confirmar Nova Senha</label>
                             </div>
                         </div>

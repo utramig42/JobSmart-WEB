@@ -23,3 +23,17 @@ select:required:focus {
   max-width: 150px;
   padding-bottom: 3px;
 }
+
+.btn-password {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  margin-top: -2%;
+  width: 100%;
+}
+
+@media (max-width: 762px) {
+  .btn-password {
+    justify-content: flex-start;
+  }
+}

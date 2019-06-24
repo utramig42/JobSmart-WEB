@@ -56,7 +56,15 @@ $data = $userController->loadById($_GET['matricula'])[0];
             </ol>
 
             <div class="card mx-auto">
-                <div class="card-header">Dados do usuário</div>
+                <div class="card-header"> <i class="fa fa-user" aria-hidden="true"></i> Dados do usuário
+                    <div class="btn-password ">
+                        <form action="atualizarSenha.php" method="GET">
+                            <input type="hidden" value="<?php echo $data['nm_fun'] ?>" name="name">
+                            <input type="hidden" value="<?php echo $data['mat_fun'] ?>" name="mat">
+                            <button type="submit" class="btn btn-success"> Atualizar Senha </button>
+                        </form>
+                    </div>
+                </div>
                 <div class="card-body">
                     <div class="mb-2 required-text"> <span class="text-danger"> * </span> Campos obrigários </div>
                     <form id="user" method="post" action="core/dll/UsuarioControllerUpdate.php">

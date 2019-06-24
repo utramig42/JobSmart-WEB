@@ -395,7 +395,7 @@ $(document).ready(function() {
           labels: labels,
           datasets: [
             {
-              label: labelMaior,
+              label: "Vendas",
               backgroundColor: Color.uniformColor(),
               borderColor: Color.uniformColor(),
               data: dados

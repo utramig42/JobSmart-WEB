@@ -8,25 +8,29 @@ class UsuarioControllerRemove
 {
     public function __construct()
     {
-
-        $this->user = new UsuarioModel();
+        // Deve seguir estritamente esta ordem na chamada.
         $this->setDataGeneral();
         $this->setDataModel();
         $this->user->remove($this->user);
     }
 
-
-    public function setDataGeneral()
+    /**
+     * Definindo o objeto.
+     * @access protected 
+     */
+    protected function setDataGeneral()
     {
-
-        $this->matricula = isset($_POST['mat']) ? $_POST['mat'] : '';
-        $this->data = isset($_POST['data']) ? $_POST['data'] : '';
         $this->matricula = isset($_POST['mat']) ? $_POST['mat'] : '';
         $this->data = isset($_POST['data']) ? $_POST['data'] : '';
     }
 
-    public function setDataModel()
+    /**
+     * Definindo os dados a serem desabilitados.
+     * @access private 
+     */
+    private function setDataModel()
     {
+        $this->user = new UsuarioModel();
         $this->user->setDataRecisao($this->data);
         $this->user->setMatricula($this->matricula);
     }

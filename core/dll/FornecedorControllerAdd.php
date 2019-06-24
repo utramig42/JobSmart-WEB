@@ -8,7 +8,6 @@ class FornecedorControllerAdd
 {
     public function __construct()
     {
-
         $this->addProvider();
         $this->endereco = $this->setEndereco();
         $this->provider->insert($this->provider);
@@ -18,14 +17,19 @@ class FornecedorControllerAdd
     {
 
         $this->razaoSocial = isset($_POST['razao-social']) ? $_POST['razao-social'] : '';
+
         $this->cnpj = isset($_POST['cnpj']) ? $_POST['cnpj'] : '';
-        $this->nome = isset($_POST['nome-fantasia']) ? $_POST['nome-fantasia'] : '';
+
+        $this->nome = $_POST['nome-fantasia'] != "" ? $_POST['nome-fantasia'] : $this->razaoSocial;
+
         $this->uf = isset($_POST['uf']) ? $this->setEstado($_POST['uf']) : '';
+
         $this->cidade = isset($_POST['cidade']) ? $_POST['cidade'] : '';
-        $this->contato = isset($_POST['nome-contato']) ? $_POST['nome-contato'] : '';
-        $this->fixo = isset($_POST['isset']) ? $_POST['isset'] : '';
+
+        $this->contato = $_POST['nome-contato'] != "" ? $_POST['nome-contato'] : 'Não informado';
+
         $this->cel = isset($_POST['celular']) ? $_POST['celular'] : '';
-        $this->cnpj = preg_replace('/[.\/-]/', '', $this->cnpj);
+        $this->fixo = $_POST['fixo'] != "" ? $_POST['fixo'] : 'Não informado';
     }
 
     // Definindo Endereço 

@@ -30,6 +30,8 @@ class FormController {
             this.formEl.querySelector("#bairro")
           );
         });
+
+        console.log(this.formEl.querySelector("#logradouro").value);
       }
   }
 

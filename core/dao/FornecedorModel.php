@@ -282,7 +282,7 @@ class FornecedorModel
             echo "<td>" . $row['CNPJ'] . "</td>";
             echo "<td>" . $row['nome fantasia'] . "</td>";
             echo "<td>" . $row['contato'] . "</td>";
-            echo "<td>" . $row['telefone fixo'] . "</td>";
+            echo "<td>" . $row['telefone celular'] . "</td>";
             echo "<td>" . $row['cidade'] . "/" . $row['estado'] . "</td>";
             echo "
             <td>                               
