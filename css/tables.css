@@ -5,13 +5,13 @@ th {
 /* Barra de Rolagem do modal */
 .modal-open .modal {
   /* Retirando o comportamento padrão do Bootstrap*/
-  /* overflow-x: hidden;
-  overflow-y: hidden; */
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 .modal-dialog {
   height: 90%;
-  /* overflow-y: scroll;
-  overflow-x: hidden; */
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .modal-dialog::-webkit-scrollbar {

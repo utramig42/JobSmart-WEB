@@ -5,7 +5,7 @@ export default (function() {
    *
    * @param	{String}	type	O tipo de arredondamento.
    * @param	{Number}	value	O número a arredondar.
-   * @param	{Integer}	exp		O expoente (o logaritmo decimal da base pretendida).
+   * @param	{Number}	exp		O expoente (o logaritmo decimal da base pretendida).
    * @returns	{Number}			O valor depois de ajustado.
    */
   function decimalAdjust(type, value, exp) {

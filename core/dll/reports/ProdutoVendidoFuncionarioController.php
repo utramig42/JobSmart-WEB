@@ -8,10 +8,10 @@ $result = array();
 
 $users = $mysql->select("SELECT mat_fun as 'ID' from funcionario");
 
-for ($i = 1; $i <= 12; $i++) {
-    foreach ($users as $user) {
 
-        $query = "SELECT 
+foreach ($users as $user) {
+
+    $query = "SELECT 
         nm_fun as 'nome',
         nm_prod as 'produto',
         SUM(quant_itens_venda) as 'maior'
@@ -21,14 +21,14 @@ for ($i = 1; $i <= 12; $i++) {
         INNER JOIN estoque e ON it.id_est = e.id_est
         INNER JOIN produto p ON p.id_prod = e.id_prod
         INNER JOIN funcionario f ON v.mat_fun = f.mat_fun
-        WHERE MONTH(dt_venda) = $i
+        WHERE YEAR(dt_venda) = YEAR(now())
         AND v.mat_fun = '" . $user['ID'] . "'
-        GROUP BY v.mat_fun,it.id_est
+        GROUP BY it.id_est
         ORDER BY SUM(quant_itens_venda) DESC LIMIT 1;";
 
-        $result[] = $mysql->select($query);
-    }
+    $result[] = $mysql->select($query);
 }
+
 
 $data = array();
 

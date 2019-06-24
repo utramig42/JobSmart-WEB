@@ -81,10 +81,11 @@ include_once 'includes/navbar/navbar-main.php';
             <div class="card mt-5 mb-3">
                 <div class="card-header">
                     <i class="fas fa-chart-bar"></i>
-                    Número de vendas anuais por funcionário
+                    Produtos mais vendidos por funcionário
+
                 </div>
                 <div class="card-body">
-                    <canvas id="funcionario-anual" width="100%" height="30"></canvas>
+                    <canvas id="produto-funcionario-venda-mensal" width="100%" height="30"></canvas>
                 </div>
                 <div class="card-footer small text-muted">
                     Atualizado em <?php echo date('d/m/Y H:i:s') ?>
@@ -112,10 +113,12 @@ include_once 'includes/navbar/navbar-main.php';
                     <div class="card mt-5 mb-3">
                         <div class="card-header">
                             <i class="fas fa-chart-bar"></i>
-                            Produtos mais vendidos por funcionário
+
                         </div>
                         <div class="card-body">
-                            <canvas id="produto-funcionario-venda-mensal" width="100%" height="30"></canvas>
+                            Número de vendas anuais por funcionário
+                            <canvas id="funcionario-anual" width="100%" height="30"></canvas>
+
                         </div>
                         <div class="card-footer small text-muted">
                             Atualizado em <?php echo date('d/m/Y H:i:s') ?>

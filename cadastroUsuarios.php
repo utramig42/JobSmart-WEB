@@ -51,13 +51,13 @@ $usuarioModel = new UsuarioModel();
             <div class="card mx-auto">
                 <div class="card-header">Dados do funcionário</div>
                 <div class="card-body">
+                    <div class="mb-2 required-text"> <span class="text-danger"> * </span> Campos obrigários </div>
                     <form id="user" method="POST" action="core/dll/UsuarioControllerAdd.php">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input required type="text" id="nome" name="nome" class="form-control"
-                                            placeholder="Nome Completo" autofocus="autofocus">
+                                        <input required type="text" id="nome" name="nome" class="form-control" placeholder="Nome Completo" autofocus="autofocus">
                                         <label for="nome">Nome Completo</label>
                                     </div>
                                 </div>
@@ -69,9 +69,9 @@ $usuarioModel = new UsuarioModel();
                                             <?php if ($data['id_cargo']) ?>
 
                                             <?php foreach ($usuarioModel->listCargos() as $cargo) : ?>
-                                            <option value="<?php echo $cargo['id_cargo'] ?>">
-                                                <?php echo $cargo['nm_cargo'] ?>
-                                            </option>
+                                                <option value="<?php echo $cargo['id_cargo'] ?>">
+                                                    <?php echo $cargo['nm_cargo'] ?>
+                                                </option>
                                             <?php endforeach ?>
                                         </select>
                                         <label for="cargo" class="d-none">Cargo</label>
@@ -85,24 +85,21 @@ $usuarioModel = new UsuarioModel();
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input required type="text" id="salario" name="salario" class="form-control"
-                                            placeholder="Salário">
+                                        <input required type="text" id="salario" name="salario" class="form-control" placeholder="Salário">
                                         <label for="salario">Salário</label>
                                     </div>
 
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input required type="text" id="cpf" name="cpf" class="form-control"
-                                            placeholder="CPF">
+                                        <input required type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF">
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input required type="date" id="data-nascimento" name="data-nascimento"
-                                            class="form-control" placeholder="Data de nascimento">
+                                        <input required type="date" id="data-nascimento" name="data-nascimento" class="form-control" placeholder="Data de nascimento">
                                         <label for="data-nascimento">Data de nascimento</label>
                                     </div>
                                 </div>
@@ -114,16 +111,16 @@ $usuarioModel = new UsuarioModel();
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input required type="text" id="telefone" name="telefone" class="form-control"
-                                            placeholder="Telefone">
+                                        <input required type="text" id="telefone" minlength="14" maxlength="15" name="telefone" class="form-control" placeholder="Telefone">
                                         <label for="telefone">Telefone</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="cep" name="cep" class="form-control" placeholder="Cep">
+                                        <input type="text" id="cep" maxlength="8" name="cep" class="form-control" placeholder="Cep">
                                         <label for="cep">Cep</label>
+                                        <span style="font-size: 0.8rem" class="pl-2"> <i class="fas fa-caret-up text-danger"></i> Digite apenas os números </span>
                                     </div>
                                 </div>
                             </div>
@@ -133,24 +130,21 @@ $usuarioModel = new UsuarioModel();
                             <div class="form-row">
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input type="text" id="logradouro" name="logradouro" class="form-control"
-                                            placeholder="Logradouro">
+                                        <input type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro">
                                         <label for="logradouro">Logradouro</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="number" id="numero" name="numero" class="form-control"
-                                            placeholder="Número">
-                                        <label for="numero">Número</label>
+                                        <input type="number" id="numero" name="numero" class="form-control" placeholder="Nº">
+                                        <label for="numero">Nº</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="complemento" name="complemento" class="form-control"
-                                            placeholder="Complemento">
+                                        <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Complemento">
                                         <label for="complemento">Complemento</label>
                                     </div>
                                 </div>
@@ -179,8 +173,7 @@ $usuarioModel = new UsuarioModel();
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="bairro" name="bairro" class="form-control"
-                                            placeholder="Bairro">
+                                        <input type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro">
                                         <label for="bairro">Bairro</label>
                                     </div>
                                 </div>
@@ -198,8 +191,7 @@ $usuarioModel = new UsuarioModel();
 
                                 <div class="col-md-4 d-none" id="parent">
                                     <div class="form-group form-label-group">
-                                        <input type="date" id="dataResc" name="dataResc" class="form-control"
-                                            placeholder="Data do fim do contrato" />
+                                        <input type="date" id="dataResc" name="dataResc" class="form-control" placeholder="Data do fim do contrato" />
                                         <label for="dataResc">Data do fim do contrato</label>
                                     </div>
                                 </div>

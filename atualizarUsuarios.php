@@ -56,40 +56,44 @@ $data = $userController->loadById($_GET['matricula'])[0];
             </ol>
 
             <div class="card mx-auto">
-                <div class="card-header">Dados do usuário</div>
+                <div class="card-header"> <i class="fa fa-user" aria-hidden="true"></i> Dados do usuário
+                    <div class="btn-password ">
+                        <form action="atualizarSenha.php" method="GET">
+                            <input type="hidden" value="<?php echo $data['nm_fun'] ?>" name="name">
+                            <input type="hidden" value="<?php echo $data['mat_fun'] ?>" name="mat">
+                            <button type="submit" class="btn btn-success"> Atualizar Senha </button>
+                        </form>
+                    </div>
+                </div>
                 <div class="card-body">
+                    <div class="mb-2 required-text"> <span class="text-danger"> * </span> Campos obrigários </div>
                     <form id="user" method="post" action="core/dll/UsuarioControllerUpdate.php">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" readonly id="matricula" name="matricula" class="form-control"
-                                            placeholder="Matrícula" value="<?php echo $data['mat_fun'] ?>" readonly>
+                                        <input type="text" readonly id="matricula" name="matricula" class="form-control" placeholder="Matrícula" value="<?php echo $data['mat_fun'] ?>" readonly>
                                         <label for="matricula">Matrícula</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-6">
                                     <div class="form-label-group">
-                                        <input required type="text" id="nome" name="nome" class="form-control"
-                                            placeholder="Nome completo" readonly value="<?php echo $data['nm_fun'] ?>">
+                                        <input required type="text" id="nome" name="nome" class="form-control" placeholder="Nome completo" readonly value="<?php echo $data['nm_fun'] ?>">
                                         <label for="nome">Nome Completo</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input required type="text" id="cpf" name="cpf" class="form-control"
-                                            placeholder="CPF" readonly value="<?php echo $data['cpf_fun'] ?>">
+                                        <input required type="text" id="cpf" name="cpf" class="form-control" placeholder="CPF" readonly value="<?php echo $data['cpf_fun'] ?>">
                                         <label for="cpf">CPF</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input required type="date" id="data-nascimento" name="data-nascimento"
-                                            class="form-control" placeholder="Data de nascimento" readonly
-                                            value="<?php echo $data['dt_nasc_fun']  ?>">
+                                        <input required type="date" id="data-nascimento" name="data-nascimento" class="form-control" placeholder="Data de nascimento" readonly value="<?php echo $data['dt_nasc_fun']  ?>">
                                         <label for="data-nascimento">Data de nascimento</label>
                                     </div>
                                 </div>
@@ -103,8 +107,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
 
 
-                                        <input type="text" id="uf" name="uf" class="form-control" placeholder="UF"
-                                            required value="<?php echo $data['uf_fun'] ?>">
+                                        <input type="text" id="uf" name="uf" class="form-control" placeholder="UF" required value="<?php echo $data['uf_fun'] ?>">
                                         <label for="uf">Estado</label>
 
 
@@ -117,8 +120,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
                                     <div class="form-label-group">
 
 
-                                        <input type="text" id="cidade" name="cidade" class="form-control"
-                                            placeholder="Cidade" required value="<?php echo $data['cid_fun'] ?>">
+                                        <input type="text" id="cidade" name="cidade" class="form-control" placeholder="Cidade" required value="<?php echo $data['cid_fun'] ?>">
                                         <label for="cidade">Cidade</label>
 
                                     </div>
@@ -126,8 +128,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-7">
                                     <div class="form-label-group">
-                                        <input type="text" id="endereco" name="endereco" class="form-control"
-                                            placeholder="Endereço" required value="<?php echo $data['end_fun'] ?>">
+                                        <input type="text" id="endereco" name="endereco" class="form-control" placeholder="Endereço" required value="<?php echo $data['end_fun'] ?>">
                                         <label for="endereco">Endereço</label>
                                     </div>
                                 </div>
@@ -140,8 +141,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input required type="text" id="telefone" name="telefone" class="form-control"
-                                            placeholder="Telefone" required value="<?php echo $data['tel_fun'] ?>">
+                                        <input required type="text" id="telefone" maxlength="15" name="telefone" class="form-control" placeholder="Telefone" required value="<?php echo $data['tel_fun'] ?>">
                                         <label for="telefone">Telefone</label>
                                     </div>
                                 </div>
@@ -150,9 +150,9 @@ $data = $userController->loadById($_GET['matricula'])[0];
                                     <div class="form-label-group">
                                         <select id="cargo" name="cargo" class="form-control">
                                             <?php foreach ($userController->listCargos() as $cargo) : ?>
-                                            <option value="<?php echo $cargo['id_cargo'] ?>">
-                                                <?php echo $cargo['nm_cargo'] ?>
-                                            </option>
+                                                <option value="<?php echo $cargo['id_cargo'] ?>">
+                                                    <?php echo $cargo['nm_cargo'] ?>
+                                                </option>
                                             <?php endforeach ?>
                                         </select>
                                         <label for="cargo" class="d-none">Cargo</label>
@@ -166,17 +166,14 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input required type="text" id="salario" name="salario" class="form-control"
-                                            placeholder="Salário" required value="<?php echo $data['sal_fun'] ?>">
+                                        <input required type="text" id="salario" name="salario" class="form-control" placeholder="Salário" required value="<?php echo $data['sal_fun'] ?>">
                                         <label for="salario">Salário</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="date" readonly id="data-cadastro" id="data-cadastro"
-                                            name="data-cadastro" class="form-control" placeholder="Data do Cadastro"
-                                            required value="<?php echo date('Y-m-d', strtotime($data['dt_admin'])); ?>">
+                                        <input type="date" readonly id="data-cadastro" id="data-cadastro" name="data-cadastro" class="form-control" placeholder="Data do Cadastro" required value="<?php echo date('Y-m-d', strtotime($data['dt_admin'])); ?>">
                                         <label for="data-cadastro">Data do Cadastro</label>
                                     </div>
                                 </div>
@@ -184,9 +181,7 @@ $data = $userController->loadById($_GET['matricula'])[0];
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="date" id="dataresc" name="dataresc" readonly class="form-control"
-                                            placeholder="Data Termino de contrato"
-                                            value="<?php echo $data['dt_rec_fun'] ?>" required>
+                                        <input type="date" id="dataresc" name="dataresc" readonly class="form-control" placeholder="Data Termino de contrato" value="<?php echo $data['dt_rec_fun'] ?>" required>
                                         <label for="dataresc">Data Termino de contrato</label>
                                     </div>
                                 </div>
@@ -214,7 +209,7 @@ include_once 'includes/footers/footer-scripts.php';
 <script src="./js/utils/IbgeUtils.js"></script>
 <script src="./js/controller/FormController.js"></script>
 <script>
-window.form = new FormController(document.querySelector('#user'));
+    window.form = new FormController(document.querySelector('#user'));
 </script>
 <?php
 include_once 'includes/footers/footer-final.php';

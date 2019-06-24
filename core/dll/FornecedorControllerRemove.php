@@ -2,13 +2,27 @@
 if (file_exists('../dao/Connection.php')) require_once '../dao/Connection.php';
 if (file_exists('../dao/FornecedorModel.php')) require_once '../dao/FornecedorModel.php';
 
+new FornecedorControllerRemove();
 
-$sql = new Connection();
+class FornecedorControllerRemove
+{
 
+    public function __construct()
+    {
+        // Deve seguir estritamente esta ordem na chamada.
+        $this->setID();
+        $this->setObject();
+        $this->provider->remove($this->provider);
+    }
 
-$id = isset($_POST['id']) ? $_POST['id'] : '';
-$data = isset($_POST['data']) ? $_POST['data'] : '';
+    private function setID()
+    {
+        $this->id = isset($_POST['id']) ? $_POST['id'] : '';
+    }
 
-$provider = new FornecedorModel();
-$provider->setId($id);
-$provider->remove($provider);
+    protected function setObject()
+    {
+        $this->provider = new FornecedorModel();
+        $this->provider->setId($this->id);
+    }
+}

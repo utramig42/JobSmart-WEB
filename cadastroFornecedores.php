@@ -45,21 +45,20 @@ if ($_SESSION['user_profile'] == 3) {
             <div class="card mx-auto">
                 <div class="card-header">Dados do fornecedor</div>
                 <div class="card-body">
+                    <div class="mb-2 required-text"> <span class="text-danger"> * </span> Campos obrigários </div>
                     <form id="provider" method="POST" action="core/dll/FornecedorControllerAdd.php">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input required type="text" id="razao-social" name="razao-social"
-                                            class="form-control" placeholder="Razão Social" autofocus="autofocus">
+                                        <input required type="text" id="razao-social" name="razao-social" class="form-control" placeholder="Razão Social" autofocus="autofocus">
                                         <label for="razao-social">Razão Social</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input required type="text" id="cnpj" name="cnpj" class="form-control"
-                                            placeholder="CNPJ">
+                                        <input required type="text" id="cnpj" name="cnpj" class="form-control" placeholder="CNPJ">
                                         <label for="cnpj">CNPJ</label>
                                     </div>
                                 </div>
@@ -70,8 +69,7 @@ if ($_SESSION['user_profile'] == 3) {
                             <div class="form-row">
                                 <div class="col-md-8">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome-fantasia" name="nome-fantasia" class="form-control"
-                                            placeholder="Nome Fantasia">
+                                        <input type="text" id="nome-fantasia" name="nome-fantasia" class="form-control" placeholder="Nome Fantasia">
                                         <label for="nome-fantasia">Nome Fantasia</label>
                                     </div>
                                 </div>
@@ -100,39 +98,35 @@ if ($_SESSION['user_profile'] == 3) {
                             <div class="form-row">
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input required type="number" id="cep" name="cep" class="form-control"
-                                            placeholder="CEP">
+                                        <input required type="number" id="cep" name="cep" class="form-control" placeholder="CEP" maxlength="8">
                                         <label for="cep">CEP</label>
+                                        <span style="font-size: 0.8rem" class="pl-2"> <i class="fas fa-caret-up text-danger"></i> Digite apenas os números </span>
                                     </div>
                                 </div>
                                 <div class="col-md-5">
                                     <div class="form-label-group">
-                                        <input required type="text" id="logradouro" name="logradouro"
-                                            class="form-control" placeholder="Logradouro">
+                                        <input required type="text" id="logradouro" name="logradouro" class="form-control" placeholder="Logradouro">
                                         <label for="logradouro">Logradouro</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-1">
                                     <div class="form-label-group">
-                                        <input required type="number" id="numero" name="numero" class="form-control"
-                                            placeholder="Número">
-                                        <label for="numero">Número</label>
+                                        <input required type="number" id="numero" name="numero" class="form-control" placeholder="Nº">
+                                        <label for="numero">Nº</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input type="text" id="complemento" name="complemento" class="form-control"
-                                            placeholder="Complemento">
+                                        <input type="text" id="complemento" name="complemento" class="form-control" placeholder="Complemento">
                                         <label for="complemento">Complemento</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-2">
                                     <div class="form-label-group">
-                                        <input required type="text" id="bairro" name="bairro" class="form-control"
-                                            placeholder="Bairro">
+                                        <input required type="text" id="bairro" name="bairro" class="form-control" placeholder="Bairro">
                                         <label for="bairro">Bairro</label>
                                     </div>
                                 </div>
@@ -145,24 +139,21 @@ if ($_SESSION['user_profile'] == 3) {
                             <div class="form-row">
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="nome-contato" name="nome-contato" class="form-control"
-                                            placeholder="Nome do Contato">
+                                        <input type="text" id="nome-contato" name="nome-contato" class="form-control" placeholder="Nome do Contato">
                                         <label for="nome-contato">Nome do Contato</label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input type="text" id="fixo" name="fixo" class="form-control"
-                                            placeholder="Telefone Fixo">
+                                        <input type="text" id="fixo" name="fixo" maxlength="14" minlength="14" class="form-control" placeholder="Telefone Fixo">
                                         <label for="fixo"> Telefone Fixo </label>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="form-label-group">
-                                        <input required type="text" id="celular" name="celular" class="form-control"
-                                            placeholder="Telefone Celular">
+                                        <input required type="text" id="celular" maxlength="15" minlength="15" name="celular" class="form-control" placeholder="Telefone Celular">
                                         <label for="celular">Telefone Celular</label>
                                     </div>
                                 </div>
@@ -189,9 +180,9 @@ include_once 'includes/footers/footer-scripts.php';
 <script src="./js/utils/CepUtils.js"></script>
 <script src="./js/controller/FormController.js"></script>
 <script>
-const form = document.querySelector("#provider");
-window.form = new FormController(form);
+    const forma = document.querySelector("#provider");
+    window.form = new FormController(forma);
 </script>
 <?php
 include_once 'includes/footers/footer-final.php';
-?>
+?>w
