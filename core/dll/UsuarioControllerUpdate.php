@@ -14,7 +14,7 @@ class UsuarioControllerUpdate
         $this->setGeneralData();
 
         // Define o objeto e seus atributos.
-        $this->thisObject();
+        $this->setObject();
 
         // Manda os dados para serem atualizados no BD.
         $this->user->update($this->user);
@@ -24,7 +24,7 @@ class UsuarioControllerUpdate
      * Define o objeto do model e o chama.
      * @access public
      */
-    public function thisObject()
+    public function setObject()
     {
         $this->user = new UsuarioModel();
         $this->user->setMatricula($this->matricula);

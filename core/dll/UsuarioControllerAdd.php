@@ -50,7 +50,7 @@ class UsuarioControllerAdd
     private function isTemp()
     {
 
-        $this->temp = isset($_POST['dataResc']) ? 1 : 0;
+        $this->temp = $_POST['dataResc'] == null && $_POST['dataResc'] == ''  ? 0 : 1;
         $this->dataRes = $_POST['dataResc'] == null && $_POST['dataResc'] == ''  ? null : $_POST['dataResc'];
     }
 
