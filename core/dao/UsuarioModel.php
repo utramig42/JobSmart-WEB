@@ -244,11 +244,29 @@ class UsuarioModel
         header('location: ../../usuarios.php');
     }
 
-    public function getUsersPagination()
-    { }
-
-    public function getAllUsers($pagesSql = 0, $maxItens = 10): array
+    public function numberOfusers()
     {
+        return $this->Sql->select('SELECT count(mat_fun) as "num" FROM funcionario')[0]['num'];
+    }
+
+    public function listOptionsUsers()
+    {
+        $rows = $this->getAllUsers();
+        foreach ($rows as $row) {
+
+            $id = $row['matricula'];
+            $name = $row['nome'];
+
+            echo "<option value=\"$id\"> $name </option>";
+        }
+    }
+
+
+    public function getAllUsers($pagesSql = 0, $maxItens = 0): array
+    {
+
+        if ($maxItens == 0) $maxItens = $this->numberOfusers();
+
         $command = "SELECT 
         f.mat_fun AS 'matricula',
         c.nm_cargo AS 'cargo',

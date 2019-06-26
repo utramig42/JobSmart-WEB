@@ -12,6 +12,7 @@ venda v
     INNER JOIN
 funcionario f ON v.mat_fun = f.mat_fun
 WHERE
+
 year(dt_venda) = year(now())
 GROUP BY v.mat_fun";
 

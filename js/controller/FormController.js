@@ -36,7 +36,7 @@ class FormController {
   }
 
   /**
-   *  
+   * Função para iniciar as mascaras dos inputs.
    */
   initMaskInputs() {
     if (this.formEl.querySelector("#cpf")) {
@@ -93,6 +93,28 @@ class FormController {
   }
 
   /**
+   * Criado para Validação do formulario de forma geral.
+   * @param {Event} event Com os dados necessarios para a validação do formulário.
+   */
+  validationForm(event) {
+    event.preventDefault(); // Não enviar os dado, o comportamento padrão.
+
+    if (this.validationSelects().length == 0) {
+      this.formEl.submit(); // Pode enviar...
+    } else {
+      this.validationSelects().forEach(input => {
+        // Colorir as bordas que não estão atendendo as condições de vermelho.
+        input.css({ borderColor: "red" });
+
+        input.addEventListener("focus", () => {
+          // Quando o úsuario focar em um campo em vermelho, o retorne para a cor original.
+          input.css({ borderColor: "#ced4da" });
+        });
+      });
+    }
+  }
+
+  /**
    * Criado para retornar os campos que necessitam de validação
    * @returns {Array} retorna um array com os inputs a serem validados.
    */
@@ -109,5 +131,49 @@ class FormController {
     const selects = Array.from(this.formEl.querySelectorAll("[required]"));
     const invalidateSelects = selects.filter(select => select.value == "");
     return [...invalidateSelects, ...this.validationInputs()];
+  }
+
+  /**
+   * Recebe um valor e retorna se e CPF ou CNPJ
+   *
+   * @param valor string/numero referente ao CPF ou CNPJ a ser verificado
+   * @returns {string|boolean} informando se o valor passado corresponde a um CPF ou CNPJ
+   */
+  verificaCpfCnpj(valor) {
+    valor = valor.toString();
+    valor = valor.replace(/[^0-9]/g, "");
+
+    if (valor.length === 11) {
+      return "CPF";
+    } else if (valor.length === 14) {
+      return "CNPJ";
+    } else {
+      return false;
+    }
+  }
+
+  /**
+   * Recebe um valor e aplica a respectiva mascara.
+   *
+   * @param valor string/numero referente a CPF ou CNPJ a ser formatado
+   * @returns {string} do valor passado como parametro com a respectiva mascara
+   */
+  formataCpfCnpj(valor) {
+    let formatado;
+
+    if (this.verificaCpfCnpj(valor) === "CPF") {
+      formatado = valor.substr(0, 3) + ".";
+      formatado += valor.substr(3, 3) + ".";
+      formatado += valor.substr(6, 3) + "-";
+      formatado += valor.substr(9, 2) + "";
+    } else if (this.verificaCpfCnpj(valor) === "CNPJ") {
+      formatado = valor.substr(0, 2) + ".";
+      formatado += valor.substr(2, 3) + ".";
+      formatado += valor.substr(5, 3) + "/";
+      formatado += valor.substr(8, 4) + "-";
+      formatado += valor.substr(12, 14) + "";
+    }
+
+    return formatado;
   }
 }

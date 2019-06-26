@@ -22,8 +22,7 @@ $dashboard->loadModal();
 
 <title>Job'Smart - Administrativo </title>
 <!-- Table Style CSS -->
-<link rel="stylesheet" href="css/tables.css">
-
+<!-- <link rel="stylesheet" href="css/tables.css"> -->
 <div id="wrapper">
 
     <?php
