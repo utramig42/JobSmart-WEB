@@ -32,7 +32,8 @@ class VendaModel
 
         foreach ($result as  $res) {
             echo '<tr>';
-            foreach ($res as $value) {
+            foreach ($res as $key => $value) {
+                if ($key == 'valor') $value = number_format($value, 2);
                 echo "<td>$value</td>";
             }
 
@@ -75,6 +76,8 @@ class VendaModel
                 forma_pagamento f ON f.id_forma = p.id_forma
             WHERE id_venda =" . $value['ID'];
 
+
+
             $dataSecond = $this->Sql->select($rawQuery);
             $dataTree = $this->Sql->select($query);
             echo '
@@ -91,6 +94,7 @@ class VendaModel
             <div class="modal-body">';
 
             foreach ($value as $key =>  $data) {
+                if ($key == 'valor') $data = number_format($data, 2);
                 echo "
                 <div class=\"modal-item\">
                     <h5>" . (ucfirst($key)) . "</h5>
@@ -118,6 +122,7 @@ class VendaModel
             echo "<ul>";
             foreach ($dataTree as  $tree) {
                 foreach ($tree as $segredo => $tesouro) {
+                    if ($segredo == 'Valor') $tesouro = number_format($tesouro, 2);
                     echo "<li class=\"text-muted\"><b>" . ucfirst($segredo) . ":</b>  $tesouro </li>";
                 }
                 echo '<hr/>';

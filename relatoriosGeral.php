@@ -138,7 +138,6 @@ include_once 'includes/navbar/navbar-main.php';
                         </div>
                         <div class="card-body">
                             <canvas id="funcionario-anual" width="100%" height="30"></canvas>
-
                         </div>
                         <div class="card-footer small text-muted">
                             Atualizado em <?php echo date('d/m/Y H:i:s') ?>
