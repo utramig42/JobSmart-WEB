@@ -179,19 +179,12 @@ $(document).ready(function() {
     success: function(data) {
       let labels = [];
       let dados = [];
-      let dadosMenor = [];
-      let dadosMaior = [];
-      let labelMenor = [];
-      let labelMaior = [];
+
+
 
       for (let i in data) {
-        labels.push(data[i].mes);
-        labelMenor.push(data[i].menosvendido);
-        labelMaior.push(data[i].maisvendido);
-        dados.push(parseInt(data[i].menor));
-        dados.push(parseInt(data[i].maior));
-        dadosMenor.push(parseInt(data[i].menor));
-        dadosMaior.push(parseInt(data[i].maior));
+        labels.push(data[i].nome);
+        dados.push(parseInt(data[i].quant));
       }
 
       // Bar Chart Example
@@ -202,16 +195,10 @@ $(document).ready(function() {
           labels: labels,
           datasets: [
             {
-              label: labelMaior,
-              backgroundColor: "rgb(57, 99, 168)",
-              borderColor: "rgb(24, 107, 242)",
-              data: dadosMaior
-            },
-            {
-              label: labelMenor,
-              backgroundColor: "rgb(186, 5, 5)",
-              borderColor: "rgb(244, 4, 4)",
-              data: dadosMenor
+              label: 'Produtos fornecidos',
+              backgroundColor: Color.uniformColor(),
+              borderColor: Color.uniformColor(),
+              data: dados
             }
           ]
         },
@@ -255,17 +242,15 @@ $(document).ready(function() {
     }
   });
 
-  let funcionario = document.querySelector(".funcionarios");
-
   $.ajax({
-    url: `./core/dll/reports/VendasFuncionarioAnuaisController.php?id=${
-      funcionario.value
-    }`,
+    url:
+      "./core/dll/reports/VendasFuncionarioAnuaisController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
       let dados = [];
 
+   
       for (let i in data) {
         labels.push(data[i].nome);
         dados.push(parseInt(data[i].vendas));
@@ -307,8 +292,10 @@ $(document).ready(function() {
         labels.push(data[i].mes);
         labelMenor.push(data[i].nomeMenor);
         labelMaior.push(data[i].nomeMaior);
+        
         dados.push(parseInt(data[i].menor));
         dados.push(parseInt(data[i].maior));
+
         dadosMenor.push(parseInt(data[i].menor));
         dadosMaior.push(parseInt(data[i].maior));
       }
@@ -320,13 +307,21 @@ $(document).ready(function() {
           labels: labels,
           datasets: [
             {
-              label: labelMaior,
+              label:  chart,
               backgroundColor: "rgb(57, 99, 168)",
               borderColor: "rgb(24, 107, 242)",
               data: dadosMaior
             },
             {
-              label: labelMenor,
+              label: {      
+                generateLabels: function(chart) {
+                  console.log(chart);
+
+                    return chart.data.labelMaior.map((label)=> {
+                      console.log(label)
+                    });
+                }
+              },
               backgroundColor: "rgb(186, 5, 5)",
               borderColor: "rgb(244, 4, 4)",
               data: dadosMenor
