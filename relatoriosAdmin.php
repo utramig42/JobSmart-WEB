@@ -35,11 +35,21 @@ include_once 'includes/navbar/navbar-main.php';
             <div class="card mt-5 mb-3">
                 <div class="card-header">
                     <i class="fas fa-chart-bar"></i>
-                    Produtos mais vendidos por funcionário
+                    Número de vendas de cada funcionario por produto
+                    <div class="filter">
+                        <select>
+                            <option> Selecione um produto </option>
+                            <?php
+                            require_once 'core/dao/Connection.php';
+                            require_once 'core/dao/ProdutoModel.php';
+                            $product = new ProdutoModel();
+                            $product->listOptionsProducts();
+                            ?>
+                        </select>
+                    </div>
                 </div>
                 <div class="card-body">
                     <canvas id="produto-funcionario-venda-mensal" width="100%" height="30"></canvas>
-
                 </div>
                 <div class="card-footer small text-muted">
                     Atualizado em <?php echo date('d/m/Y H:i:s') ?>
@@ -48,12 +58,11 @@ include_once 'includes/navbar/navbar-main.php';
             <div class="row">
 
 
-
                 <div class="col-md-6">
                     <div class="card mt-5 mb-3">
                         <div class="card-header">
                             <i class="fas fa-chart-bar"></i>
-                            Funcionarios que mais e menos vendem
+                            Funcionarios que mais e menos vendem mensalmente
                         </div>
                         <div class="card-body">
                             <canvas id="top-down-funcionario-venda-mensal" width="100%" height="30"></canvas>
@@ -68,11 +77,9 @@ include_once 'includes/navbar/navbar-main.php';
                     <div class="card mt-5 mb-3">
                         <div class="card-header">
                             <i class="fas fa-chart-bar"></i>
-
                             Número de vendas anuais por funcionário
                         </div>
                         <div class="card-body">
-
                             <canvas id="funcionario-anual" width="100%" height="30"></canvas>
                         </div>
                         <div class="card-footer small text-muted">
@@ -81,7 +88,6 @@ include_once 'includes/navbar/navbar-main.php';
                     </div>
                 </div>
             </div>
-
 
 
 

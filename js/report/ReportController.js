@@ -244,13 +244,12 @@ $(document).ready(function() {
 
   $.ajax({
     url:
-      "./core/dll/reports/VendasFuncionarioAnuaisController.php",
+      "http://localhost/JobSmart-WEB/core/dll/reports/VendasFuncionarioAnuaisController.php",
     method: "GET",
     success: function(data) {
       let labels = [];
       let dados = [];
-
-   
+      
       for (let i in data) {
         labels.push(data[i].nome);
         dados.push(parseInt(data[i].vendas));
@@ -292,10 +291,8 @@ $(document).ready(function() {
         labels.push(data[i].mes);
         labelMenor.push(data[i].nomeMenor);
         labelMaior.push(data[i].nomeMaior);
-        
         dados.push(parseInt(data[i].menor));
         dados.push(parseInt(data[i].maior));
-
         dadosMenor.push(parseInt(data[i].menor));
         dadosMaior.push(parseInt(data[i].maior));
       }
@@ -307,64 +304,38 @@ $(document).ready(function() {
           labels: labels,
           datasets: [
             {
-              label:  chart,
+              label: labelMaior,
               backgroundColor: "rgb(57, 99, 168)",
               borderColor: "rgb(24, 107, 242)",
               data: dadosMaior
             },
             {
-              label: {      
-                generateLabels: function(chart) {
-                  console.log(chart);
-
-                    return chart.data.labelMaior.map((label)=> {
-                      console.log(label)
-                    });
-                }
-              },
+              label: labelMenor,
               backgroundColor: "rgb(186, 5, 5)",
               borderColor: "rgb(244, 4, 4)",
-              data: dadosMenor
+              data: dadosMenor,
             }
           ]
         },
         options: {
-          scales: {
-            xAxes: [
-              {
-                time: {
-                  unit: "date"
-                },
-                gridLines: {
-                  display: true
-                },
-                ticks: {
-                  maxTicksLimit: date.diasNoMes()
-                }
-              }
-            ],
-            yAxes: [
-              {
-                ticks: {
-                  min: Math.round10(
-                    Math.min.apply(Math, dados) -
-                      Math.min.apply(Math, dados) * 0.5,
-                    1
-                  ),
-                  max: Math.ceil10(Math.max.apply(Math, dados), 2),
-                  maxTicksLimit: 10
-                },
-                gridLines: {
-                  color: "rgba(0, 0, 0, .125)",
-                  display: true
-                }
-              }
-            ]
-          },
+          responsive: true,
           legend: {
-            display: false
+              display: false,
+          },
+          tooltips: {
+              callbacks: {
+                
+                label : function(tooltipItem, data) {
+     
+                  let position = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+          
+                  let name = data.datasets[tooltipItem.datasetIndex].label[tooltipItem.index]
+          
+                  return  name + ": " +position + " vendas";
+             }
+              }
           }
-        }
+      }
       });
     },
     error: function(data) {

@@ -66,7 +66,7 @@ include_once 'includes/navbar/navbar-main.php';
                     <div class="card mt-5 mb-3">
                         <div class="card-header">
                             <i class="fas fa-chart-bar"></i>
-                            Mais e Menos Vendidos
+                            Fornecedores
                         </div>
                         <div class="card-body">
                             <canvas id="top-down-venda-mensal" width="100%" height="30"></canvas>
