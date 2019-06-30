@@ -17,8 +17,12 @@ class CepUtils {
         request.onreadystatechange = function () {
             if (this.status === 200) {
                 const respBody = JSON.parse(this.response);
-                logradouroField.value = respBody['logradouro'];
-                bairroField.value = respBody['bairro'];
+                if(respBody['logradouro'] == undefined){
+                    alert('Cep invalido')
+                }else{
+                    logradouroField.value = respBody['logradouro'];
+                    bairroField.value = respBody['bairro'];
+                }
             }
         };
     }

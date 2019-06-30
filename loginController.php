@@ -23,10 +23,12 @@ $query = "SELECT
         cargo c ON f.id_cargo = c.id_cargo
             JOIN
         perfil p ON p.id_perfil = c.id_perfil
-        WHERE f.mat_fun = :matricula
-            AND a.senha_acesso = :senha
+        WHERE f.mat_fun = 10003
+            AND a.senha_acesso = '32'
             AND p.id_perfil BETWEEN 1 AND 3
-            AND p.ativo_perfil = 1";
+            AND p.ativo_perfil = 1
+            AND (f.dt_rec_fun >= now() OR dt_rec_fun IS NULL OR dt_rec_fun  = '0000-00-00');
+";
 
 $users = $sql->select($query, array(
     "matricula" => $matricula,

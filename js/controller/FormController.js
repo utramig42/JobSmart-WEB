@@ -1,7 +1,6 @@
 class FormController {
   constructor(form) {
     this.formEl = form;
-    // this.showRequireds();
     this.Ibge = new IbgeUtils();
     this.ufEl = form.querySelector("#uf");
     this.defineCep();
@@ -24,11 +23,19 @@ class FormController {
     if (this.formEl.querySelector)
       if (this.defineCep()) {
         this.cepEl.addEventListener("change", e => {
+
+
           this.cep.findAddressByCep(
             this.cepEl.value,
             this.formEl.querySelector("#logradouro"),
             this.formEl.querySelector("#bairro")
           );
+
+
+          if(this.formEl.querySelector('.alert')){
+            this.formEl.querySelector('.alert') = "";
+          }
+
         });
 
         console.log(this.formEl.querySelector("#logradouro").value);
