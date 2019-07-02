@@ -268,9 +268,7 @@ class FornecedorModel
     WHERE 
         ativo_for = 1
     ORDER BY 
-        id_for
-    LIMIT 
-        $pagesSql,$maxItens";
+        id_for";
         return $this->Sql->select($command);
     }
 

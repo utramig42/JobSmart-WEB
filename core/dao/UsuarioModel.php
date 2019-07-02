@@ -286,8 +286,7 @@ class UsuarioModel
             INNER JOIN
         cargo c ON c.id_cargo = f.id_cargo
         WHERE f.dt_rec_fun  > '" . date('Y-m-d') . "'  OR f.dt_rec_fun IS NULL OR f.dt_rec_fun  = '0000-00-00'
-        ORDER BY f.mat_fun
-        LIMIT  $pagesSql,$maxItens";
+   ";
 
 
         return $this->Sql->select($command);

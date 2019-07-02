@@ -21,7 +21,7 @@ class VendaModel
         INNER JOIN
             funcionario f ON f.mat_fun = v.mat_fun
         ORDER BY v.dt_venda desc, v.id_venda desc
-            LIMIT  $pagesSql,$maxItens";
+         ";
 
         return $this->Sql->select($rawQuery);
     }

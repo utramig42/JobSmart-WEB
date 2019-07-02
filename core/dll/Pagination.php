@@ -1,4 +1,4 @@
- <?php
+ <!-- <?php
     if (file_exists('../dao/Connection.php')) require_once '../dao/Connection.php';
 
     $Sql = new Connection();
@@ -34,4 +34,4 @@
          <li class="page-item <?php echo $disableProx ?>"><a class="page-link" href="?pagina=<?php echo $page >= $maxPages - 1 ?  $numPage : $page + 1; ?>">Próximo</a>
          </li>
      </ul>
- </nav>
+ </nav> -->

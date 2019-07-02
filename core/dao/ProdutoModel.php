@@ -49,8 +49,7 @@ class ProdutoModel
     WHERE
         ativo_prod = 1
     GROUP BY p.id_prod
-        LIMIT 
-            $pagesSql,$maxItens";
+    ";
 
         return $this->Sql->select($command);
     }
